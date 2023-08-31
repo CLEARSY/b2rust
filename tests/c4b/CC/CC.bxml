@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='CC' type='abstraction' position='false' semantic='true' b0check='false'>
+    <Concrete_Variables>
+        <Id value='vv' typref='0'/>
+    </Concrete_Variables>
+    <Invariant>
+        <Exp_Comparison op=':'>
+            <Id value='vv' typref='0'/>
+            <Id value='BOOL' typref='4'/>
+        </Exp_Comparison>
+    </Invariant>
+    <Initialisation>
+        <Assignement_Sub>
+            <Variables>
+                <Id value='vv' typref='0'/>
+            </Variables>
+            <Values>
+                <Boolean_Literal value='TRUE' typref='0'/>
+            </Values>
+        </Assignement_Sub>
+    </Initialisation>
+    <Operations>
+        <Operation name='opCC'>
+            <Body>
+                <Skip/>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Unary_Exp op='POW'>
+<Id value='BOOL'/>
+</Unary_Exp>
+        </Type>
+</TypeInfos>
+    
+</Machine>

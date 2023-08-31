@@ -1,0 +1,20 @@
+/* comparison_call_01_02_i
+ * Author: 
+ * Creation date: 22/05/2023
+ */
+
+IMPLEMENTATION comparison_call_01_02_i
+REFINES comparison_call_01_02
+
+SEES
+    b2rust_types
+    
+OPERATIONS
+    boolean <-- give_true = BEGIN
+        boolean := TRUE
+    END;
+    
+    boolean <-- give_false = BEGIN
+        boolean := FALSE
+    END   
+END

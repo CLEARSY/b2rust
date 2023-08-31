@@ -1,0 +1,19 @@
+/* import_type_i
+ * Author: cchen4
+ * Creation date: 23/08/2023
+ */
+
+IMPLEMENTATION import_type_i
+REFINES import_type
+
+SEES
+    seen
+    
+IMPORTS
+    imported1
+    
+EXTENDS
+    imported2
+    
+ 
+END

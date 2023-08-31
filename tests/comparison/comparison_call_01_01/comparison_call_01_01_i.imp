@@ -1,0 +1,27 @@
+/* comparison_call_01_01_i
+ * Author: 
+ * Creation date: 22/05/2023
+ */
+
+IMPLEMENTATION comparison_call_01_01_i
+REFINES comparison_call_01_01
+    
+SEES
+    b2rust_types
+    
+CONCRETE_VARIABLES
+    true, false
+    
+INVARIANT
+    true : rust_bool &
+    false : rust_bool
+    
+IMPORTS
+    M1.comparison_call_01_02,
+    M2.comparison_call_01_02
+    
+INITIALISATION
+    true <-- M1.give_true;
+    false <-- M2.give_false
+   
+END

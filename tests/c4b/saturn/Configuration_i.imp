@@ -1,0 +1,170 @@
+/* Configuration_i
+* Author: 
+* Creation date: 09/07/14
+*/
+
+IMPLEMENTATION Configuration_i
+REFINES Configuration
+ 
+IMPORTS
+    Configuration1
+SEES
+    Types,
+    Erreurs,
+    PMP,
+    Precompil
+CONCRETE_VARIABLES
+    g_EtapeConf,
+    iTempoCompteurConf
+    
+INVARIANT
+    g_EtapeConf : uint8_t &   
+    iTempoCompteurConf : uint16_t 
+    
+INITIALISATION
+    g_EtapeConf := 0;
+    iTempoCompteurConf := 0
+    
+    
+LOCAL_OPERATIONS
+    p_out <-- Configuration_DecouverteReseau1 =
+    PRE
+        //g_Trame : uint8_t --> uint8_t &
+        p_out : SBOOL &
+        iTempoCompteurConf : uint16_t 
+    THEN  
+        //g_Trame :: uint8_t --> uint8_t ||
+        iTempoCompteurConf ::  uint16_t ||
+        p_out :(
+            p_out : SBOOL &
+            (p_out = STRUE => g_EtapeConf <= 8)
+        )
+        
+    END;
+    
+    l_Trame <-- Configuration_CreateTrameNonRecopieBroad =
+    PRE
+        l_Trame : uint8_t --> uint8_t
+    THEN
+        l_Trame :: uint8_t --> uint8_t
+    END
+    ;
+    l_Trame <-- Configuration_CreateTrameReadIIDMACTYPBroad =
+    PRE
+        l_Trame : uint8_t --> uint8_t
+    THEN   
+        l_Trame :: uint8_t --> uint8_t
+    END
+    
+OPERATIONS
+    Configuration_Init=
+    BEGIN
+        g_EtapeConf := 0;
+        iTempoCompteurConf := 0
+    END;
+    
+    Configuration_TimerIntB =
+    BEGIN
+        IF iTempoCompteurConf > 0 THEN iTempoCompteurConf := iTempoCompteurConf - 1 END
+    END
+    ;
+    
+    p_out <-- Configuration_DecouverteReseau =
+    VAR 
+        l_IncCpt 
+    IN
+        l_IncCpt :: uint8_t;
+        l_IncCpt := SFALSE;
+        l_IncCpt <-- Configuration_DecouverteReseau1;
+        IF l_IncCpt = STRUE THEN
+            g_EtapeConf := g_EtapeConf + 1
+        ELSIF l_IncCpt /= SFALSE THEN
+            Erreurs_SecuredBoolean("SPI_SendTrame : g_TrameEmise")
+        END;
+        IF  g_EtapeConf >= 9 THEN 
+            p_out := STRUE
+        ELSE
+            p_out := SFALSE
+        END
+        
+    END;
+    
+    
+    p_out <-- Configuration_DecouverteReseau1 =
+    VAR
+        l_conf,
+        l_trame
+    IN
+        l_conf :(l_conf : uint8_t);
+        l_trame :( l_trame : uint8_t --> uint8_t);
+        l_conf := 0x00;
+        p_out := SFALSE;
+        l_trame := uint8_t*{0};
+        CASE g_EtapeConf OF
+            EITHER 0 THEN
+                PMP_MAJCONFIGRP;
+                PMP_MAJConf(0x80);
+                p_out := STRUE
+            OR 1,2,3,4,5,6,7,8 THEN
+                l_conf <-- PMP_RecupConf;
+                IF l_conf = 0x80 THEN
+                    PMP_MAJConf(0xA0); //Hors repli + SPHY
+                    p_out := STRUE
+                END 
+            OR 9 THEN
+                l_conf <-- PMP_RecupConf;
+                IF l_conf = 0x80 THEN
+                    l_trame <-- Configuration_CreateTrameNonRecopieBroad;
+                    PMP_CreateTrame(l_trame);
+                    p_out := STRUE;
+                    iTempoCompteurConf := 2 //On attend 2 ms que la commande de non recopie soit prise en compte par le réseau   
+                END
+            OR  10 THEN
+                IF iTempoCompteurConf = 0 THEN //Le LAN SCAN commence ici
+                    /*Configuration_CreateTrameReadIIDMACTYPBroad;
+                    PMP_CreateTrame(g_Trame);
+                    iTempoCompteurConf := 2; //On se laisse 2ms pour récupérer les ID des deux MIO
+                    p_out := STRUE*/
+                    p_out <-- Configuration1_LANSCAN
+                END     
+            ELSE
+                p_out := SFALSE
+            END
+        END          
+    END;
+    
+    l_Trame <-- Configuration_CreateTrameNonRecopieBroad =
+    BEGIN 
+        l_Trame(0) := 7;
+        l_Trame(1) := 0x8F; /*Tous les MIO sans TID*/
+        l_Trame(2) := REQUETE_NON_SECU;
+        l_Trame(3) := 0xF1;
+        l_Trame(4) := 0x01;
+        l_Trame(5) := 0x01;
+        l_Trame(6) := 0x25;
+        l_Trame(7) := 0x00
+    END
+    ;
+    l_Trame <-- Configuration_CreateTrameReadIIDMACTYPBroad =
+    VAR
+        l_CRC
+    IN
+        l_CRC :: uint16_t;
+        l_CRC := 0;
+        l_Trame(0) := 15;
+        l_Trame(1) := 0x8F; /*Tous les MIO sans TID*/
+        l_Trame(2) := REQUETE_SECU;
+        l_Trame(3) := 0xFF; //SID destinataire = 0xFF au démarrage
+        l_Trame(4) := 0xFF; //SID destinataire = 0xFF au démarrage
+        l_Trame(5) := 0xFF; //SID destinataire = 0xFF au démarrage
+        l_Trame(6) := 0xFF; //SID emetteur = 0xFF au démarrage
+        l_Trame(7) := 0xFF; //SID emetteur = 0xFF au démarrage
+        l_Trame(8) := 0xFF; //SID emetteur = 0xFF au démarrage
+        l_Trame(9) := 0;    //CYC à zéro au démarrage
+        l_Trame(10) := 0;   //SEQ à zéro au démarrage
+        l_Trame(11) := 0x88;
+        l_Trame(12) := 0x26;
+        l_Trame(13) := 0x00;
+        Precompil_CRCCreateB(l_Trame,12)
+    END
+END

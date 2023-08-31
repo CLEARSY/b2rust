@@ -1,0 +1,27 @@
+/* if_11_i
+ * Author: 
+ * Creation date: 11/04/2023
+ */
+
+IMPLEMENTATION if_11_i
+REFINES if_11
+
+SEES
+    b2rust_types
+    
+CONCRETE_VARIABLES
+    value
+    
+INVARIANT
+    value : rust_i16
+    
+INITIALISATION
+    value := 12
+    
+OPERATIONS
+    might_change_value = BEGIN
+        IF value / 2 = 6  THEN
+            value := value / 2
+        END
+    END
+ END

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='ok14i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>main_tabular_14</Abstraction>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <Operations>
+        <Operation name='oper1'>
+            <Input_Parameters>
+                <Id value='x1' typref='4'/>
+                <Id value='x2' typref='5'/>
+            </Input_Parameters>
+            <Body>
+                <VAR_IN>
+                    <Variables>
+                        <Id value='loc1' typref='6'/>
+                        <Id value='loc2' typref='6'/>
+                        <Id value='xx' typref='1'/>
+                        <Id value='yy' typref='1'/>
+                    </Variables>
+                    <Body>
+                        <Nary_Sub op=';'>
+                            <Becomes_In>
+                                <Variables>
+                                    <Id value='xx' typref='1'/>
+                                </Variables>
+                                <Value>
+                                    <Id value='rust_u8' typref='2'/>
+                                </Value>
+                            </Becomes_In>
+                            <Becomes_In>
+                                <Variables>
+                                    <Id value='yy' typref='1'/>
+                                </Variables>
+                                <Value>
+                                    <Id value='rust_u8' typref='2'/>
+                                </Value>
+                            </Becomes_In>
+                            <Becomes_In>
+                                <Variables>
+                                    <Id value='loc1' typref='6'/>
+                                </Variables>
+                                <Value>
+                                    <Id value='SURTYPE' typref='7'/>
+                                </Value>
+                            </Becomes_In>
+                            <Becomes_In>
+                                <Variables>
+                                    <Id value='loc2' typref='6'/>
+                                </Variables>
+                                <Value>
+                                    <Id value='SURTYPE' typref='7'/>
+                                </Value>
+                            </Becomes_In>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='xx' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Integer_Literal value='1' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='yy' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Integer_Literal value='1' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='loc1' typref='6'/>
+                                </Variables>
+                                <Values>
+                                    <Binary_Exp op='(' typref='6'>
+                                        <Id value='x1' typref='4'/>
+                                        <Binary_Exp op='|-&gt;' typref='8'>
+                                            <Id value='xx' typref='1'/>
+                                            <Id value='yy' typref='1'/>
+                                        </Binary_Exp>
+                                    </Binary_Exp>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='loc2' typref='6'/>
+                                </Variables>
+                                <Values>
+                                    <Binary_Exp op='(' typref='6'>
+                                        <Id value='x2' typref='5'/>
+                                        <Id value='yy' typref='1'/>
+                                    </Binary_Exp>
+                                </Values>
+                            </Assignement_Sub>
+                        </Nary_Sub>
+                    </Body>
+                </VAR_IN>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+<Id value='SURTYPE'/>
+</Binary_Exp>
+</Unary_Exp>
+        </Type>
+    <Type id='5'>
+        <Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='SURTYPE'/>
+</Binary_Exp>
+</Unary_Exp>
+        </Type>
+    <Type id='6'>
+        <Id value='SURTYPE'/>
+        </Type>
+    <Type id='7'>
+        <Unary_Exp op='POW'>
+<Id value='SURTYPE'/>
+</Unary_Exp>
+        </Type>
+    <Type id='8'>
+        <Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+        </Type>
+</TypeInfos>
+    
+</Machine>

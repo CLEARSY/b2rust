@@ -1,0 +1,50 @@
+/* main_tabular_03_i
+ * Author: 
+ * Creation date: 25/05/2023
+ */
+
+IMPLEMENTATION main_tabular_15_i
+REFINES main_tabular_15
+
+SEES
+    b2rust_types, data
+	
+CONCRETE_CONSTANTS
+	size_2
+	
+CONCRETE_VARIABLES
+    tab1,
+    tab2
+   
+PROPERTIES 
+	size_2 : rust_u8
+	 
+INVARIANT
+    tab1 : 0..(array_length_max+1) --> rust_i32 &
+    tab2 : 0..size_2 --> rust_i32
+   
+VALUES
+	size_2 = 5
+	 
+INITIALISATION
+    tab1 := (0..(array_length_max+1)) * {1} ;
+    tab2 := {0 |-> 1, 1 |-> 1, 2 |-> 1, 3 |-> 1, 4 |-> 1, 5 |-> 1}
+    
+OPERATIONS
+    the_tab <-- get_tab1 = BEGIN
+        the_tab := tab1
+    END;
+    
+        
+    the_tab <-- get_tab2 = BEGIN
+   the_tab := tab2
+
+    END;
+    
+    the_tab <-- set_tab(aa) = BEGIN
+     
+    the_tab := (0..5) * {aa}
+    END
+    
+    
+END

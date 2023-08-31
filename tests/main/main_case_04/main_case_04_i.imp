@@ -1,0 +1,23 @@
+/* main_case_04_i
+ * Author: 
+ * Creation date: 27/06/2023
+ */
+
+IMPLEMENTATION main_case_04_i
+REFINES main_case_04
+
+SEES
+    b2rust_types
+
+OPERATIONS
+
+    res <-- meilleur ( jour ) =
+    BEGIN
+        CASE jour OF
+            EITHER 5  THEN res := TRUE
+        END
+    END
+
+ END
+ 
+ END

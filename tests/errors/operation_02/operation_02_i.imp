@@ -1,0 +1,18 @@
+/* operation_02_i
+ * Author: 
+ * Creation date: 20/04/2023
+ */
+
+IMPLEMENTATION operation_02_i
+REFINES operation_02
+
+SEES b2rust_types
+
+OPERATIONS
+    return_zero(entry) = BEGIN
+        VAR locale IN
+            locale :: rust_bool;
+            locale := FALSE
+        END
+    END
+END

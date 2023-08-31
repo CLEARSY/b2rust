@@ -1,0 +1,51 @@
+/* main_swap_02_i
+ * Author: cchen4
+ * Creation date: 21/07/2023
+ */
+
+IMPLEMENTATION main_swap_02_i
+REFINES main_swap_02
+
+SEES
+    b2rust_types,empty
+   
+IMPORTS
+    main_swap_02_01
+    
+CONCRETE_VARIABLES 
+    cv1, cv2
+    
+INVARIANT
+    cv1 : rust_i8 & 
+    cv2 : rust_i8
+
+INITIALISATION
+    cv1 := xx ;
+    cv2 := yy
+
+LOCAL_OPERATIONS
+        aa,bb <-- swap(cc,dd) = 
+    PRE
+        aa : rust_i8 &
+        bb : rust_i8 &
+        cc : rust_i8 &
+        dd : rust_i8 
+    THEN
+        aa := cc ||
+        bb := dd 
+    END
+    
+OPERATIONS
+    
+    aa,bb <-- swap(cc,dd) = 
+    BEGIN
+        aa := cc;
+        bb := dd
+    END;
+    
+    bigSwap = 
+    BEGIN
+        cv2,cv1 <-- swap(xx,yy)
+    END
+    
+ END

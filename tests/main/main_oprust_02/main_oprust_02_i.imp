@@ -1,0 +1,23 @@
+/* addition_i
+ * Author: cchen4
+ * Creation date: 20/06/2023
+ */
+
+IMPLEMENTATION main_oprust_02_i
+REFINES main_oprust_02
+
+SEES 
+    b2rust_types
+    
+    
+
+    
+OPERATIONS
+    res <-- compliquer(aa,bb) = 
+    BEGIN
+        
+        res := mul_i8(add_i8(aa, sub_i8(aa,bb)),div_i8(aa,bb))
+    END
+
+
+ END

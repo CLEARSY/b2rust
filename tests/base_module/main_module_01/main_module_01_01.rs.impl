@@ -1,0 +1,28 @@
+pub struct main_module_01_01 {
+// Concrete variables & constants.
+r#const1: i8,
+r#var1: i8,
+}
+
+impl Default for main_module_01_01 {
+   fn default() -> Self {
+     let mut instance = Self {// `INITIALISATION` clause.
+r#const1 : 1,
+r#var1 : 0,
+};
+instance.initialisation();
+instance}
+}
+impl main_module_01_01 {
+fn initialisation(&mut self) {
+// `INITIALISATION` clause.
+}
+
+pub fn getVar(&mut self, r#res: &mut i8) {
+*r#res = self.r#var1;
+}
+
+pub fn addVar(&mut self, r#vv: &i8, r#res: &mut i8) {
+	*r#res = self.r#var1 + *r#vv;
+}
+}

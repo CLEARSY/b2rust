@@ -1,0 +1,18 @@
+IMPLEMENTATION
+	sees_extends_imp
+REFINES
+	sees_extends_mch
+SEES
+	testlang51,
+	BASIC_IO
+OPERATIONS
+	main = 
+	BEGIN
+	/* STRING_WRITE("\nExecution de l'operation op")*/
+		skip;
+	op;
+	/* STRING_WRITE("\nExecution de l'operation op_etendue_1")*/
+		skip;
+	op_etendue_1
+	END
+END

@@ -1,0 +1,28 @@
+/* main_parameters_01_i
+ * Author: cchen4
+ * Creation date: 31/07/2023
+ */
+
+IMPLEMENTATION main_parameters_03_i(toto)
+REFINES main_parameters_03
+
+SEES
+    b2rust_types, 
+    data
+    
+IMPORTS
+    M1.imported(depart),
+    M2.imported(10 + arrivee),
+    M3.imported(depart + toto)
+    
+INVARIANT
+	toto : rust_i8
+    
+OPERATIONS
+    res <-- total = 
+    BEGIN
+        res <--  M2.sum(M2.cv,M1.cv,M3.cv) 
+    END
+    
+
+ END

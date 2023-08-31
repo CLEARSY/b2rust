@@ -1,0 +1,25 @@
+/* Switch_i
+ * Author: spare
+ * Creation date: 13/06/2023
+ */
+
+IMPLEMENTATION main_case_03_i
+
+REFINES main_case_03
+
+SEES
+    b2rust_types
+
+OPERATIONS
+
+    res <-- meilleur ( jour ) =
+    BEGIN
+        CASE jour OF
+            EITHER 6  THEN res := TRUE
+            OR     7  THEN res := TRUE
+        END
+    END
+
+ END
+
+END

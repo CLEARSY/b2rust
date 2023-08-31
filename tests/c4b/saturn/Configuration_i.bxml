@@ -1,0 +1,929 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='Configuration_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>Configuration</Abstraction>
+    <Imports>
+        <Referenced_Machine>
+            <Name>Configuration1</Name>
+        </Referenced_Machine>
+    </Imports>
+    <Sees>
+        <Referenced_Machine>
+            <Name>Types</Name>
+        </Referenced_Machine>
+        <Referenced_Machine>
+            <Name>Erreurs</Name>
+        </Referenced_Machine>
+        <Referenced_Machine>
+            <Name>PMP</Name>
+        </Referenced_Machine>
+        <Referenced_Machine>
+            <Name>Precompil</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Concrete_Variables>
+        <Id value='g_EtapeConf' typref='1'/>
+        <Id value='iTempoCompteurConf' typref='1'/>
+    </Concrete_Variables>
+    <Invariant>
+        <Nary_Pred op='&amp;'>
+            <Exp_Comparison op=':'>
+                <Id value='g_EtapeConf' typref='1'/>
+                <Id value='uint8_t' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='iTempoCompteurConf' typref='1'/>
+                <Id value='uint16_t' typref='2'/>
+            </Exp_Comparison>
+        </Nary_Pred>
+    </Invariant>
+    <Initialisation>
+        <Nary_Sub op=';'>
+            <Assignement_Sub>
+                <Variables>
+                    <Id value='g_EtapeConf' typref='1'/>
+                </Variables>
+                <Values>
+                    <Integer_Literal value='0' typref='1'/>
+                </Values>
+            </Assignement_Sub>
+            <Assignement_Sub>
+                <Variables>
+                    <Id value='iTempoCompteurConf' typref='1'/>
+                </Variables>
+                <Values>
+                    <Integer_Literal value='0' typref='1'/>
+                </Values>
+            </Assignement_Sub>
+        </Nary_Sub>
+    </Initialisation>
+    <Local_Operations>
+        <Operation name='Configuration_DecouverteReseau1'>
+            <Output_Parameters>
+                <Id value='p_out' typref='1'/>
+            </Output_Parameters>
+            <Precondition>
+                <Nary_Pred op='&amp;'>
+                    <Exp_Comparison op=':'>
+                        <Id value='p_out' typref='1'/>
+                        <Id value='SBOOL' typref='2'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op=':'>
+                        <Id value='iTempoCompteurConf' typref='1'/>
+                        <Id value='uint16_t' typref='2'/>
+                    </Exp_Comparison>
+                </Nary_Pred>
+            </Precondition>
+            <Body>
+                <Nary_Sub op='||'>
+                    <Becomes_In>
+                        <Variables>
+                            <Id value='iTempoCompteurConf' typref='1'/>
+                        </Variables>
+                        <Value>
+                            <Id value='uint16_t' typref='2'/>
+                        </Value>
+                    </Becomes_In>
+                    <Becomes_Such_That>
+                        <Variables>
+                            <Id value='p_out' typref='1'/>
+                        </Variables>
+                        <Pred>
+                            <Nary_Pred op='&amp;'>
+                                <Exp_Comparison op=':'>
+                                    <Id value='p_out' typref='1'/>
+                                    <Id value='SBOOL' typref='2'/>
+                                </Exp_Comparison>
+                                <Binary_Pred op='=&gt;'>
+                                    <Exp_Comparison op='='>
+                                        <Id value='p_out' typref='1'/>
+                                        <Id value='STRUE' typref='1'/>
+                                    </Exp_Comparison>
+                                    <Exp_Comparison op='&lt;=i'>
+                                        <Id value='g_EtapeConf' typref='1'/>
+                                        <Integer_Literal value='8' typref='1'/>
+                                    </Exp_Comparison>
+                                </Binary_Pred>
+                            </Nary_Pred>
+                        </Pred>
+                    </Becomes_Such_That>
+                </Nary_Sub>
+            </Body>
+        </Operation>
+        <Operation name='Configuration_CreateTrameNonRecopieBroad'>
+            <Output_Parameters>
+                <Id value='l_Trame' typref='4'/>
+            </Output_Parameters>
+            <Precondition>
+                <Exp_Comparison op=':'>
+                    <Id value='l_Trame' typref='4'/>
+                    <Binary_Exp op='--&gt;' typref='5'>
+                        <Id value='uint8_t' typref='2'/>
+                        <Id value='uint8_t' typref='2'/>
+                    </Binary_Exp>
+                </Exp_Comparison>
+            </Precondition>
+            <Body>
+                <Becomes_In>
+                    <Variables>
+                        <Id value='l_Trame' typref='4'/>
+                    </Variables>
+                    <Value>
+                        <Binary_Exp op='--&gt;' typref='5'>
+                            <Id value='uint8_t' typref='2'/>
+                            <Id value='uint8_t' typref='2'/>
+                        </Binary_Exp>
+                    </Value>
+                </Becomes_In>
+            </Body>
+        </Operation>
+        <Operation name='Configuration_CreateTrameReadIIDMACTYPBroad'>
+            <Output_Parameters>
+                <Id value='l_Trame' typref='4'/>
+            </Output_Parameters>
+            <Precondition>
+                <Exp_Comparison op=':'>
+                    <Id value='l_Trame' typref='4'/>
+                    <Binary_Exp op='--&gt;' typref='5'>
+                        <Id value='uint8_t' typref='2'/>
+                        <Id value='uint8_t' typref='2'/>
+                    </Binary_Exp>
+                </Exp_Comparison>
+            </Precondition>
+            <Body>
+                <Becomes_In>
+                    <Variables>
+                        <Id value='l_Trame' typref='4'/>
+                    </Variables>
+                    <Value>
+                        <Binary_Exp op='--&gt;' typref='5'>
+                            <Id value='uint8_t' typref='2'/>
+                            <Id value='uint8_t' typref='2'/>
+                        </Binary_Exp>
+                    </Value>
+                </Becomes_In>
+            </Body>
+        </Operation>
+    </Local_Operations>
+    <Operations>
+        <Operation name='Configuration_Init'>
+            <Body>
+                <Nary_Sub op=';'>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Id value='g_EtapeConf' typref='1'/>
+                        </Variables>
+                        <Values>
+                            <Integer_Literal value='0' typref='1'/>
+                        </Values>
+                    </Assignement_Sub>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Id value='iTempoCompteurConf' typref='1'/>
+                        </Variables>
+                        <Values>
+                            <Integer_Literal value='0' typref='1'/>
+                        </Values>
+                    </Assignement_Sub>
+                </Nary_Sub>
+            </Body>
+        </Operation>
+        <Operation name='Configuration_TimerIntB'>
+            <Body>
+                <If_Sub elseif='no'>
+                    <Condition>
+                        <Exp_Comparison op='&gt;i'>
+                            <Id value='iTempoCompteurConf' typref='1'/>
+                            <Integer_Literal value='0' typref='1'/>
+                        </Exp_Comparison>
+                    </Condition>
+                    <Then>
+                        <Assignement_Sub>
+                            <Variables>
+                                <Id value='iTempoCompteurConf' typref='1'/>
+                            </Variables>
+                            <Values>
+                                <Binary_Exp op='-i' typref='1'>
+                                    <Id value='iTempoCompteurConf' typref='1'/>
+                                    <Integer_Literal value='1' typref='1'/>
+                                </Binary_Exp>
+                            </Values>
+                        </Assignement_Sub>
+                    </Then>
+                </If_Sub>
+            </Body>
+        </Operation>
+        <Operation name='Configuration_DecouverteReseau'>
+            <Output_Parameters>
+                <Id value='p_out' typref='1'/>
+            </Output_Parameters>
+            <Body>
+                <VAR_IN>
+                    <Variables>
+                        <Id value='l_IncCpt' typref='1'/>
+                    </Variables>
+                    <Body>
+                        <Nary_Sub op=';'>
+                            <Becomes_In>
+                                <Variables>
+                                    <Id value='l_IncCpt' typref='1'/>
+                                </Variables>
+                                <Value>
+                                    <Id value='uint8_t' typref='2'/>
+                                </Value>
+                            </Becomes_In>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='l_IncCpt' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='SFALSE' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Operation_Call>
+                                <Name>
+                                    <Id value='Configuration_DecouverteReseau1'/>
+                                </Name>
+                                <Output_Parameters>
+                                    <Id value='l_IncCpt' typref='1'/>
+                                </Output_Parameters>
+                            </Operation_Call>
+                            <If_Sub elseif='no'>
+                                <Condition>
+                                    <Exp_Comparison op='='>
+                                        <Id value='l_IncCpt' typref='1'/>
+                                        <Id value='STRUE' typref='1'/>
+                                    </Exp_Comparison>
+                                </Condition>
+                                <Then>
+                                    <Assignement_Sub>
+                                        <Variables>
+                                            <Id value='g_EtapeConf' typref='1'/>
+                                        </Variables>
+                                        <Values>
+                                            <Binary_Exp op='+i' typref='1'>
+                                                <Id value='g_EtapeConf' typref='1'/>
+                                                <Integer_Literal value='1' typref='1'/>
+                                            </Binary_Exp>
+                                        </Values>
+                                    </Assignement_Sub>
+                                </Then>
+                                <Else>
+                                    <If_Sub elseif='yes'>
+                                        <Condition>
+                                            <Exp_Comparison op='/='>
+                                                <Id value='l_IncCpt' typref='1'/>
+                                                <Id value='SFALSE' typref='1'/>
+                                            </Exp_Comparison>
+                                        </Condition>
+                                        <Then>
+                                            <Operation_Call>
+                                                <Name>
+                                                    <Id value='Erreurs_SecuredBoolean'/>
+                                                </Name>
+                                                <Input_Parameters>
+                                                    <STRING_Literal value='SPI_SendTrame : g_TrameEmise' typref='6'/>
+                                                </Input_Parameters>
+                                            </Operation_Call>
+                                        </Then>
+                                    </If_Sub>
+                                </Else>
+                            </If_Sub>
+                            <If_Sub elseif='no'>
+                                <Condition>
+                                    <Exp_Comparison op='&gt;=i'>
+                                        <Id value='g_EtapeConf' typref='1'/>
+                                        <Integer_Literal value='9' typref='1'/>
+                                    </Exp_Comparison>
+                                </Condition>
+                                <Then>
+                                    <Assignement_Sub>
+                                        <Variables>
+                                            <Id value='p_out' typref='1'/>
+                                        </Variables>
+                                        <Values>
+                                            <Id value='STRUE' typref='1'/>
+                                        </Values>
+                                    </Assignement_Sub>
+                                </Then>
+                                <Else>
+                                    <Assignement_Sub>
+                                        <Variables>
+                                            <Id value='p_out' typref='1'/>
+                                        </Variables>
+                                        <Values>
+                                            <Id value='SFALSE' typref='1'/>
+                                        </Values>
+                                    </Assignement_Sub>
+                                </Else>
+                            </If_Sub>
+                        </Nary_Sub>
+                    </Body>
+                </VAR_IN>
+            </Body>
+        </Operation>
+        <Operation name='Configuration_DecouverteReseau1'>
+            <Output_Parameters>
+                <Id value='p_out' typref='1'/>
+            </Output_Parameters>
+            <Body>
+                <VAR_IN>
+                    <Variables>
+                        <Id value='l_conf' typref='1'/>
+                        <Id value='l_trame' typref='4'/>
+                    </Variables>
+                    <Body>
+                        <Nary_Sub op=';'>
+                            <Becomes_Such_That>
+                                <Variables>
+                                    <Id value='l_conf' typref='1'/>
+                                </Variables>
+                                <Pred>
+                                    <Exp_Comparison op=':'>
+                                        <Id value='l_conf' typref='1'/>
+                                        <Id value='uint8_t' typref='2'/>
+                                    </Exp_Comparison>
+                                </Pred>
+                            </Becomes_Such_That>
+                            <Becomes_Such_That>
+                                <Variables>
+                                    <Id value='l_trame' typref='4'/>
+                                </Variables>
+                                <Pred>
+                                    <Exp_Comparison op=':'>
+                                        <Id value='l_trame' typref='4'/>
+                                        <Binary_Exp op='--&gt;' typref='5'>
+                                            <Id value='uint8_t' typref='2'/>
+                                            <Id value='uint8_t' typref='2'/>
+                                        </Binary_Exp>
+                                    </Exp_Comparison>
+                                </Pred>
+                            </Becomes_Such_That>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='l_conf' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Integer_Literal value='0' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='p_out' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='SFALSE' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='l_trame' typref='4'/>
+                                </Variables>
+                                <Values>
+                                    <Binary_Exp op='*s' typref='4'>
+                                        <Id value='uint8_t' typref='2'/>
+                                        <Nary_Exp op='{' typref='2'>
+                                            <Integer_Literal value='0' typref='1'/>
+                                        </Nary_Exp>
+                                    </Binary_Exp>
+                                </Values>
+                            </Assignement_Sub>
+                            <Case_Sub>
+                                <Value>
+                                    <Id value='g_EtapeConf' typref='1'/>
+                                </Value>
+                                <Choices>
+                                    <Choice>
+                                        <Value>
+                                            <Integer_Literal value='0' typref='1'/>
+                                        </Value>
+                                        <Then>
+                                            <Nary_Sub op=';'>
+                                                <Operation_Call>
+                                                    <Name>
+                                                        <Id value='PMP_MAJCONFIGRP'/>
+                                                    </Name>
+                                                </Operation_Call>
+                                                <Operation_Call>
+                                                    <Name>
+                                                        <Id value='PMP_MAJConf'/>
+                                                    </Name>
+                                                    <Input_Parameters>
+                                                        <Integer_Literal value='128' typref='1'/>
+                                                    </Input_Parameters>
+                                                </Operation_Call>
+                                                <Assignement_Sub>
+                                                    <Variables>
+                                                        <Id value='p_out' typref='1'/>
+                                                    </Variables>
+                                                    <Values>
+                                                        <Id value='STRUE' typref='1'/>
+                                                    </Values>
+                                                </Assignement_Sub>
+                                            </Nary_Sub>
+                                        </Then>
+                                    </Choice>
+                                    <Choice>
+                                        <Value>
+                                            <Integer_Literal value='1' typref='1'/>
+                                        </Value>
+                                        <Value>
+                                            <Integer_Literal value='2' typref='1'/>
+                                        </Value>
+                                        <Value>
+                                            <Integer_Literal value='3' typref='1'/>
+                                        </Value>
+                                        <Value>
+                                            <Integer_Literal value='4' typref='1'/>
+                                        </Value>
+                                        <Value>
+                                            <Integer_Literal value='5' typref='1'/>
+                                        </Value>
+                                        <Value>
+                                            <Integer_Literal value='6' typref='1'/>
+                                        </Value>
+                                        <Value>
+                                            <Integer_Literal value='7' typref='1'/>
+                                        </Value>
+                                        <Value>
+                                            <Integer_Literal value='8' typref='1'/>
+                                        </Value>
+                                        <Then>
+                                            <Nary_Sub op=';'>
+                                                <Operation_Call>
+                                                    <Name>
+                                                        <Id value='PMP_RecupConf'/>
+                                                    </Name>
+                                                    <Output_Parameters>
+                                                        <Id value='l_conf' typref='1'/>
+                                                    </Output_Parameters>
+                                                </Operation_Call>
+                                                <If_Sub elseif='no'>
+                                                    <Condition>
+                                                        <Exp_Comparison op='='>
+                                                            <Id value='l_conf' typref='1'/>
+                                                            <Integer_Literal value='128' typref='1'/>
+                                                        </Exp_Comparison>
+                                                    </Condition>
+                                                    <Then>
+                                                        <Nary_Sub op=';'>
+                                                            <Operation_Call>
+                                                                <Name>
+                                                                    <Id value='PMP_MAJConf'/>
+                                                                </Name>
+                                                                <Input_Parameters>
+                                                                    <Integer_Literal value='160' typref='1'/>
+                                                                </Input_Parameters>
+                                                            </Operation_Call>
+                                                            <Assignement_Sub>
+                                                                <Variables>
+                                                                    <Id value='p_out' typref='1'/>
+                                                                </Variables>
+                                                                <Values>
+                                                                    <Id value='STRUE' typref='1'/>
+                                                                </Values>
+                                                            </Assignement_Sub>
+                                                        </Nary_Sub>
+                                                    </Then>
+                                                </If_Sub>
+                                            </Nary_Sub>
+                                        </Then>
+                                    </Choice>
+                                    <Choice>
+                                        <Value>
+                                            <Integer_Literal value='9' typref='1'/>
+                                        </Value>
+                                        <Then>
+                                            <Nary_Sub op=';'>
+                                                <Operation_Call>
+                                                    <Name>
+                                                        <Id value='PMP_RecupConf'/>
+                                                    </Name>
+                                                    <Output_Parameters>
+                                                        <Id value='l_conf' typref='1'/>
+                                                    </Output_Parameters>
+                                                </Operation_Call>
+                                                <If_Sub elseif='no'>
+                                                    <Condition>
+                                                        <Exp_Comparison op='='>
+                                                            <Id value='l_conf' typref='1'/>
+                                                            <Integer_Literal value='128' typref='1'/>
+                                                        </Exp_Comparison>
+                                                    </Condition>
+                                                    <Then>
+                                                        <Nary_Sub op=';'>
+                                                            <Operation_Call>
+                                                                <Name>
+                                                                    <Id value='Configuration_CreateTrameNonRecopieBroad'/>
+                                                                </Name>
+                                                                <Output_Parameters>
+                                                                    <Id value='l_trame' typref='4'/>
+                                                                </Output_Parameters>
+                                                            </Operation_Call>
+                                                            <Operation_Call>
+                                                                <Name>
+                                                                    <Id value='PMP_CreateTrame'/>
+                                                                </Name>
+                                                                <Input_Parameters>
+                                                                    <Id value='l_trame' typref='4'/>
+                                                                </Input_Parameters>
+                                                            </Operation_Call>
+                                                            <Assignement_Sub>
+                                                                <Variables>
+                                                                    <Id value='p_out' typref='1'/>
+                                                                </Variables>
+                                                                <Values>
+                                                                    <Id value='STRUE' typref='1'/>
+                                                                </Values>
+                                                            </Assignement_Sub>
+                                                            <Assignement_Sub>
+                                                                <Variables>
+                                                                    <Id value='iTempoCompteurConf' typref='1'/>
+                                                                </Variables>
+                                                                <Values>
+                                                                    <Integer_Literal value='2' typref='1'/>
+                                                                </Values>
+                                                            </Assignement_Sub>
+                                                        </Nary_Sub>
+                                                    </Then>
+                                                </If_Sub>
+                                            </Nary_Sub>
+                                        </Then>
+                                    </Choice>
+                                    <Choice>
+                                        <Value>
+                                            <Integer_Literal value='10' typref='1'/>
+                                        </Value>
+                                        <Then>
+                                            <If_Sub elseif='no'>
+                                                <Condition>
+                                                    <Exp_Comparison op='='>
+                                                        <Id value='iTempoCompteurConf' typref='1'/>
+                                                        <Integer_Literal value='0' typref='1'/>
+                                                    </Exp_Comparison>
+                                                </Condition>
+                                                <Then>
+                                                    <Operation_Call>
+                                                        <Name>
+                                                            <Id value='Configuration1_LANSCAN'/>
+                                                        </Name>
+                                                        <Output_Parameters>
+                                                            <Id value='p_out' typref='1'/>
+                                                        </Output_Parameters>
+                                                    </Operation_Call>
+                                                </Then>
+                                            </If_Sub>
+                                        </Then>
+                                    </Choice>
+                                </Choices>
+                                <Else>
+                                    <Assignement_Sub>
+                                        <Variables>
+                                            <Id value='p_out' typref='1'/>
+                                        </Variables>
+                                        <Values>
+                                            <Id value='SFALSE' typref='1'/>
+                                        </Values>
+                                    </Assignement_Sub>
+                                </Else>
+                            </Case_Sub>
+                        </Nary_Sub>
+                    </Body>
+                </VAR_IN>
+            </Body>
+        </Operation>
+        <Operation name='Configuration_CreateTrameNonRecopieBroad'>
+            <Output_Parameters>
+                <Id value='l_Trame' typref='4'/>
+            </Output_Parameters>
+            <Body>
+                <Nary_Sub op=';'>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Binary_Exp op='(' typref='1'>
+                                <Id value='l_Trame' typref='4'/>
+                                <Integer_Literal value='0' typref='1'/>
+                            </Binary_Exp>
+                        </Variables>
+                        <Values>
+                            <Integer_Literal value='7' typref='1'/>
+                        </Values>
+                    </Assignement_Sub>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Binary_Exp op='(' typref='1'>
+                                <Id value='l_Trame' typref='4'/>
+                                <Integer_Literal value='1' typref='1'/>
+                            </Binary_Exp>
+                        </Variables>
+                        <Values>
+                            <Integer_Literal value='143' typref='1'/>
+                        </Values>
+                    </Assignement_Sub>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Binary_Exp op='(' typref='1'>
+                                <Id value='l_Trame' typref='4'/>
+                                <Integer_Literal value='2' typref='1'/>
+                            </Binary_Exp>
+                        </Variables>
+                        <Values>
+                            <Id value='REQUETE_NON_SECU' typref='1'/>
+                        </Values>
+                    </Assignement_Sub>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Binary_Exp op='(' typref='1'>
+                                <Id value='l_Trame' typref='4'/>
+                                <Integer_Literal value='3' typref='1'/>
+                            </Binary_Exp>
+                        </Variables>
+                        <Values>
+                            <Integer_Literal value='241' typref='1'/>
+                        </Values>
+                    </Assignement_Sub>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Binary_Exp op='(' typref='1'>
+                                <Id value='l_Trame' typref='4'/>
+                                <Integer_Literal value='4' typref='1'/>
+                            </Binary_Exp>
+                        </Variables>
+                        <Values>
+                            <Integer_Literal value='1' typref='1'/>
+                        </Values>
+                    </Assignement_Sub>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Binary_Exp op='(' typref='1'>
+                                <Id value='l_Trame' typref='4'/>
+                                <Integer_Literal value='5' typref='1'/>
+                            </Binary_Exp>
+                        </Variables>
+                        <Values>
+                            <Integer_Literal value='1' typref='1'/>
+                        </Values>
+                    </Assignement_Sub>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Binary_Exp op='(' typref='1'>
+                                <Id value='l_Trame' typref='4'/>
+                                <Integer_Literal value='6' typref='1'/>
+                            </Binary_Exp>
+                        </Variables>
+                        <Values>
+                            <Integer_Literal value='37' typref='1'/>
+                        </Values>
+                    </Assignement_Sub>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Binary_Exp op='(' typref='1'>
+                                <Id value='l_Trame' typref='4'/>
+                                <Integer_Literal value='7' typref='1'/>
+                            </Binary_Exp>
+                        </Variables>
+                        <Values>
+                            <Integer_Literal value='0' typref='1'/>
+                        </Values>
+                    </Assignement_Sub>
+                </Nary_Sub>
+            </Body>
+        </Operation>
+        <Operation name='Configuration_CreateTrameReadIIDMACTYPBroad'>
+            <Output_Parameters>
+                <Id value='l_Trame' typref='4'/>
+            </Output_Parameters>
+            <Body>
+                <VAR_IN>
+                    <Variables>
+                        <Id value='l_CRC' typref='1'/>
+                    </Variables>
+                    <Body>
+                        <Nary_Sub op=';'>
+                            <Becomes_In>
+                                <Variables>
+                                    <Id value='l_CRC' typref='1'/>
+                                </Variables>
+                                <Value>
+                                    <Id value='uint16_t' typref='2'/>
+                                </Value>
+                            </Becomes_In>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='l_CRC' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Integer_Literal value='0' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Binary_Exp op='(' typref='1'>
+                                        <Id value='l_Trame' typref='4'/>
+                                        <Integer_Literal value='0' typref='1'/>
+                                    </Binary_Exp>
+                                </Variables>
+                                <Values>
+                                    <Integer_Literal value='15' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Binary_Exp op='(' typref='1'>
+                                        <Id value='l_Trame' typref='4'/>
+                                        <Integer_Literal value='1' typref='1'/>
+                                    </Binary_Exp>
+                                </Variables>
+                                <Values>
+                                    <Integer_Literal value='143' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Binary_Exp op='(' typref='1'>
+                                        <Id value='l_Trame' typref='4'/>
+                                        <Integer_Literal value='2' typref='1'/>
+                                    </Binary_Exp>
+                                </Variables>
+                                <Values>
+                                    <Id value='REQUETE_SECU' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Binary_Exp op='(' typref='1'>
+                                        <Id value='l_Trame' typref='4'/>
+                                        <Integer_Literal value='3' typref='1'/>
+                                    </Binary_Exp>
+                                </Variables>
+                                <Values>
+                                    <Integer_Literal value='255' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Binary_Exp op='(' typref='1'>
+                                        <Id value='l_Trame' typref='4'/>
+                                        <Integer_Literal value='4' typref='1'/>
+                                    </Binary_Exp>
+                                </Variables>
+                                <Values>
+                                    <Integer_Literal value='255' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Binary_Exp op='(' typref='1'>
+                                        <Id value='l_Trame' typref='4'/>
+                                        <Integer_Literal value='5' typref='1'/>
+                                    </Binary_Exp>
+                                </Variables>
+                                <Values>
+                                    <Integer_Literal value='255' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Binary_Exp op='(' typref='1'>
+                                        <Id value='l_Trame' typref='4'/>
+                                        <Integer_Literal value='6' typref='1'/>
+                                    </Binary_Exp>
+                                </Variables>
+                                <Values>
+                                    <Integer_Literal value='255' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Binary_Exp op='(' typref='1'>
+                                        <Id value='l_Trame' typref='4'/>
+                                        <Integer_Literal value='7' typref='1'/>
+                                    </Binary_Exp>
+                                </Variables>
+                                <Values>
+                                    <Integer_Literal value='255' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Binary_Exp op='(' typref='1'>
+                                        <Id value='l_Trame' typref='4'/>
+                                        <Integer_Literal value='8' typref='1'/>
+                                    </Binary_Exp>
+                                </Variables>
+                                <Values>
+                                    <Integer_Literal value='255' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Binary_Exp op='(' typref='1'>
+                                        <Id value='l_Trame' typref='4'/>
+                                        <Integer_Literal value='9' typref='1'/>
+                                    </Binary_Exp>
+                                </Variables>
+                                <Values>
+                                    <Integer_Literal value='0' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Binary_Exp op='(' typref='1'>
+                                        <Id value='l_Trame' typref='4'/>
+                                        <Integer_Literal value='10' typref='1'/>
+                                    </Binary_Exp>
+                                </Variables>
+                                <Values>
+                                    <Integer_Literal value='0' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Binary_Exp op='(' typref='1'>
+                                        <Id value='l_Trame' typref='4'/>
+                                        <Integer_Literal value='11' typref='1'/>
+                                    </Binary_Exp>
+                                </Variables>
+                                <Values>
+                                    <Integer_Literal value='136' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Binary_Exp op='(' typref='1'>
+                                        <Id value='l_Trame' typref='4'/>
+                                        <Integer_Literal value='12' typref='1'/>
+                                    </Binary_Exp>
+                                </Variables>
+                                <Values>
+                                    <Integer_Literal value='38' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Binary_Exp op='(' typref='1'>
+                                        <Id value='l_Trame' typref='4'/>
+                                        <Integer_Literal value='13' typref='1'/>
+                                    </Binary_Exp>
+                                </Variables>
+                                <Values>
+                                    <Integer_Literal value='0' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Operation_Call>
+                                <Name>
+                                    <Id value='Precompil_CRCCreateB'/>
+                                </Name>
+                                <Input_Parameters>
+                                    <Id value='l_Trame' typref='4'/>
+                                    <Integer_Literal value='12' typref='1'/>
+                                </Input_Parameters>
+                            </Operation_Call>
+                        </Nary_Sub>
+                    </Body>
+                </VAR_IN>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+</Unary_Exp>
+        </Type>
+    <Type id='5'>
+        <Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+</Unary_Exp>
+</Unary_Exp>
+        </Type>
+    <Type id='6'>
+        <Id value='STRING'/>
+        </Type>
+</TypeInfos>
+    
+</Machine>

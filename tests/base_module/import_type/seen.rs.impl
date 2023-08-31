@@ -1,0 +1,16 @@
+use std::convert::TryFrom;
+
+pub struct seen {
+}
+
+impl Default for seen {
+   fn default() -> Self {
+     let mut instance = Self {
+};
+instance.initialisation();
+instance}
+}
+impl seen {
+fn initialisation(&mut self) {
+}
+}

@@ -1,0 +1,25 @@
+/* main_tabular_04_i
+ * Author: 
+ * Creation date: 25/05/2023
+ */
+
+IMPLEMENTATION main_tabular_04_i
+REFINES main_tabular_04
+
+SEES
+    b2rust_types
+
+CONCRETE_VARIABLES
+    tab
+    
+INVARIANT
+    tab : 0..5 --> rust_i32
+    
+INITIALISATION
+    tab := {0 |-> 1, 1 |-> 2, 2 |-> 18, 3 |-> 25, 4 |-> 32, 5 |-> 0}
+    
+OPERATIONS
+    element <-- get_element(index) = BEGIN
+        element := tab(index)
+    END
+END

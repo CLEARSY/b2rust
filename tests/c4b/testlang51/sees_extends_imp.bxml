@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='sees_extends_imp' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>sees_extends_mch</Abstraction>
+    <Sees>
+        <Referenced_Machine>
+            <Name>testlang51</Name>
+        </Referenced_Machine>
+        <Referenced_Machine>
+            <Name>BASIC_IO</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <Operations>
+        <Operation name='main'>
+            <Body>
+                <Nary_Sub op=';'>
+                    <Skip/>
+                    <Operation_Call>
+                        <Name>
+                            <Id value='op'/>
+                        </Name>
+                    </Operation_Call>
+                    <Skip/>
+                    <Operation_Call>
+                        <Name>
+                            <Id value='op_etendue_1'/>
+                        </Name>
+                    </Operation_Call>
+                </Nary_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+    
+</Machine>

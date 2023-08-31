@@ -1,0 +1,10 @@
+/* structure_i
+ * Author: 
+ * Creation date: 16/02/2023
+ */
+
+IMPLEMENTATION structure_i
+REFINES structure
+
+
+ END

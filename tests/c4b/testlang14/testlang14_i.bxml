@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='testlang14_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>testlang14</Abstraction>
+    <Imports>
+        <Referenced_Machine>
+            <Name>BASIC_IO</Name>
+        </Referenced_Machine>
+    </Imports>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <Operations>
+        <Operation name='Op'>
+            <Output_Parameters>
+                <Id value='Out1' typref='1'/>
+                <Id value='Out2' typref='1'/>
+                <Id value='Out3' typref='1'/>
+                <Id value='Out4' typref='1'/>
+            </Output_Parameters>
+            <Body>
+                <Nary_Sub op=';'>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Id value='Out1' typref='1'/>
+                        </Variables>
+                        <Values>
+                            <Integer_Literal value='1' typref='1'/>
+                        </Values>
+                    </Assignement_Sub>
+                    <Operation_Call>
+                        <Name>
+                            <Id value='INT_WRITE'/>
+                        </Name>
+                        <Input_Parameters>
+                            <Id value='Out1' typref='1'/>
+                        </Input_Parameters>
+                    </Operation_Call>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Id value='Out2' typref='1'/>
+                        </Variables>
+                        <Values>
+                            <Integer_Literal value='2' typref='1'/>
+                        </Values>
+                    </Assignement_Sub>
+                    <Operation_Call>
+                        <Name>
+                            <Id value='INT_WRITE'/>
+                        </Name>
+                        <Input_Parameters>
+                            <Id value='Out2' typref='1'/>
+                        </Input_Parameters>
+                    </Operation_Call>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Id value='Out3' typref='1'/>
+                        </Variables>
+                        <Values>
+                            <Integer_Literal value='3' typref='1'/>
+                        </Values>
+                    </Assignement_Sub>
+                    <Operation_Call>
+                        <Name>
+                            <Id value='INT_WRITE'/>
+                        </Name>
+                        <Input_Parameters>
+                            <Id value='Out3' typref='1'/>
+                        </Input_Parameters>
+                    </Operation_Call>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Id value='Out4' typref='1'/>
+                        </Variables>
+                        <Values>
+                            <Integer_Literal value='4' typref='1'/>
+                        </Values>
+                    </Assignement_Sub>
+                    <Operation_Call>
+                        <Name>
+                            <Id value='INT_WRITE'/>
+                        </Name>
+                        <Input_Parameters>
+                            <Id value='Out4' typref='1'/>
+                        </Input_Parameters>
+                    </Operation_Call>
+                </Nary_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+    
+</Machine>

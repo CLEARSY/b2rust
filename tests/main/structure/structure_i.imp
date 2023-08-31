@@ -1,0 +1,21 @@
+/* machine_i
+ * Author: cchen4
+ * Creation date: 28/08/2023
+ */
+
+IMPLEMENTATION structure_i
+REFINES structure
+
+SEES
+    b2rust_types
+  
+VALUES
+    cc1 = 1
+    
+INITIALISATION
+    cv1 := 1
+    
+OPERATIONS
+    op = skip
+
+ END

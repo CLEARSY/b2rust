@@ -1,0 +1,29 @@
+/* main_tabular_08_i
+* Author: 
+* Creation date: 02/06/2023
+*/
+
+IMPLEMENTATION main_tabular_08_i
+REFINES main_tabular_08
+    
+SEES
+    b2rust_types
+    
+CONCRETE_VARIABLES
+    tab
+    
+INVARIANT
+    tab : 0..2 --> (0..2 --> rust_i8)
+    
+INITIALISATION
+    tab := {0 |-> {0 |-> 1, 1 |-> 2, 2 |-> 3}, 1 |-> {0 |-> 1, 1 |-> 2, 2 |-> 3}, 2 |-> {0 |-> 1, 1 |-> 2, 2 |-> 3}}
+    
+OPERATIONS
+    reset(value1, value2) = BEGIN
+        tab(value1)(value2) := 0
+    END;
+    
+    the_tab <-- get_tab = BEGIN
+        the_tab := tab
+    END
+END

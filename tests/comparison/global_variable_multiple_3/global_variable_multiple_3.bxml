@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='global_variable_multiple_3' type='abstraction' position='false' semantic='true' b0check='false'>
+    <Abstract_Variables>
+        <Id value='trains' typref='1'/>
+        <Id value='roads' typref='1'/>
+        <Id value='traffic_state' typref='0'/>
+    </Abstract_Variables>
+    <Concrete_Variables>
+        <Id value='hour' typref='1'/>
+    </Concrete_Variables>
+    <Invariant>
+        <Nary_Pred op='&amp;'>
+            <Exp_Comparison op=':'>
+                <Id value='hour' typref='1'/>
+                <Id value='NAT' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='trains' typref='1'/>
+                <Id value='NAT' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='roads' typref='1'/>
+                <Id value='NAT' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='traffic_state' typref='0'/>
+                <Id value='BOOL' typref='4'/>
+            </Exp_Comparison>
+        </Nary_Pred>
+    </Invariant>
+    <Initialisation>
+        <Nary_Sub op='||'>
+            <Assignement_Sub>
+                <Variables>
+                    <Id value='hour' typref='1'/>
+                </Variables>
+                <Values>
+                    <Integer_Literal value='14' typref='1'/>
+                </Values>
+            </Assignement_Sub>
+            <Assignement_Sub>
+                <Variables>
+                    <Id value='trains' typref='1'/>
+                </Variables>
+                <Values>
+                    <Integer_Literal value='56' typref='1'/>
+                </Values>
+            </Assignement_Sub>
+            <Assignement_Sub>
+                <Variables>
+                    <Id value='roads' typref='1'/>
+                </Variables>
+                <Values>
+                    <Integer_Literal value='26239' typref='1'/>
+                </Values>
+            </Assignement_Sub>
+            <Assignement_Sub>
+                <Variables>
+                    <Id value='traffic_state' typref='0'/>
+                </Variables>
+                <Values>
+                    <Boolean_Literal value='FALSE' typref='0'/>
+                </Values>
+            </Assignement_Sub>
+        </Nary_Sub>
+    </Initialisation>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Unary_Exp op='POW'>
+<Id value='BOOL'/>
+</Unary_Exp>
+        </Type>
+</TypeInfos>
+    
+</Machine>

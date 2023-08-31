@@ -1,0 +1,38 @@
+﻿IMPLEMENTATION
+    Stack_i
+REFINES
+    Stack_r2
+
+SEES b2rust_types
+
+CONCRETE_VARIABLES
+    Size_i , Contents_i
+
+INVARIANT
+    Contents_i : 0 .. 9 --> rust_i8 &
+    Size_i : rust_i8 &
+    Size_i = Size &
+    Contents_r2 = ( pred ; Contents_i )
+
+INITIALISATION
+    Size_i := 0 ;
+    Contents_i := ( 0 .. 9 ) * { 0 }
+
+OPERATIONS
+
+    push ( value ) =
+    BEGIN
+        Contents_i ( Size_i ) := value ;
+        Size_i := Size_i + 1
+    END
+    ;
+
+    value <-- pop =
+    BEGIN
+        Size_i := Size_i - 1 ;
+        value := Contents_i ( Size_i )
+    END
+
+ASSERTIONS
+    pred : INTEGER +-> INTEGER
+END

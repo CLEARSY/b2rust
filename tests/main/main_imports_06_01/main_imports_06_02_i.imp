@@ -1,0 +1,25 @@
+/* main_imports_06_02_i
+ * Author: 
+ * Creation date: 22/05/2023
+ */
+
+IMPLEMENTATION main_imports_06_02_i
+REFINES main_imports_06_02
+
+SEES
+    b2rust_types
+    
+OPERATIONS
+    boolean <-- give_true = BEGIN
+        boolean := TRUE
+    END;
+    
+    boolean <-- give_false = BEGIN
+        boolean := FALSE
+    END;
+    
+    true, false <-- give_true_and_false = BEGIN
+        true := TRUE;
+        false := FALSE
+    END     
+END

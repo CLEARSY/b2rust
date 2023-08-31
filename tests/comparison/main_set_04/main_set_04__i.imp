@@ -1,0 +1,24 @@
+/* main_set_04__i
+ * Author: cchen4
+ * Creation date: 25/08/2023
+ */
+
+IMPLEMENTATION main_set_04__i
+REFINES main_set_04_2r
+
+SETS
+    GAME = {FPS,RPG}
+    
+CONCRETE_VARIABLES
+    cv2
+    
+INVARIANT
+    cv2 : GENDER
+   
+INITIALISATION
+    cv2 := FEMALE ;
+    cv := CAT
+    
+VALUES
+    cc = RED
+ END

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='if_08_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>if_08</Abstraction>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Concrete_Variables>
+        <Id value='value' typref='1'/>
+    </Concrete_Variables>
+    <Invariant>
+        <Exp_Comparison op=':'>
+            <Id value='value' typref='1'/>
+            <Id value='rust_i16' typref='2'/>
+        </Exp_Comparison>
+    </Invariant>
+    <Initialisation>
+        <Assignement_Sub>
+            <Variables>
+                <Id value='value' typref='1'/>
+            </Variables>
+            <Values>
+                <Integer_Literal value='12' typref='1'/>
+            </Values>
+        </Assignement_Sub>
+    </Initialisation>
+    <Operations>
+        <Operation name='might_change_value'>
+            <Body>
+                <If_Sub elseif='no'>
+                    <Condition>
+                        <Nary_Pred op='&amp;'>
+                            <Exp_Comparison op='&gt;i'>
+                                <Id value='value' typref='1'/>
+                                <Integer_Literal value='0' typref='1'/>
+                            </Exp_Comparison>
+                            <Exp_Comparison op='&lt;i'>
+                                <Id value='value' typref='1'/>
+                                <Integer_Literal value='500' typref='1'/>
+                            </Exp_Comparison>
+                            <Exp_Comparison op='&lt;i'>
+                                <Id value='value' typref='1'/>
+                                <Integer_Literal value='1000' typref='1'/>
+                            </Exp_Comparison>
+                        </Nary_Pred>
+                    </Condition>
+                    <Then>
+                        <Assignement_Sub>
+                            <Variables>
+                                <Id value='value' typref='1'/>
+                            </Variables>
+                            <Values>
+                                <Binary_Exp op='*i' typref='1'>
+                                    <Id value='value' typref='1'/>
+                                    <Integer_Literal value='2' typref='1'/>
+                                </Binary_Exp>
+                            </Values>
+                        </Assignement_Sub>
+                    </Then>
+                    <Else>
+                        <If_Sub elseif='yes'>
+                            <Condition>
+                                <Nary_Pred op='&amp;'>
+                                    <Nary_Pred op='or'>
+                                        <Exp_Comparison op='='>
+                                            <Id value='value' typref='1'/>
+                                            <Integer_Literal value='0' typref='1'/>
+                                        </Exp_Comparison>
+                                        <Exp_Comparison op='&gt;=i'>
+                                            <Id value='value' typref='1'/>
+                                            <Integer_Literal value='500' typref='1'/>
+                                        </Exp_Comparison>
+                                        <Exp_Comparison op='='>
+                                            <Id value='value' typref='1'/>
+                                            <Integer_Literal value='0' typref='1'/>
+                                        </Exp_Comparison>
+                                    </Nary_Pred>
+                                    <Exp_Comparison op='&gt;=i'>
+                                        <Id value='value' typref='1'/>
+                                        <Integer_Literal value='0' typref='1'/>
+                                    </Exp_Comparison>
+                                </Nary_Pred>
+                            </Condition>
+                            <Then>
+                                <If_Sub elseif='no'>
+                                    <Condition>
+                                        <Exp_Comparison op='='>
+                                            <Id value='value' typref='1'/>
+                                            <Integer_Literal value='0' typref='1'/>
+                                        </Exp_Comparison>
+                                    </Condition>
+                                    <Then>
+                                        <Assignement_Sub>
+                                            <Variables>
+                                                <Id value='value' typref='1'/>
+                                            </Variables>
+                                            <Values>
+                                                <Binary_Exp op='+i' typref='1'>
+                                                    <Id value='value' typref='1'/>
+                                                    <Integer_Literal value='1' typref='1'/>
+                                                </Binary_Exp>
+                                            </Values>
+                                        </Assignement_Sub>
+                                    </Then>
+                                </If_Sub>
+                            </Then>
+                        </If_Sub>
+                    </Else>
+                </If_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+    
+</Machine>

@@ -1,0 +1,12 @@
+IMPLEMENTATION
+    main_overflow_01_i
+
+REFINES
+    main_overflow_01
+
+SEES
+	b2rust_types
+VALUES
+    MAXUINT64 = 0xFFFFFFFFFFFFFFFF
+    
+END

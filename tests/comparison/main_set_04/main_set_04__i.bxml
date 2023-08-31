@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='main_set_04__i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>main_set_04_2r</Abstraction>
+    <Values>
+        <Valuation ident='cc' typref='4'>
+            <Id value='RED' typref='4'/>
+        </Valuation>
+    </Values>
+    <Sets>
+        <Set>
+            <Id value='GAME' typref='5'/>
+            <Enumerated_Values>
+                <Id value='FPS' typref='6'/>
+                <Id value='RPG' typref='6'/>
+            </Enumerated_Values>
+        </Set>
+    </Sets>
+    <Concrete_Variables>
+        <Id value='cv2' typref='7'/>
+    </Concrete_Variables>
+    <Invariant>
+        <Exp_Comparison op=':'>
+            <Id value='cv2' typref='7'/>
+            <Id value='GENDER' typref='8'/>
+        </Exp_Comparison>
+    </Invariant>
+    <Initialisation>
+        <Nary_Sub op=';'>
+            <Assignement_Sub>
+                <Variables>
+                    <Id value='cv2' typref='7'/>
+                </Variables>
+                <Values>
+                    <Id value='FEMALE' typref='7'/>
+                </Values>
+            </Assignement_Sub>
+            <Assignement_Sub>
+                <Variables>
+                    <Id value='cv' typref='9'/>
+                </Variables>
+                <Values>
+                    <Id value='CAT' typref='9'/>
+                </Values>
+            </Assignement_Sub>
+        </Nary_Sub>
+    </Initialisation>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Id value='COLORS'/>
+        </Type>
+    <Type id='5'>
+        <Unary_Exp op='POW'>
+<Id value='GAME'/>
+</Unary_Exp>
+        </Type>
+    <Type id='6'>
+        <Id value='GAME'/>
+        </Type>
+    <Type id='7'>
+        <Id value='GENDER'/>
+        </Type>
+    <Type id='8'>
+        <Unary_Exp op='POW'>
+<Id value='GENDER'/>
+</Unary_Exp>
+        </Type>
+    <Type id='9'>
+        <Id value='ANIMAL'/>
+        </Type>
+</TypeInfos>
+    
+</Machine>

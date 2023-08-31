@@ -1,0 +1,17 @@
+/* main_imports_01_01_i
+* Author: 
+* Creation date: 02/05/2023
+*/
+
+IMPLEMENTATION main_imports_01_01_i
+REFINES main_imports_01_01
+    
+SEES
+    b2rust_types
+    
+OPERATIONS
+    boolean <-- return_true = BEGIN
+        boolean := TRUE
+    END
+    
+END

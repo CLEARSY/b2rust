@@ -1,0 +1,31 @@
+/* operation_08_i
+ * Author: 
+ * Creation date: 24/04/2023
+ */
+
+IMPLEMENTATION operation_08_i
+REFINES operation_08
+
+SEES b2rust_types
+
+INVARIANT
+    var1 : rust_i32 &
+    var2 : rust_i8
+
+INITIALISATION
+    var1 := 0;
+    var2 := 0
+    
+OPERATIONS
+    boolean_r, value_r, other_value_r <-- dummy_return(boolean, value, other_value) = BEGIN
+        var1 := other_value;
+        VAR locale IN
+            locale :: rust_i32;
+            locale := var1;
+            other_value_r := locale
+        END;
+        boolean_r := boolean;
+        value_r := value
+    END
+    
+ END

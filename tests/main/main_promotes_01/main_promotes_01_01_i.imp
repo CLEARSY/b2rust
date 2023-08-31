@@ -1,0 +1,19 @@
+/* main_promotes_01_01_i
+ * Author: cchen4
+ * Creation date: 06/07/2023
+ */
+
+IMPLEMENTATION main_promotes_01_01_i
+REFINES main_promotes_01_01
+
+SEES 
+    b2rust_types
+
+OPERATIONS
+    
+    res <-- op_01_01 = 
+    BEGIN
+        res := 1
+    END
+
+ END

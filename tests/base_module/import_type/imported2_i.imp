@@ -1,0 +1,12 @@
+/* imported2_i
+ * Author: cchen4
+ * Creation date: 23/08/2023
+ */
+
+IMPLEMENTATION imported2_i
+REFINES imported2
+
+OPERATIONS
+
+op = skip
+ END

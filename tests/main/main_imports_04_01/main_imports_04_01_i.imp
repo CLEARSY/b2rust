@@ -1,0 +1,37 @@
+/* main_imports_04_01_i
+* Author: 
+* Creation date: 09/05/2023
+*/
+
+IMPLEMENTATION main_imports_04_01_i
+REFINES main_imports_04_01
+    
+SEES
+    b2rust_types
+
+IMPORTS
+    main_imports_04_02,
+    main_imports_04_03
+    
+CONCRETE_VARIABLES
+    var
+
+INVARIANT
+    var : rust_i16
+    
+INITIALISATION
+    var := 0
+    
+OPERATIONS
+    inc = BEGIN
+        IF var < 1000 THEN
+            var := var + 1
+        END
+    END;
+    
+    value <-- get_var = BEGIN
+        value := var
+    END
+    
+    
+END

@@ -1,0 +1,24 @@
+/* expression_02_i
+ * Author: 
+ * Creation date: 11/04/2023
+ */
+
+IMPLEMENTATION expression_02_i
+REFINES expression_02
+
+    SEES
+    b2rust_types
+
+INVARIANT
+    value : rust_i32
+    
+INITIALISATION
+    value := 0
+    
+OPERATIONS
+    modify = BEGIN
+        IF value > 2 & value < 4 THEN
+            value := (value + 7) ** (value - 2)
+        END
+    END
+END

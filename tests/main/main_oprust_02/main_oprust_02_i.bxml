@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='main_oprust_02_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>main_oprust_02</Abstraction>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <Operations>
+        <Operation name='compliquer'>
+            <Output_Parameters>
+                <Id value='res' typref='1'/>
+            </Output_Parameters>
+            <Input_Parameters>
+                <Id value='aa' typref='1'/>
+                <Id value='bb' typref='1'/>
+            </Input_Parameters>
+            <Body>
+                <Assignement_Sub>
+                    <Variables>
+                        <Id value='res' typref='1'/>
+                    </Variables>
+                    <Values>
+                        <Binary_Exp op='(' typref='1'>
+                            <Id value='mul_i8' typref='4'/>
+                            <Binary_Exp op='|-&gt;' typref='5'>
+                                <Binary_Exp op='(' typref='1'>
+                                    <Id value='add_i8' typref='4'/>
+                                    <Binary_Exp op='|-&gt;' typref='5'>
+                                        <Id value='aa' typref='1'/>
+                                        <Binary_Exp op='(' typref='1'>
+                                            <Id value='sub_i8' typref='4'/>
+                                            <Binary_Exp op='|-&gt;' typref='5'>
+                                                <Id value='aa' typref='1'/>
+                                                <Id value='bb' typref='1'/>
+                                            </Binary_Exp>
+                                        </Binary_Exp>
+                                    </Binary_Exp>
+                                </Binary_Exp>
+                                <Binary_Exp op='(' typref='1'>
+                                    <Id value='div_i8' typref='4'/>
+                                    <Binary_Exp op='|-&gt;' typref='5'>
+                                        <Id value='aa' typref='1'/>
+                                        <Id value='bb' typref='1'/>
+                                    </Binary_Exp>
+                                </Binary_Exp>
+                            </Binary_Exp>
+                        </Binary_Exp>
+                    </Values>
+                </Assignement_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+<Id value='INTEGER'/>
+</Binary_Exp>
+</Unary_Exp>
+        </Type>
+    <Type id='5'>
+        <Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+        </Type>
+</TypeInfos>
+    
+</Machine>

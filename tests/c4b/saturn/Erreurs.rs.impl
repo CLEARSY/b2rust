@@ -1,0 +1,18 @@
+pub struct Erreurs {
+}
+
+impl Default for Erreurs {
+   fn default() -> Self {
+     let mut instance = Self {
+};
+instance.initialisation();
+instance}
+}
+impl Erreurs {
+fn initialisation(&mut self) {
+}
+
+pub fn Erreurs_SecuredBoolean(&mut self, r#message: &str) {
+unimplemented!("Erreurs_SecuredBoolean is unimplemented");
+}
+}

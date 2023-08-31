@@ -1,0 +1,32 @@
+/* if_3_i
+ * Author: 
+ * Creation date: 19/03/2023
+ */
+
+IMPLEMENTATION if_3_i
+REFINES if_3
+
+SEES
+    b2rust_types
+
+CONCRETE_VARIABLES
+    train_i,
+    metro_i
+    
+INVARIANT
+    train_i : rust_i32 &
+    train = train_i &
+    metro_i : rust_i32 &
+    metro_i = metro
+    
+INITIALISATION
+    train_i := 12;
+    metro_i := 62
+
+OPERATIONS
+    might_change_train = BEGIN
+        IF metro_i < train_i THEN
+            train_i := 12
+        END
+    END
+END

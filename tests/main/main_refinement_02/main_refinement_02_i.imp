@@ -1,0 +1,25 @@
+/* main_refinement_02_i
+ * Author: cchen4
+ * Creation date: 20/06/2023
+ */
+
+IMPLEMENTATION main_refinement_02_i
+    
+REFINES main_refinement_02
+
+SEES 
+    b2rust_types
+    
+PROPERTIES 
+    cons1: rust_i8
+    
+INVARIANT
+    var1 : rust_i8
+    
+VALUES
+    cons1 = 3
+    
+INITIALISATION
+    var1 := 3
+    
+ END

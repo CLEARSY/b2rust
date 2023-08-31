@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='operation_07' type='abstraction' position='false' semantic='true' b0check='false'>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <Operations>
+        <Operation name='dummy_function'>
+            <Input_Parameters>
+                <Id value='boolean' typref='0'/>
+                <Id value='value' typref='1'/>
+                <Id value='other_value' typref='1'/>
+            </Input_Parameters>
+            <Precondition>
+                <Nary_Pred op='&amp;'>
+                    <Exp_Comparison op=':'>
+                        <Id value='boolean' typref='0'/>
+                        <Id value='rust_bool' typref='4'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op='/='>
+                        <Integer_Literal value='1' typref='1'/>
+                        <Integer_Literal value='2' typref='1'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op=':'>
+                        <Id value='other_value' typref='1'/>
+                        <Id value='rust_i32' typref='2'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op=':'>
+                        <Id value='value' typref='1'/>
+                        <Id value='rust_i8' typref='2'/>
+                    </Exp_Comparison>
+                </Nary_Pred>
+            </Precondition>
+            <Body>
+                <Skip/>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Unary_Exp op='POW'>
+<Id value='BOOL'/>
+</Unary_Exp>
+        </Type>
+</TypeInfos>
+    
+</Machine>

@@ -1,0 +1,33 @@
+/* main_imports_03_03_i
+ * Author: cchen4
+ * Creation date: 07/07/2023
+ */
+
+IMPLEMENTATION main_promotes_04_03_i
+REFINES main_promotes_04_03
+
+SEES
+    b2rust_types
+    
+CONCRETE_CONSTANTS
+    cc
+    
+PROPERTIES
+    cc : rust_i8
+    
+VALUES
+    cc = 4
+    
+    
+OPERATIONS
+    res <-- op_03a(aa) =
+    BEGIN
+        res := aa
+    END;
+    
+    res <-- op_03b = 
+    BEGIN
+        res := 4 +cc
+    END
+    
+ END

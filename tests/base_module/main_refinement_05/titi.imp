@@ -1,0 +1,44 @@
+/* main_refinement_01_r1_i
+ * Author: cchen4
+ * Creation date: 20/06/2023
+ */
+
+IMPLEMENTATION titi
+REFINES tata
+
+SEES 
+    b2rust_types,lolo
+    
+CONCRETE_CONSTANTS 
+    imp1
+ 
+PROPERTIES 
+    imp1 : rust_i8 &
+    refc1 : rust_i8 &
+    refc2 :rust_i8 
+    
+INVARIANT 
+    refv1 : rust_i8 &
+    refv1 <= 10 &
+    refv1 >= 0 &
+    refv2 : rust_i8 &
+    refv2 <= 10 &
+    refv2 >= 0 
+    
+VALUES
+    refc1 = 2;
+    refc2 = 3;
+    imp1 = 4 
+    
+    
+INITIALISATION
+    refv1 := 3;
+    refv2 := 2
+ 
+OPERATIONS 
+    
+    res <-- sum = 
+    BEGIN
+        res := refc1+ refv1 + imp1 + refv2 + refc2
+    END
+END

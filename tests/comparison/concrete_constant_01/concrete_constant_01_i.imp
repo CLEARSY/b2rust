@@ -1,0 +1,27 @@
+/* concrete_constant_01_i
+ * Author: 
+ * Creation date: 21/03/2023
+ */
+
+IMPLEMENTATION concrete_constant_01_i
+REFINES concrete_constant_01
+
+SEES
+    b2rust_types
+    
+VALUES
+    size_v = 7;
+    employees = 13;
+    is_the_machine_on = TRUE;
+    annual_growth = -3615
+
+PROPERTIES
+    size_v : rust_i8 &
+    is_the_machine_on : rust_bool &
+    annual_growth : rust_i32 &
+    employees : rust_i8
+    
+CONCRETE_CONSTANTS
+    size_v, is_the_machine_on, annual_growth
+
+END

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='main_oprust_07_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>main_oprust_07</Abstraction>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <Local_Operations>
+        <Operation name='add'>
+            <Output_Parameters>
+                <Id value='res' typref='1'/>
+            </Output_Parameters>
+            <Input_Parameters>
+                <Id value='aa' typref='1'/>
+                <Id value='bb' typref='1'/>
+            </Input_Parameters>
+            <Precondition>
+                <Nary_Pred op='&amp;'>
+                    <Exp_Comparison op=':'>
+                        <Id value='aa' typref='1'/>
+                        <Id value='rust_i16' typref='2'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op=':'>
+                        <Id value='bb' typref='1'/>
+                        <Id value='rust_i16' typref='2'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op=':'>
+                        <Id value='res' typref='1'/>
+                        <Id value='rust_i16' typref='2'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op='&lt;i'>
+                        <Id value='aa' typref='1'/>
+                        <Integer_Literal value='100' typref='1'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op='&gt;i'>
+                        <Id value='aa' typref='1'/>
+                        <Integer_Literal value='-100' typref='1'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op='&lt;i'>
+                        <Id value='bb' typref='1'/>
+                        <Integer_Literal value='100' typref='1'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op='&gt;i'>
+                        <Id value='bb' typref='1'/>
+                        <Integer_Literal value='-100' typref='1'/>
+                    </Exp_Comparison>
+                </Nary_Pred>
+            </Precondition>
+            <Body>
+                <Becomes_In>
+                    <Variables>
+                        <Id value='res' typref='1'/>
+                    </Variables>
+                    <Value>
+                        <Id value='rust_i16' typref='2'/>
+                    </Value>
+                </Becomes_In>
+            </Body>
+        </Operation>
+    </Local_Operations>
+    <Operations>
+        <Operation name='add'>
+            <Output_Parameters>
+                <Id value='res' typref='1'/>
+            </Output_Parameters>
+            <Input_Parameters>
+                <Id value='aa' typref='1'/>
+                <Id value='bb' typref='1'/>
+            </Input_Parameters>
+            <Body>
+                <Assignement_Sub>
+                    <Variables>
+                        <Id value='res' typref='1'/>
+                    </Variables>
+                    <Values>
+                        <Binary_Exp op='+i' typref='1'>
+                            <Id value='aa' typref='1'/>
+                            <Id value='bb' typref='1'/>
+                        </Binary_Exp>
+                    </Values>
+                </Assignement_Sub>
+            </Body>
+        </Operation>
+        <Operation name='som'>
+            <Output_Parameters>
+                <Id value='res' typref='1'/>
+            </Output_Parameters>
+            <Input_Parameters>
+                <Id value='aa' typref='1'/>
+                <Id value='bb' typref='1'/>
+                <Id value='cc' typref='1'/>
+            </Input_Parameters>
+            <Body>
+                <Nary_Sub op=';'>
+                    <Operation_Call>
+                        <Name>
+                            <Id value='add'/>
+                        </Name>
+                        <Input_Parameters>
+                            <Id value='aa' typref='1'/>
+                            <Id value='bb' typref='1'/>
+                        </Input_Parameters>
+                        <Output_Parameters>
+                            <Id value='res' typref='1'/>
+                        </Output_Parameters>
+                    </Operation_Call>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Id value='res' typref='1'/>
+                        </Variables>
+                        <Values>
+                            <Binary_Exp op='+i' typref='1'>
+                                <Id value='res' typref='1'/>
+                                <Id value='cc' typref='1'/>
+                            </Binary_Exp>
+                        </Values>
+                    </Assignement_Sub>
+                </Nary_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+    
+</Machine>

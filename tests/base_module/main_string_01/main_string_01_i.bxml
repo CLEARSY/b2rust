@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='main_string_01_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>main_string_01</Abstraction>
+    <Imports>
+        <Referenced_Machine>
+            <Name>error</Name>
+        </Referenced_Machine>
+    </Imports>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <Operations>
+        <Operation name='noOverflow'>
+            <Output_Parameters>
+                <Id value='res' typref='1'/>
+            </Output_Parameters>
+            <Input_Parameters>
+                <Id value='aa' typref='1'/>
+                <Id value='bb' typref='1'/>
+            </Input_Parameters>
+            <Body>
+                <If_Sub elseif='no'>
+                    <Condition>
+                        <Exp_Comparison op='&lt;i'>
+                            <Binary_Exp op='-i' typref='1'>
+                                <Integer_Literal value='127' typref='1'/>
+                                <Id value='aa' typref='1'/>
+                            </Binary_Exp>
+                            <Id value='bb' typref='1'/>
+                        </Exp_Comparison>
+                    </Condition>
+                    <Then>
+                        <Operation_Call>
+                            <Name>
+                                <Id value='error_msg'/>
+                            </Name>
+                            <Input_Parameters>
+                                <STRING_Literal value='Error : max Overflow' typref='4'/>
+                            </Input_Parameters>
+                        </Operation_Call>
+                    </Then>
+                    <Else>
+                        <Assignement_Sub>
+                            <Variables>
+                                <Id value='res' typref='1'/>
+                            </Variables>
+                            <Values>
+                                <Binary_Exp op='+i' typref='1'>
+                                    <Id value='aa' typref='1'/>
+                                    <Id value='bb' typref='1'/>
+                                </Binary_Exp>
+                            </Values>
+                        </Assignement_Sub>
+                    </Else>
+                </If_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Id value='STRING'/>
+        </Type>
+</TypeInfos>
+    
+</Machine>

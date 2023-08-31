@@ -1,0 +1,18 @@
+/* operation_09_i
+ * Author: 
+ * Creation date: 25/04/2023
+ */
+
+IMPLEMENTATION operation_09_i
+REFINES operation_09
+
+SEES b2rust_types
+    
+OPERATIONS
+    value_r <-- dummy_return(value) = BEGIN
+        IF (value > 1024) & (value > 1024) or (value > 1024 & 1024 < 1024) THEN
+            value_r := value + 600 * 2 + 6 * value
+        END;
+        value_r := value
+    END
+END

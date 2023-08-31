@@ -1,0 +1,44 @@
+/* main_imports_06_01_i
+* Author: 
+* Creation date: 22/05/2023
+*/
+
+IMPLEMENTATION main_imports_06_01_i
+REFINES main_imports_06_01
+    
+SEES
+    b2rust_types
+    
+CONCRETE_VARIABLES
+    true, false
+    
+INVARIANT
+    true : rust_bool &
+    false : rust_bool
+    
+IMPORTS
+    M1.main_imports_06_02,
+    M2.main_imports_06_02
+    
+INITIALISATION
+    true <-- M1.give_true;
+    false <-- M2.give_false
+    
+OPERATIONS
+    reset = BEGIN
+        true, false <-- M1.give_true_and_false
+    END;
+    
+    bool_true <-- return_var_true = BEGIN
+        bool_true := true
+    END;
+    
+    bool_false <-- return_var_false = BEGIN
+        bool_false := false
+    END;
+    
+    set_true_false_to(set_true, set_false) = BEGIN
+        true := set_true;
+        false := set_false
+    END
+END

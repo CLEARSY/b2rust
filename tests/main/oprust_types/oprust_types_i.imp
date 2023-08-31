@@ -1,0 +1,33 @@
+/* oprust_types_i
+ * Author: cchen4
+ * Creation date: 24/08/2023
+ */
+
+IMPLEMENTATION oprust_types_i
+REFINES oprust_types
+
+
+SEES 
+    b2rust_types, c4b_types
+    
+  
+ 
+OPERATIONS
+    res <-- lshift(aa,bb) = 
+    BEGIN
+        // bitwise_sll_uint8 is a lambda function 
+        // not recognized by b2rust, 
+        // unless it has an association with 
+        // a lambda funciton defined in  b2rust_types, check                
+        // b2rust_operations.cfg
+        
+        // same for fit_in_u8
+        res := fit_in_u8(bitwise_sll_uint8(aa,bb))
+    END
+
+
+ END
+ 
+ 
+ 
+ 

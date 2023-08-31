@@ -1,0 +1,18 @@
+/* operation_07_i
+ * Author: 
+ * Creation date: 24/04/2023
+ */
+
+IMPLEMENTATION operation_07_i
+REFINES operation_07
+
+SEES b2rust_types
+    
+OPERATIONS
+    dummy_function(boolean, value, other_value) = BEGIN
+        VAR locale IN
+            locale :: rust_bool;
+            locale := FALSE
+        END
+    END
+END

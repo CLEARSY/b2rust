@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='expression_2_mch' type='abstraction' position='false' semantic='true' b0check='false'>
+    <Concrete_Constants>
+        <Id value='Cst1' typref='1'/>
+    </Concrete_Constants>
+    <Properties>
+        <Exp_Comparison op=':'>
+            <Id value='Cst1' typref='1'/>
+            <Id value='INT' typref='2'/>
+        </Exp_Comparison>
+    </Properties>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <Operations>
+        <Operation name='opexp'>
+            <Output_Parameters>
+                <Id value='p_out' typref='1'/>
+            </Output_Parameters>
+            <Input_Parameters>
+                <Id value='p_in' typref='1'/>
+            </Input_Parameters>
+            <Precondition>
+                <Exp_Comparison op=':'>
+                    <Id value='p_in' typref='1'/>
+                    <Id value='INT' typref='2'/>
+                </Exp_Comparison>
+            </Precondition>
+            <Body>
+                <Assignement_Sub>
+                    <Variables>
+                        <Id value='p_out' typref='1'/>
+                    </Variables>
+                    <Values>
+                        <Integer_Literal value='1' typref='1'/>
+                    </Values>
+                </Assignement_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+    
+</Machine>

@@ -1,0 +1,30 @@
+CMakeCache.txt
+CMakeFiles
+Makefile
+b2rust
+cmake_install.cmake
+CTestTestfile.cmake
+Testing
+Cargo.lock
+target
+tests/tests_file.cmake
+*.log
+*.aux
+*.out
+*.toc
+*srctrl*
+_*
+*.pl
+.projectile
+vache.sh
+\#*
+lib*
+rmeta*
+TAGS
+build/*
+doc/*             
+!doc/usermanual.pdf   # Sauf user-manual.pdf
+!doc/usermanual.md    # Sauf user-manual.md
+!doc/manuel-utilisateur.pdf   # Sauf user-manual.pdf
+!doc/manuel-utilisateur.md    # Sauf user-manual.md
+!doc/images/*   # Sauf user-manual.md

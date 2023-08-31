@@ -1,0 +1,16 @@
+/* demo_04_i
+ * Author: 
+ * Creation date: 26/06/2023
+ */
+
+IMPLEMENTATION demo_04_i
+REFINES demo_04
+
+OPERATIONS
+    type, taille <-- return_default_train = BEGIN
+        type := metro;
+        taille := train_court
+    END
+    
+
+ END

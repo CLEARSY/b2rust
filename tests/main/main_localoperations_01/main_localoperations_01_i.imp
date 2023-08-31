@@ -1,0 +1,70 @@
+/* main_localoperations_01_i
+ * Author: cchen4
+ * Creation date: 19/07/2023
+ */
+
+IMPLEMENTATION main_localoperations_01_i
+REFINES main_localoperations_01
+
+SEES 
+    b2rust_types
+ 
+ 
+INVARIANT
+    cv : rust_i8
+    
+INITIALISATION
+    cv := 0
+    
+LOCAL_OPERATIONS
+    inc = 
+    BEGIN
+        cv :: rust_i8
+    END;
+    
+    res <-- add(vv) =
+    PRE 
+        res : rust_i8 & 
+        vv : rust_i8
+    THEN
+        res :: rust_i8
+    END
+    
+    
+OPERATIONS
+    
+    res <-- add(vv) =
+    BEGIN
+        res := res + vv
+    END;
+    
+    inc = 
+    BEGIN
+        cv := cv + 1 
+    END
+    ;
+    
+    res <-- addWithCv(vv) =
+    BEGIN
+        res <-- add(vv);
+        res := res + cv
+    END
+    
+    ;
+    
+    inc10 = 
+    BEGIN
+        inc;
+        inc;
+        inc;
+        inc;
+        inc;
+        inc;
+        inc;
+        inc;
+        inc;
+        inc
+    END
+
+
+ END

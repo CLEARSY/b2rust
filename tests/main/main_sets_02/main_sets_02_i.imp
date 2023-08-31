@@ -1,0 +1,16 @@
+/* main_sets_02_i
+ * Author: 
+ * Creation date: 09/06/2023
+ */
+
+IMPLEMENTATION main_sets_02_i
+REFINES main_sets_02
+
+IMPORTS
+    main_sets_03
+    
+OPERATIONS
+    it <-- something_a_human_can_see = BEGIN
+        it <-- some_color
+    END
+END

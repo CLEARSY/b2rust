@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='main_sees_01' type='abstraction' position='false' semantic='true' b0check='false'>
+    <Includes>
+        <Referenced_Machine>
+            <Name>main_sees_01_01</Name>
+        </Referenced_Machine>
+    </Includes>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+        <Referenced_Machine>
+            <Name>main_sees_01_02</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <Operations>
+        <Operation name='op'>
+            <Output_Parameters>
+                <Id value='res' typref='4'/>
+            </Output_Parameters>
+            <Input_Parameters>
+                <Id value='aa' typref='1'/>
+            </Input_Parameters>
+            <Precondition>
+                <Nary_Pred op='&amp;'>
+                    <Exp_Comparison op=':'>
+                        <Id value='aa' typref='1'/>
+                        <Id value='rust_i8' typref='2'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op=':'>
+                        <Id value='res' typref='4'/>
+                        <Id value='color' typref='5'/>
+                    </Exp_Comparison>
+                </Nary_Pred>
+            </Precondition>
+            <Body>
+                <Operation_Call>
+                    <Name>
+                        <Id value='op_02'/>
+                    </Name>
+                    <Output_Parameters>
+                        <Id value='res' typref='4'/>
+                    </Output_Parameters>
+                </Operation_Call>
+            </Body>
+        </Operation>
+        <Operation name='vv_access'>
+            <Output_Parameters>
+                <Id value='res' typref='1'/>
+            </Output_Parameters>
+            <Input_Parameters>
+                <Id value='aa' typref='1'/>
+            </Input_Parameters>
+            <Precondition>
+                <Nary_Pred op='&amp;'>
+                    <Exp_Comparison op=':'>
+                        <Id value='aa' typref='1'/>
+                        <Id value='rust_i8' typref='2'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op=':'>
+                        <Id value='res' typref='1'/>
+                        <Id value='rust_i8' typref='2'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op='&gt;i'>
+                        <Id value='aa' typref='1'/>
+                        <Integer_Literal value='0' typref='1'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op='&lt;i'>
+                        <Id value='aa' typref='1'/>
+                        <Integer_Literal value='20' typref='1'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op='&gt;i'>
+                        <Id value='vv' typref='1'/>
+                        <Integer_Literal value='0' typref='1'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op='&lt;i'>
+                        <Id value='vv' typref='1'/>
+                        <Integer_Literal value='20' typref='1'/>
+                    </Exp_Comparison>
+                </Nary_Pred>
+            </Precondition>
+            <Body>
+                <Becomes_In>
+                    <Variables>
+                        <Id value='res' typref='1'/>
+                    </Variables>
+                    <Value>
+                        <Id value='rust_i8' typref='2'/>
+                    </Value>
+                </Becomes_In>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Id value='color'/>
+        </Type>
+    <Type id='5'>
+        <Unary_Exp op='POW'>
+<Id value='color'/>
+</Unary_Exp>
+        </Type>
+</TypeInfos>
+    
+</Machine>

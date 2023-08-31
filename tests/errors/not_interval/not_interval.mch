@@ -1,0 +1,32 @@
+/* main_tabular_03
+ * Author: 
+ * Creation date: 25/05/2023
+ */
+MACHINE
+    not_interval
+
+SEES
+    b2rust_types
+    
+   
+    
+OPERATIONS
+    the_tab <-- get_tab1 = PRE
+        the_tab : (0..6) * (0..5) --> rust_i32
+    THEN
+        skip
+    END;
+    
+    the_tab <-- get_tab2 = PRE
+        the_tab : 0..5 --> rust_i32
+    THEN
+        skip
+    END;
+    
+    the_tab <-- set_tab(aa) = PRE
+        the_tab : 0..5 --> rust_i32 &
+        aa : rust_i32
+    THEN
+        skip
+    END
+END

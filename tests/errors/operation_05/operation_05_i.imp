@@ -1,0 +1,15 @@
+/* operation_05_i
+ * Author: 
+ * Creation date: 24/04/2023
+ */
+
+IMPLEMENTATION operation_05_i
+REFINES operation_05
+
+SEES b2rust_types
+    
+OPERATIONS
+    integer <-- return_twelve = BEGIN
+        integer := 12
+    END
+ END

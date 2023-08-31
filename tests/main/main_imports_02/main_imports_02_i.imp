@@ -1,0 +1,30 @@
+/* main_imports_02_i
+* Author: 
+* Creation date: 03/05/2023
+*/
+
+IMPLEMENTATION main_imports_02_i
+REFINES main_imports_02
+    
+SEES
+    b2rust_types
+    
+IMPORTS
+    M1.main_imports_02_01,
+    M2.main_imports_02_01,
+    main_imports_02_02
+    
+OPERATIONS
+    int <-- return_four = BEGIN
+        VAR loc IN
+            loc :: rust_i8;
+            loc <-- M1.return_one;
+            int := loc;
+            loc <-- M2.return_one;
+            int := int + loc;
+            loc <-- return_two;
+            int := int + loc
+        END
+    END
+    
+END

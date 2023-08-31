@@ -1,0 +1,92 @@
+IMPLEMENTATION
+	expression_1_imp
+REFINES 
+	expression_1_mch
+
+SEES
+	b2rust_types
+	
+VALUES
+	Cst1 = - 2
+	
+CONCRETE_VARIABLES
+	GlobalVar1, 
+	GlobalVar2, 
+	GlobalVar3,
+	GlobalVar4,
+	GlobalVar5
+	
+INVARIANT
+	GlobalVar1: rust_u32 & 
+	GlobalVar2: rust_u32 & 
+	GlobalVar3: EnsEnum &
+	GlobalVar4: BOOL & 
+	GlobalVar5: BOOL
+	
+INITIALISATION
+	GlobalVar1 := 0;
+	GlobalVar2 := 1000;
+	GlobalVar3 := ElemEnum1;
+	GlobalVar4 := TRUE;
+	GlobalVar5 := FALSE
+	
+OPERATIONS
+	p_out1, p_out2, p_out3, p_out4, p_out5 <-- opexp(p_in1,p_in2) = 
+	BEGIN
+	
+	VAR
+		LocalVar1, LocalVar2, LocalVar3
+	IN
+		LocalVar1 :: rust_i32;
+		LocalVar2 :: rust_i32;
+		LocalVar3 :: EnsEnum;
+		LocalVar1 := 0;
+		LocalVar2 := 10;
+		LocalVar3 := ElemEnum1;
+		p_out5 := FALSE;
+
+		
+			
+			GlobalVar1 := GlobalVar2;
+			GlobalVar1 := LocalVar2;
+			GlobalVar1 := p_in1;
+			GlobalVar1 := p_out2;
+			GlobalVar1 := Cst1;
+			GlobalVar1 := 0;
+			
+			LocalVar1 := GlobalVar2;
+			LocalVar1 := LocalVar2;
+			LocalVar1 := p_in1;
+			LocalVar1 := p_out2;
+			LocalVar1 := Cst1;
+			LocalVar1 := 0;
+			
+			p_out1 := GlobalVar2;
+			p_out1 := LocalVar2;
+			p_out1 := p_in1;
+			p_out1 := p_out2;
+			p_out1 := Cst1;
+			p_out1 := 0;
+			
+			GlobalVar3 := ElemEnum2;
+			LocalVar3 := ElemEnum2;
+			p_out3 := ElemEnum1;
+			
+			GlobalVar4 := GlobalVar5;
+			GlobalVar5 := GlobalVar4;
+			GlobalVar4 := p_in2;
+			GlobalVar4 := p_out5;
+			GlobalVar4 := TRUE;
+			
+			p_out4 := GlobalVar5;
+			p_out4 := GlobalVar4;
+			p_out4 := GlobalVar5;
+			p_out4 := p_in2;
+			p_out4 := p_out5;
+			p_out4 := FALSE;
+			p_out4 := TRUE
+		
+	END
+	END
+		
+END

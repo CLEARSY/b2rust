@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='main_testbug_01_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>main_testbug_01</Abstraction>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Initialisation>
+        <Assignement_Sub>
+            <Variables>
+                <Id value='cv' typref='4'/>
+            </Variables>
+            <Values>
+                <Binary_Exp op='*s' typref='4'>
+                    <Id value='rust_u8' typref='2'/>
+                    <Nary_Exp op='{' typref='2'>
+                        <Integer_Literal value='1' typref='1'/>
+                    </Nary_Exp>
+                </Binary_Exp>
+            </Values>
+        </Assignement_Sub>
+    </Initialisation>
+    <Operations>
+        <Operation name='ownership_bug'>
+            <Output_Parameters>
+                <Id value='res' typref='4'/>
+            </Output_Parameters>
+            <Body>
+                <VAR_IN>
+                    <Variables>
+                        <Id value='tab' typref='4'/>
+                    </Variables>
+                    <Body>
+                        <Nary_Sub op=';'>
+                            <Becomes_In>
+                                <Variables>
+                                    <Id value='tab' typref='4'/>
+                                </Variables>
+                                <Value>
+                                    <Binary_Exp op='--&gt;' typref='5'>
+                                        <Id value='rust_u8' typref='2'/>
+                                        <Id value='rust_i8' typref='2'/>
+                                    </Binary_Exp>
+                                </Value>
+                            </Becomes_In>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='tab' typref='4'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='cv' typref='4'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='res' typref='4'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='cv' typref='4'/>
+                                </Values>
+                            </Assignement_Sub>
+                        </Nary_Sub>
+                    </Body>
+                </VAR_IN>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+</Unary_Exp>
+        </Type>
+    <Type id='5'>
+        <Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+</Unary_Exp>
+</Unary_Exp>
+        </Type>
+</TypeInfos>
+    
+</Machine>

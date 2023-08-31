@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='operloc_comment_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>operloc_comment</Abstraction>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <Local_Operations>
+        <Operation name='locop1'>
+            <Body>
+                <If_Sub elseif='no'>
+                    <Condition>
+                        <Exp_Comparison op='='>
+                            <Integer_Literal value='0' typref='1'/>
+                            <Integer_Literal value='1' typref='1'/>
+                        </Exp_Comparison>
+                    </Condition>
+                    <Then>
+                        <Skip/>
+                    </Then>
+                    <Else>
+                        <Skip/>
+                    </Else>
+                </If_Sub>
+            </Body>
+        </Operation>
+        <Operation name='locop2'>
+            <Body>
+                <Skip/>
+            </Body>
+        </Operation>
+        <Operation name='locop3'>
+            <Body>
+                <Skip/>
+            </Body>
+        </Operation>
+        <Operation name='locop4'>
+            <Body>
+                <Skip/>
+            </Body>
+        </Operation>
+    </Local_Operations>
+    <Operations>
+        <Operation name='locop1'>
+            <Body>
+                <Skip/>
+            </Body>
+        </Operation>
+        <Operation name='locop2'>
+            <Body>
+                <Operation_Call>
+                    <Name>
+                        <Id value='locop1'/>
+                    </Name>
+                </Operation_Call>
+            </Body>
+        </Operation>
+        <Operation name='locop4'>
+            <Body>
+                <Nary_Sub op=';'>
+                    <Operation_Call>
+                        <Name>
+                            <Id value='locop3'/>
+                        </Name>
+                    </Operation_Call>
+                    <Operation_Call>
+                        <Name>
+                            <Id value='locop2'/>
+                        </Name>
+                    </Operation_Call>
+                </Nary_Sub>
+            </Body>
+        </Operation>
+        <Operation name='locop3'>
+            <Body>
+                <Nary_Sub op=';'>
+                    <Operation_Call>
+                        <Name>
+                            <Id value='locop1'/>
+                        </Name>
+                    </Operation_Call>
+                    <Operation_Call>
+                        <Name>
+                            <Id value='locop2'/>
+                        </Name>
+                    </Operation_Call>
+                </Nary_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+    
+</Machine>

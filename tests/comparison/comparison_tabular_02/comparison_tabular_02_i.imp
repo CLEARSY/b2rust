@@ -1,0 +1,23 @@
+/* comparison_tabular_02_i
+ * Author: 
+ * Creation date: 30/05/2023
+ */
+
+IMPLEMENTATION comparison_tabular_02_i
+REFINES comparison_tabular_02
+
+CONCRETE_VARIABLES
+    tab, tab2
+    
+SEES
+    b2rust_types
+    
+INVARIANT
+    tab : 0..1 --> (0..3 --> rust_i32) &
+    tab2 : 0..2 --> (0..1 --> (0..2 --> rust_i8))
+    
+INITIALISATION
+    tab := {0 |-> {1 |-> 2, 0 |-> 3615, 3 |-> 0, 2 |-> 3630}, 1 |-> {1 |-> 0, 0 |-> 0, 3 |-> 0, 2 |-> -6}};
+    tab2 := {0 |-> {1 |-> {1 |-> 2, 0 |-> 2, 2 |-> 2}, 0 |-> {1 |-> 1, 0 |-> 76, 2 |-> -56}}, 1 |-> {1 |-> {1 |-> 2, 0 |-> 2, 2 |-> 2}, 0 |-> {1 |-> 1, 0 |-> 76, 2 |-> -56}}, 2 |-> {1 |-> {1 |-> 2, 0 |-> 2, 2 |-> 2}, 0 |-> {1 |-> 1, 0 |-> 76, 2 |-> -56}}}
+
+END

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='SPI' type='abstraction' position='false' semantic='true' b0check='false'>
+    <Sees>
+        <Referenced_Machine>
+            <Name>Types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <Operations>
+        <Operation name='SPI_Init'>
+            <Body>
+                <Skip/>
+            </Body>
+        </Operation>
+        <Operation name='SPI_InitPins'>
+            <Body>
+                <Skip/>
+            </Body>
+        </Operation>
+        <Operation name='SPI_SendTrame'>
+            <Output_Parameters>
+                <Id value='p_out' typref='1'/>
+            </Output_Parameters>
+            <Precondition>
+                <Exp_Comparison op=':'>
+                    <Id value='p_out' typref='1'/>
+                    <Id value='SBOOL' typref='2'/>
+                </Exp_Comparison>
+            </Precondition>
+            <Body>
+                <Skip/>
+            </Body>
+        </Operation>
+        <Operation name='SPI_RecuperationTrame'>
+            <Output_Parameters>
+                <Id value='p_out' typref='1'/>
+            </Output_Parameters>
+            <Precondition>
+                <Exp_Comparison op=':'>
+                    <Id value='p_out' typref='1'/>
+                    <Id value='SBOOL' typref='2'/>
+                </Exp_Comparison>
+            </Precondition>
+            <Body>
+                <Skip/>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+    
+</Machine>

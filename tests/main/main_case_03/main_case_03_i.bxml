@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='main_case_03_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>main_case_03</Abstraction>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <Operations>
+        <Operation name='meilleur'>
+            <Output_Parameters>
+                <Id value='res' typref='0'/>
+            </Output_Parameters>
+            <Input_Parameters>
+                <Id value='jour' typref='1'/>
+            </Input_Parameters>
+            <Body>
+                <Case_Sub>
+                    <Value>
+                        <Id value='jour' typref='1'/>
+                    </Value>
+                    <Choices>
+                        <Choice>
+                            <Value>
+                                <Integer_Literal value='6' typref='1'/>
+                            </Value>
+                            <Then>
+                                <Assignement_Sub>
+                                    <Variables>
+                                        <Id value='res' typref='0'/>
+                                    </Variables>
+                                    <Values>
+                                        <Boolean_Literal value='TRUE' typref='0'/>
+                                    </Values>
+                                </Assignement_Sub>
+                            </Then>
+                        </Choice>
+                        <Choice>
+                            <Value>
+                                <Integer_Literal value='7' typref='1'/>
+                            </Value>
+                            <Then>
+                                <Assignement_Sub>
+                                    <Variables>
+                                        <Id value='res' typref='0'/>
+                                    </Variables>
+                                    <Values>
+                                        <Boolean_Literal value='TRUE' typref='0'/>
+                                    </Values>
+                                </Assignement_Sub>
+                            </Then>
+                        </Choice>
+                    </Choices>
+                </Case_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+    
+</Machine>

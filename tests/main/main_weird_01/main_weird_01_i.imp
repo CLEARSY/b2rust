@@ -1,0 +1,18 @@
+/* main_weird_01_i
+ * Author: cchen4
+ * Creation date: 09/08/2023
+ */
+
+IMPLEMENTATION main_weird_01_i
+REFINES main_weird_01
+
+SEES
+    b2rust_types
+    
+OPERATIONS
+
+     res <-- op(aa)=
+     BEGIN
+         res := aa
+     END
+ END

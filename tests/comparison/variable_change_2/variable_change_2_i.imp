@@ -1,0 +1,40 @@
+/* variable_change_2_i
+* Author: 
+* Creation date: 13/03/2023
+*/
+
+IMPLEMENTATION variable_change_2_i
+REFINES variable_change_2
+    
+SEES
+    b2rust_types
+    
+CONCRETE_VARIABLES
+    trains_i,
+    roads_i,
+    traffic_state_i
+    
+INVARIANT
+    hour : rust_i8 &
+    trains_i : rust_i16 &
+    trains_i = trains &
+    roads_i : rust_i32 &
+    roads_i = roads &
+    traffic_state_i : rust_bool
+    
+INITIALISATION
+    hour := 14;
+    trains_i := 56;
+    traffic_state_i := TRUE;
+    roads_i := 26239;
+    traffic_state_i := FALSE
+    
+OPERATIONS
+    change_me = BEGIN
+        traffic_state_i := TRUE;
+        hour := 19;
+        trains_i := 22;
+        traffic_state_i := FALSE;
+        traffic_state_i := TRUE
+    END
+END

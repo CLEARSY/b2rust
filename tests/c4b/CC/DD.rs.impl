@@ -1,0 +1,25 @@
+use std::convert::TryFrom;
+
+pub struct DD {
+// Concrete variables & constants.
+pub r#vv: bool,
+}
+
+impl Default for DD {
+   fn default() -> Self {
+     let mut instance = Self {
+r#vv : bool::default(),
+};
+instance.initialisation();
+instance}
+}
+impl DD {
+fn initialisation(&mut self) {
+// `INITIALISATION` clause.
+//self.r#vv = bool::try_from(true).unwrap();
+}
+
+pub fn opDD(&mut self) {
+unimplemented!("opDD is unimplemented");
+}
+}

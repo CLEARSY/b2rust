@@ -1,0 +1,21 @@
+/* global_variable_i
+ * Author: 
+ * Creation date: 27/02/2023
+ */
+
+IMPLEMENTATION global_variable_i
+REFINES global_variable
+    
+SEES
+    b2rust_types
+
+CONCRETE_VARIABLES
+    number
+    
+INVARIANT
+    number : rust_i8
+    
+INITIALISATION
+    number := 1
+
+END

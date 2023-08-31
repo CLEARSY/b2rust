@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='op_type_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>op_type</Abstraction>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Initialisation>
+        <Assignement_Sub>
+            <Variables>
+                <Id value='cv' typref='1'/>
+            </Variables>
+            <Values>
+                <Integer_Literal value='10' typref='1'/>
+            </Values>
+        </Assignement_Sub>
+    </Initialisation>
+    <Operations>
+        <Operation name='op'>
+            <Output_Parameters>
+                <Id value='res' typref='1'/>
+            </Output_Parameters>
+            <Input_Parameters>
+                <Id value='tab' typref='4'/>
+                <Id value='index' typref='1'/>
+                <Id value='cc' typref='1'/>
+            </Input_Parameters>
+            <Body>
+                <Assignement_Sub>
+                    <Variables>
+                        <Id value='res' typref='1'/>
+                    </Variables>
+                    <Values>
+                        <Binary_Exp op='+i' typref='1'>
+                            <Binary_Exp op='(' typref='1'>
+                                <Id value='tab' typref='4'/>
+                                <Id value='index' typref='1'/>
+                            </Binary_Exp>
+                            <Id value='cc' typref='1'/>
+                        </Binary_Exp>
+                    </Values>
+                </Assignement_Sub>
+            </Body>
+        </Operation>
+        <Operation name='decr'>
+            <Body>
+                <Assignement_Sub>
+                    <Variables>
+                        <Id value='cv' typref='1'/>
+                    </Variables>
+                    <Values>
+                        <Binary_Exp op='-i' typref='1'>
+                            <Id value='cv' typref='1'/>
+                            <Integer_Literal value='1' typref='1'/>
+                        </Binary_Exp>
+                    </Values>
+                </Assignement_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+</Unary_Exp>
+        </Type>
+</TypeInfos>
+    
+</Machine>

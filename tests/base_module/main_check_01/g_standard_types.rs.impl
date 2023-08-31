@@ -1,0 +1,17 @@
+pub struct g_standard_types {
+// Concrete variables & constants.
+//pub r#uint16_t: TODO,
+//pub r#uint32_t: TODO,
+//pub r#uint8_t: TODO,
+}
+
+impl Default for g_standard_types {
+   fn default() -> Self {
+     let mut instance = Self {};
+instance.initialisation();
+instance}
+}
+impl g_standard_types {
+fn initialisation(&mut self) {
+}
+}

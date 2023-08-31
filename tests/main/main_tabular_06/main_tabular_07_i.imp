@@ -1,0 +1,17 @@
+/* main_tabular_07_i
+ * Author: 
+ * Creation date: 01/06/2023
+ */
+
+IMPLEMENTATION main_tabular_07_i
+REFINES main_tabular_07
+
+
+SEES
+    b2rust_types
+    
+OPERATIONS
+    boolean <-- return_true = BEGIN
+        boolean := TRUE
+    END
+END

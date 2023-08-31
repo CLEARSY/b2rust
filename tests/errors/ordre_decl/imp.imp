@@ -1,0 +1,78 @@
+IMPLEMENTATION
+	imp
+
+REFINES
+	ordre_decl
+SEES
+	b2rust_types
+
+IMPORTS
+	import2
+,	import1
+
+PROMOTES
+	op_promotes2
+,	op_promotes1
+
+EXTENDS
+	extend2
+,	extend1
+
+SETS
+	ss_imp2
+;	ss_imp1
+;	ss_imp3
+;	en_imp2 = {elt_imp2}
+;	en_imp1 = {elt_imp1}
+	
+
+CONCRETE_CONSTANTS
+	cc_imp2
+,	cc_imp1
+,	it_imp2
+,	it_imp1
+,	it_imp3
+
+
+PROPERTIES
+	cc_imp2 : rust_i32
+& 	cc_imp1 : rust_i32
+&	it_imp2 = 1..100
+&	it_imp1 = 2..100
+&	it_imp3 = 1..100
+
+
+VALUES
+	cc_imp1 = 1 
+;   it_imp3 = 1..100
+;	cc_imp2 = cc_import2
+;	it_imp1 = it_import1
+;	it_imp2 = 2..100
+;	ss_imp1 = 1..100
+;	ss_imp3 = 1..100
+;	ss_imp2 = 2..100
+
+CONCRETE_VARIABLES
+	vv_imp2,
+	vv_imp1
+
+INVARIANT
+	vv_imp2 : rust_i32
+&	vv_imp1 : rust_i32
+
+INITIALISATION
+	vv_imp1 := 1
+;	vv_imp2 := 2
+
+LOCAL_OPERATIONS
+	loc_op2 = skip;
+	loc_op1 = skip
+
+OPERATIONS
+	op3 = skip;
+	loc_op1 = skip;
+	op2 = skip;
+	loc_op2 = skip;
+	op1 = skip	
+
+END

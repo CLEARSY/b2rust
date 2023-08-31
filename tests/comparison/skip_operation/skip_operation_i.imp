@@ -1,0 +1,12 @@
+/* skip_operation_i
+ * Author: 
+ * Creation date: 16/02/2023
+ */
+
+IMPLEMENTATION skip_operation_i
+REFINES skip_operation
+
+OPERATIONS
+    skip_me = skip
+
+ END

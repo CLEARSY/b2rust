@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='main_boolexpr_01_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>main_boolexpr_01</Abstraction>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Concrete_Variables>
+        <Id value='hapiness' typref='1'/>
+    </Concrete_Variables>
+    <Invariant>
+        <Exp_Comparison op=':'>
+            <Id value='hapiness' typref='1'/>
+            <Id value='rust_u8' typref='2'/>
+        </Exp_Comparison>
+    </Invariant>
+    <Initialisation>
+        <Assignement_Sub>
+            <Variables>
+                <Id value='hapiness' typref='1'/>
+            </Variables>
+            <Values>
+                <Integer_Literal value='51' typref='1'/>
+            </Values>
+        </Assignement_Sub>
+    </Initialisation>
+    <Operations>
+        <Operation name='is_happy'>
+            <Output_Parameters>
+                <Id value='res' typref='0'/>
+            </Output_Parameters>
+            <Body>
+                <Assignement_Sub>
+                    <Variables>
+                        <Id value='res' typref='0'/>
+                    </Variables>
+                    <Values>
+                        <Boolean_Exp typref='0'>
+                            <Nary_Pred op='&amp;'>
+                                <Nary_Pred op='or'>
+                                    <Exp_Comparison op='&gt;i'>
+                                        <Id value='hapiness' typref='1'/>
+                                        <Integer_Literal value='50' typref='1'/>
+                                    </Exp_Comparison>
+                                    <Nary_Pred op='&amp;'>
+                                        <Exp_Comparison op='='>
+                                            <Id value='hapiness' typref='1'/>
+                                            <Integer_Literal value='0' typref='1'/>
+                                        </Exp_Comparison>
+                                        <Exp_Comparison op='/='>
+                                            <Id value='hapiness' typref='1'/>
+                                            <Integer_Literal value='0' typref='1'/>
+                                        </Exp_Comparison>
+                                    </Nary_Pred>
+                                </Nary_Pred>
+                                <Exp_Comparison op='&lt;i'>
+                                    <Id value='hapiness' typref='1'/>
+                                    <Integer_Literal value='100' typref='1'/>
+                                </Exp_Comparison>
+                            </Nary_Pred>
+                        </Boolean_Exp>
+                    </Values>
+                </Assignement_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+    
+</Machine>

@@ -1,0 +1,18 @@
+/* main_array_15_i
+ * Author: cchen4
+ * Creation date: 12/08/2023
+ */
+
+IMPLEMENTATION main_array_15_i
+REFINES main_array_15
+
+SEES
+    b2rust_types
+    
+VALUES
+    tab_size = 8 ;
+    tab = {0|-> (0..tab_size) * rust_u8 * {0}, 1|-> (0..tab_size) * rust_u8 * {0}}
+    
+
+    
+ END

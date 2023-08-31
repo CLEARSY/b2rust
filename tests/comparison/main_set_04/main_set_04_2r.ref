@@ -1,0 +1,23 @@
+/* main_set_04_2r
+ * Author: cchen4
+ * Creation date: 25/08/2023
+ */
+
+REFINEMENT main_set_04_2r
+REFINES main_set_04_r
+
+SETS
+    GENDER={MALE,FEMALE}
+    
+CONCRETE_CONSTANTS
+    cc 
+    
+PROPERTIES
+    cc : COLORS
+    
+INITIALISATION
+    cv := CAT
+    
+
+    
+ END

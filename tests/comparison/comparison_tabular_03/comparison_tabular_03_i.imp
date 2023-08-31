@@ -1,0 +1,21 @@
+/* comparison_tabular_03_i
+ * Author: 
+ * Creation date: 31/05/2023
+ */
+
+IMPLEMENTATION comparison_tabular_03_i
+REFINES comparison_tabular_03
+
+CONCRETE_VARIABLES
+    tab
+    
+SEES
+    b2rust_types
+    
+INVARIANT
+    tab : 0..-1000 --> rust_i32
+    
+INITIALISATION
+    tab := {}
+
+ END

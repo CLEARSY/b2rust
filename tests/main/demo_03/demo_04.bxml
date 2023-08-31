@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='demo_04' type='abstraction' position='false' semantic='true' b0check='false'>
+    <Sets>
+        <Set>
+            <Id value='trains' typref='4'/>
+            <Enumerated_Values>
+                <Id value='metro' typref='5'/>
+                <Id value='RER' typref='5'/>
+                <Id value='Transilien' typref='5'/>
+                <Id value='type_non_precise' typref='5'/>
+            </Enumerated_Values>
+        </Set>
+        <Set>
+            <Id value='longueur' typref='6'/>
+            <Enumerated_Values>
+                <Id value='train_court' typref='7'/>
+                <Id value='train_long' typref='7'/>
+                <Id value='taille_non_precisee' typref='7'/>
+            </Enumerated_Values>
+        </Set>
+    </Sets>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <Operations>
+        <Operation name='return_default_train'>
+            <Output_Parameters>
+                <Id value='type' typref='5'/>
+                <Id value='taille' typref='7'/>
+            </Output_Parameters>
+            <Precondition>
+                <Nary_Pred op='&amp;'>
+                    <Exp_Comparison op=':'>
+                        <Id value='type' typref='5'/>
+                        <Id value='trains' typref='4'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op=':'>
+                        <Id value='taille' typref='7'/>
+                        <Id value='longueur' typref='6'/>
+                    </Exp_Comparison>
+                </Nary_Pred>
+            </Precondition>
+            <Body>
+                <Nary_Sub op='||'>
+                    <Becomes_In>
+                        <Variables>
+                            <Id value='type' typref='5'/>
+                        </Variables>
+                        <Value>
+                            <Id value='trains' typref='4'/>
+                        </Value>
+                    </Becomes_In>
+                    <Becomes_In>
+                        <Variables>
+                            <Id value='taille' typref='7'/>
+                        </Variables>
+                        <Value>
+                            <Id value='longueur' typref='6'/>
+                        </Value>
+                    </Becomes_In>
+                </Nary_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Unary_Exp op='POW'>
+<Id value='trains'/>
+</Unary_Exp>
+        </Type>
+    <Type id='5'>
+        <Id value='trains'/>
+        </Type>
+    <Type id='6'>
+        <Unary_Exp op='POW'>
+<Id value='longueur'/>
+</Unary_Exp>
+        </Type>
+    <Type id='7'>
+        <Id value='longueur'/>
+        </Type>
+</TypeInfos>
+    
+</Machine>

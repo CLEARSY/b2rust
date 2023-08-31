@@ -1,0 +1,34 @@
+use std::convert::TryFrom;
+
+pub struct Types {
+}
+
+impl Default for Types {
+   fn default() -> Self {
+     let mut instance = Self {
+};
+instance.initialisation();
+instance}
+}
+impl Types {
+// Constant’s `VALUES`.
+
+pub const r#ACQ_ATTRIBUTION_SID : u8 = 0;
+pub const r#ATTRIBUTION_SID : u8 = 0;
+pub const r#ATTRIBUTION_TID : u8 = 0;
+pub const r#REPONSE_NON_SECU : u8 = 0;
+pub const r#REPONSE_SECU : u8 = 0;
+pub const r#REPROGRAMMATION_SECU : u8 = 0;
+pub const r#REQUETE_NON_SECU : u8 = 0;
+pub const r#REQUETE_SECU : u8 = 0;
+//pub const r#SBOOL : TODO = 0
+pub const r#SFALSE : u8 = 0;
+pub const r#STRUE : u8 = 0;
+pub const r#SYNCHRONISATION : u8 = 0;
+//pub const r#uint16_t : TODO = 0
+//pub const r#uint32_t : TODO = 0
+//pub const r#uint8_t : TODO = 0
+
+fn initialisation(&mut self) {
+}
+}

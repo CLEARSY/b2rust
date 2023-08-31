@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='main_imports_06_01_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>main_imports_06_01</Abstraction>
+    <Imports>
+        <Referenced_Machine>
+            <Name>main_imports_06_02</Name>
+            <Instance>M1</Instance>
+        </Referenced_Machine>
+        <Referenced_Machine>
+            <Name>main_imports_06_02</Name>
+            <Instance>M2</Instance>
+        </Referenced_Machine>
+    </Imports>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Concrete_Variables>
+        <Id value='true' typref='0'/>
+        <Id value='false' typref='0'/>
+    </Concrete_Variables>
+    <Invariant>
+        <Nary_Pred op='&amp;'>
+            <Exp_Comparison op=':'>
+                <Id value='true' typref='0'/>
+                <Id value='rust_bool' typref='4'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='false' typref='0'/>
+                <Id value='rust_bool' typref='4'/>
+            </Exp_Comparison>
+        </Nary_Pred>
+    </Invariant>
+    <Initialisation>
+        <Nary_Sub op=';'>
+            <Operation_Call>
+                <Name>
+                    <Id value='M1.give_true' instance='M1' component='give_true'/>
+                </Name>
+                <Output_Parameters>
+                    <Id value='true' typref='0'/>
+                </Output_Parameters>
+            </Operation_Call>
+            <Operation_Call>
+                <Name>
+                    <Id value='M2.give_false' instance='M2' component='give_false'/>
+                </Name>
+                <Output_Parameters>
+                    <Id value='false' typref='0'/>
+                </Output_Parameters>
+            </Operation_Call>
+        </Nary_Sub>
+    </Initialisation>
+    <Operations>
+        <Operation name='reset'>
+            <Body>
+                <Operation_Call>
+                    <Name>
+                        <Id value='M1.give_true_and_false' instance='M1' component='give_true_and_false'/>
+                    </Name>
+                    <Output_Parameters>
+                        <Id value='true' typref='0'/>
+                        <Id value='false' typref='0'/>
+                    </Output_Parameters>
+                </Operation_Call>
+            </Body>
+        </Operation>
+        <Operation name='return_var_true'>
+            <Output_Parameters>
+                <Id value='bool_true' typref='0'/>
+            </Output_Parameters>
+            <Body>
+                <Assignement_Sub>
+                    <Variables>
+                        <Id value='bool_true' typref='0'/>
+                    </Variables>
+                    <Values>
+                        <Id value='true' typref='0'/>
+                    </Values>
+                </Assignement_Sub>
+            </Body>
+        </Operation>
+        <Operation name='return_var_false'>
+            <Output_Parameters>
+                <Id value='bool_false' typref='0'/>
+            </Output_Parameters>
+            <Body>
+                <Assignement_Sub>
+                    <Variables>
+                        <Id value='bool_false' typref='0'/>
+                    </Variables>
+                    <Values>
+                        <Id value='false' typref='0'/>
+                    </Values>
+                </Assignement_Sub>
+            </Body>
+        </Operation>
+        <Operation name='set_true_false_to'>
+            <Input_Parameters>
+                <Id value='set_true' typref='0'/>
+                <Id value='set_false' typref='0'/>
+            </Input_Parameters>
+            <Body>
+                <Nary_Sub op=';'>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Id value='true' typref='0'/>
+                        </Variables>
+                        <Values>
+                            <Id value='set_true' typref='0'/>
+                        </Values>
+                    </Assignement_Sub>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Id value='false' typref='0'/>
+                        </Variables>
+                        <Values>
+                            <Id value='set_false' typref='0'/>
+                        </Values>
+                    </Assignement_Sub>
+                </Nary_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Unary_Exp op='POW'>
+<Id value='BOOL'/>
+</Unary_Exp>
+        </Type>
+</TypeInfos>
+    
+</Machine>

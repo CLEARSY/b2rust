@@ -1,0 +1,17 @@
+/* operation_06_i
+ * Author: 
+ * Creation date: 24/04/2023
+ */
+
+IMPLEMENTATION operation_06_i
+REFINES operation_06
+
+SEES b2rust_types
+    
+OPERATIONS
+    integer, boolean, other_integer <-- return_3_false_1024 = BEGIN
+        integer := 3;
+        boolean := FALSE;
+        other_integer := 1024
+    END
+END

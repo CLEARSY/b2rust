@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='concrete_constant_01' type='abstraction' position='false' semantic='true' b0check='false'>
+    <Abstract_Constants>
+        <Id value='size_v' typref='1'/>
+        <Id value='is_the_machine_on' typref='0'/>
+        <Id value='annual_growth' typref='1'/>
+    </Abstract_Constants>
+    <Concrete_Constants>
+        <Id value='employees' typref='1'/>
+    </Concrete_Constants>
+    <Properties>
+        <Nary_Pred op='&amp;'>
+            <Exp_Comparison op=':'>
+                <Id value='size_v' typref='1'/>
+                <Id value='INT' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='is_the_machine_on' typref='0'/>
+                <Id value='BOOL' typref='4'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='annual_growth' typref='1'/>
+                <Id value='INT' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='employees' typref='1'/>
+                <Id value='NAT' typref='2'/>
+            </Exp_Comparison>
+        </Nary_Pred>
+    </Properties>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Unary_Exp op='POW'>
+<Id value='BOOL'/>
+</Unary_Exp>
+        </Type>
+</TypeInfos>
+    
+</Machine>

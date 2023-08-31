@@ -1,0 +1,24 @@
+/* main_type_01__i
+ * Author: cchen4
+ * Creation date: 24/07/2023
+ */
+
+IMPLEMENTATION main_type_01__i
+REFINES main_type_01_2r
+
+SEES
+    b2rust_types
+    
+INVARIANT
+    cv2 : rust_u8
+    
+VALUES 
+    cc1 = 10 ;
+    cc2 = 15
+    
+INITIALISATION
+    cv1 := 0 ;
+    cv2 := 1
+
+
+ END

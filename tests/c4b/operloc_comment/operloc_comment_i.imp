@@ -1,0 +1,45 @@
+/* operloc_comment_i
+ * Author: cchen4
+ * Creation date: 25/07/2023
+ */
+
+IMPLEMENTATION operloc_comment_i
+REFINES operloc_comment
+
+	/*? commentaire sur LOCAL_OPERATIONS ?*/
+LOCAL_OPERATIONS
+	/*? commentaire traduisible sur locop1 ?*/
+	locop1 = 
+	/*? commentaire avant IF ?*/
+	IF 0=1
+	THEN
+	   skip
+	ELSE
+	   skip
+	END;
+
+	locop2 = skip;
+	locop3 = skip;
+	locop4 = skip
+OPERATIONS
+
+	locop1 = 
+	BEGIN
+		skip
+	END;
+	locop2 = 
+	BEGIN
+		locop1
+	END;
+	locop4=
+	BEGIN
+	   locop3;
+	   locop2
+	END;
+	locop3 = 
+	BEGIN
+		locop1;
+		locop2
+	END
+END
+

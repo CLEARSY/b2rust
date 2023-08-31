@@ -1,0 +1,27 @@
+/* main_string_01_i
+ * Author: cchen4
+ * Creation date: 26/07/2023
+ */
+
+IMPLEMENTATION main_string_01_i
+REFINES main_string_01
+
+SEES
+    b2rust_types
+    
+IMPORTS
+    error
+    
+OPERATIONS
+    res <-- noOverflow(aa,bb) = 
+    BEGIN
+            IF (127-aa<bb) THEN
+                error_msg("Error : max Overflow")
+      
+            ELSE
+                res := aa+bb
+            END
+       
+        
+   END
+ END

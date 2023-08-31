@@ -1,0 +1,18 @@
+/* main_oprust_05_i
+ * Author: cchen4
+ * Creation date: 01/08/2023
+ */
+
+IMPLEMENTATION main_oprust_05_i
+REFINES main_oprust_05
+
+SEES
+    b2rust_types
+    
+OPERATIONS
+    res <--complique(aa,bb) = 
+    BEGIN
+        res := pow_i8(aa, mod_i8(aa,bb))
+    END
+
+ END

@@ -1,0 +1,18 @@
+/* main_tabular_11_i
+ * Author: cchen4
+ * Creation date: 26/07/2023
+ */
+
+IMPLEMENTATION main_tabular_11_i
+REFINES main_tabular_11
+
+SEES
+        b2rust_types
+        
+OPERATIONS
+    tab <-- setValue(index,value) = 
+    BEGIN
+        tab(index) := value
+    END
+
+ END

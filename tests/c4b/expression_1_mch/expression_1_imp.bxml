@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='expression_1_imp' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>expression_1_mch</Abstraction>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Values>
+        <Valuation ident='Cst1' typref='1'>
+            <Integer_Literal value='-2' typref='1'/>
+        </Valuation>
+    </Values>
+    <Concrete_Variables>
+        <Id value='GlobalVar1' typref='1'/>
+        <Id value='GlobalVar2' typref='1'/>
+        <Id value='GlobalVar3' typref='4'/>
+        <Id value='GlobalVar4' typref='0'/>
+        <Id value='GlobalVar5' typref='0'/>
+    </Concrete_Variables>
+    <Invariant>
+        <Nary_Pred op='&amp;'>
+            <Exp_Comparison op=':'>
+                <Id value='GlobalVar1' typref='1'/>
+                <Id value='rust_u32' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='GlobalVar2' typref='1'/>
+                <Id value='rust_u32' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='GlobalVar3' typref='4'/>
+                <Id value='EnsEnum' typref='5'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='GlobalVar4' typref='0'/>
+                <Id value='BOOL' typref='6'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='GlobalVar5' typref='0'/>
+                <Id value='BOOL' typref='6'/>
+            </Exp_Comparison>
+        </Nary_Pred>
+    </Invariant>
+    <Initialisation>
+        <Nary_Sub op=';'>
+            <Assignement_Sub>
+                <Variables>
+                    <Id value='GlobalVar1' typref='1'/>
+                </Variables>
+                <Values>
+                    <Integer_Literal value='0' typref='1'/>
+                </Values>
+            </Assignement_Sub>
+            <Assignement_Sub>
+                <Variables>
+                    <Id value='GlobalVar2' typref='1'/>
+                </Variables>
+                <Values>
+                    <Integer_Literal value='1000' typref='1'/>
+                </Values>
+            </Assignement_Sub>
+            <Assignement_Sub>
+                <Variables>
+                    <Id value='GlobalVar3' typref='4'/>
+                </Variables>
+                <Values>
+                    <Id value='ElemEnum1' typref='4'/>
+                </Values>
+            </Assignement_Sub>
+            <Assignement_Sub>
+                <Variables>
+                    <Id value='GlobalVar4' typref='0'/>
+                </Variables>
+                <Values>
+                    <Boolean_Literal value='TRUE' typref='0'/>
+                </Values>
+            </Assignement_Sub>
+            <Assignement_Sub>
+                <Variables>
+                    <Id value='GlobalVar5' typref='0'/>
+                </Variables>
+                <Values>
+                    <Boolean_Literal value='FALSE' typref='0'/>
+                </Values>
+            </Assignement_Sub>
+        </Nary_Sub>
+    </Initialisation>
+    <Operations>
+        <Operation name='opexp'>
+            <Output_Parameters>
+                <Id value='p_out1' typref='1'/>
+                <Id value='p_out2' typref='1'/>
+                <Id value='p_out3' typref='4'/>
+                <Id value='p_out4' typref='0'/>
+                <Id value='p_out5' typref='0'/>
+            </Output_Parameters>
+            <Input_Parameters>
+                <Id value='p_in1' typref='1'/>
+                <Id value='p_in2' typref='0'/>
+            </Input_Parameters>
+            <Body>
+                <VAR_IN>
+                    <Variables>
+                        <Id value='LocalVar1' typref='1'/>
+                        <Id value='LocalVar2' typref='1'/>
+                        <Id value='LocalVar3' typref='4'/>
+                    </Variables>
+                    <Body>
+                        <Nary_Sub op=';'>
+                            <Becomes_In>
+                                <Variables>
+                                    <Id value='LocalVar1' typref='1'/>
+                                </Variables>
+                                <Value>
+                                    <Id value='rust_i32' typref='2'/>
+                                </Value>
+                            </Becomes_In>
+                            <Becomes_In>
+                                <Variables>
+                                    <Id value='LocalVar2' typref='1'/>
+                                </Variables>
+                                <Value>
+                                    <Id value='rust_i32' typref='2'/>
+                                </Value>
+                            </Becomes_In>
+                            <Becomes_In>
+                                <Variables>
+                                    <Id value='LocalVar3' typref='4'/>
+                                </Variables>
+                                <Value>
+                                    <Id value='EnsEnum' typref='5'/>
+                                </Value>
+                            </Becomes_In>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='LocalVar1' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Integer_Literal value='0' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='LocalVar2' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Integer_Literal value='10' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='LocalVar3' typref='4'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='ElemEnum1' typref='4'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='p_out5' typref='0'/>
+                                </Variables>
+                                <Values>
+                                    <Boolean_Literal value='FALSE' typref='0'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='GlobalVar1' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='GlobalVar2' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='GlobalVar1' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='LocalVar2' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='GlobalVar1' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='p_in1' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='GlobalVar1' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='p_out2' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='GlobalVar1' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='Cst1' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='GlobalVar1' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Integer_Literal value='0' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='LocalVar1' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='GlobalVar2' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='LocalVar1' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='LocalVar2' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='LocalVar1' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='p_in1' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='LocalVar1' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='p_out2' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='LocalVar1' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='Cst1' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='LocalVar1' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Integer_Literal value='0' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='p_out1' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='GlobalVar2' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='p_out1' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='LocalVar2' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='p_out1' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='p_in1' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='p_out1' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='p_out2' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='p_out1' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='Cst1' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='p_out1' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Integer_Literal value='0' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='GlobalVar3' typref='4'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='ElemEnum2' typref='4'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='LocalVar3' typref='4'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='ElemEnum2' typref='4'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='p_out3' typref='4'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='ElemEnum1' typref='4'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='GlobalVar4' typref='0'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='GlobalVar5' typref='0'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='GlobalVar5' typref='0'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='GlobalVar4' typref='0'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='GlobalVar4' typref='0'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='p_in2' typref='0'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='GlobalVar4' typref='0'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='p_out5' typref='0'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='GlobalVar4' typref='0'/>
+                                </Variables>
+                                <Values>
+                                    <Boolean_Literal value='TRUE' typref='0'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='p_out4' typref='0'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='GlobalVar5' typref='0'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='p_out4' typref='0'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='GlobalVar4' typref='0'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='p_out4' typref='0'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='GlobalVar5' typref='0'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='p_out4' typref='0'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='p_in2' typref='0'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='p_out4' typref='0'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='p_out5' typref='0'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='p_out4' typref='0'/>
+                                </Variables>
+                                <Values>
+                                    <Boolean_Literal value='FALSE' typref='0'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='p_out4' typref='0'/>
+                                </Variables>
+                                <Values>
+                                    <Boolean_Literal value='TRUE' typref='0'/>
+                                </Values>
+                            </Assignement_Sub>
+                        </Nary_Sub>
+                    </Body>
+                </VAR_IN>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Id value='EnsEnum'/>
+        </Type>
+    <Type id='5'>
+        <Unary_Exp op='POW'>
+<Id value='EnsEnum'/>
+</Unary_Exp>
+        </Type>
+    <Type id='6'>
+        <Unary_Exp op='POW'>
+<Id value='BOOL'/>
+</Unary_Exp>
+        </Type>
+</TypeInfos>
+    
+</Machine>

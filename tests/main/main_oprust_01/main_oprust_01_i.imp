@@ -1,0 +1,22 @@
+/* addition_i
+ * Author: cchen4
+ * Creation date: 20/06/2023
+ */
+
+IMPLEMENTATION main_oprust_01_i
+REFINES main_oprust_01
+
+SEES 
+    b2rust_types
+    
+    
+
+    
+OPERATIONS
+    res <-- add2(aa,bb) = 
+    BEGIN
+        res := add_i8(aa, add_i8(aa,bb))
+    END
+
+
+ END

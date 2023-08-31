@@ -1,0 +1,42 @@
+/* addition_i
+ * Author: cchen4
+ * Creation date: 20/06/2023
+ */
+
+IMPLEMENTATION main_oprust_04_i
+REFINES main_oprust_04
+
+SEES 
+    b2rust_types, c4b_types
+    
+    
+
+    
+OPERATIONS
+    res <-- lshift(aa,bb) = 
+    BEGIN
+        res := bitwise_sll_uint8(aa,bb)
+    END;
+    
+        res <-- rshift(aa,bb) = 
+    BEGIN
+        res := rshift_i8(aa,bb)
+    END
+    ;
+        res <-- orr(aa,bb) = 
+    BEGIN
+        res := or_i8(aa,bb)
+    END;
+    
+        res <-- and(aa,bb) = 
+    BEGIN
+        res := and_i8(aa,bb)
+    END;
+    
+        res <-- xor(aa,bb) = 
+    BEGIN
+        res := xor_i8(aa,bb)
+    END
+
+
+ END

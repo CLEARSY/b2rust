@@ -1,0 +1,25 @@
+/* main_imports_09_i
+ * Author: cchen4
+ * Creation date: 31/07/2023
+ */
+
+IMPLEMENTATION main_imports_09_i
+REFINES main_imports_09
+
+SEES
+    b2rust_types
+    
+IMPORTS
+    M1.imported,
+    M2.imported,
+    M3.imported
+    
+    
+OPERATIONS
+    res <-- total = 
+    BEGIN
+        res <--  M2.sum(M2.cv,M1.cv,M3.cv) 
+    END
+    
+
+ END

@@ -1,0 +1,68 @@
+IMPLEMENTATION
+	expression_2_imp
+REFINES 
+	expression_2_mch
+VALUES
+	Cst1 = - 2
+VISIBLE_VARIABLES
+	VarPlus, VarMoins, VarMul, VarUne
+INVARIANT
+	VarPlus: INT & VarMoins: INT & VarMul: INT & VarUne: INT
+INITIALISATION
+	VarPlus := Cst1 + 1;
+	VarMoins := 2 - Cst1;
+	VarMul := 0 * Cst1;
+	VarUne := - Cst1
+OPERATIONS
+	p_out<--opexp(p_in) = 
+	VAR cpt IN
+	
+		cpt := 0;
+		/*? EXPRESSION : Expression + Expression ?*/
+		
+		cpt := cpt + 1;
+		VarPlus := VarPlus + 10;
+		p_out := p_in + 100;
+		
+		/*? EXPRESSION : Expression - Expression ?*/
+		
+ 		cpt := cpt - 1;
+		VarMoins := VarMoins - 10;
+		p_out := p_in - Cst1;
+ 		
+		/*? EVOLUTION E.07 : EXPRESSION : Litteral - Expression ?*/
+		
+ 		cpt := 100 - cpt;
+		VarMoins := 2545 - p_in;
+		p_out := 012934 - VarPlus;
+ 		
+		/*? EXPRESSION : Expression * Expression ?*/
+		
+		cpt := cpt * 2;
+		VarMul := VarMul * 10;
+		p_out := p_in * 100;
+		
+		/*? EXPRESSION : - Expression ?*/
+		
+		cpt := - cpt;
+		VarUne := - VarUne;
+		p_out := - p_in
+
+/*? EXPRESSION : Combinaison ?*/
+/*	;
+	cpt := - - cpt ;
+	cpt := - ( - ( - ( - cpt ) ) );
+	p_out := p_in + - cpt;
+	VarPlus := VarMoins - - VarUne;
+	cpt := - cpt * - p_in;
+	VarMoins := - ( - ( - ( - cpt ) ) ) * p_in + - cpt * VarMoins - - VarUne * - cpt * - p_in;
+	cpt := cpt*cpt*cpt*cpt*cpt*cpt;
+	VarMoins := VarMoins+VarMoins+VarMoins+VarMoins+VarMoins+VarMoins;
+	VarPlus := VarPlus-VarPlus-VarPlus-VarPlus-VarPlus-VarPlus;
+	cpt := (cpt*(cpt*(cpt*(cpt*(cpt*cpt)))));
+	cpt := -2;
+	VarMoins := - ( - ( - 2 ) )
+*/
+	END	
+		
+END

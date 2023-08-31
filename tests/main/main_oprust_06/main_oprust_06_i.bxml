@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='main_oprust_06_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>main_oprust_06</Abstraction>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Initialisation>
+        <Assignement_Sub>
+            <Variables>
+                <Id value='tab2' typref='4'/>
+            </Variables>
+            <Values>
+                <Binary_Exp op='*s' typref='4'>
+                    <Id value='rust_u8' typref='2'/>
+                    <Nary_Exp op='{' typref='5'>
+                        <Id value='CAT' typref='6'/>
+                    </Nary_Exp>
+                </Binary_Exp>
+            </Values>
+        </Assignement_Sub>
+    </Initialisation>
+    <Operations>
+        <Operation name='compliquee'>
+            <Output_Parameters>
+                <Id value='res' typref='6'/>
+            </Output_Parameters>
+            <Input_Parameters>
+                <Id value='aa' typref='1'/>
+                <Id value='bb' typref='1'/>
+                <Id value='cc' typref='1'/>
+                <Id value='tab1' typref='7'/>
+            </Input_Parameters>
+            <Body>
+                <If_Sub elseif='no'>
+                    <Condition>
+                        <Exp_Comparison op='='>
+                            <Binary_Exp op='(' typref='6'>
+                                <Id value='tab2' typref='4'/>
+                                <Binary_Exp op='(' typref='1'>
+                                    <Id value='tab1' typref='7'/>
+                                    <Binary_Exp op='(' typref='1'>
+                                        <Id value='pow_i32' typref='8'/>
+                                        <Binary_Exp op='|-&gt;' typref='9'>
+                                            <Id value='aa' typref='1'/>
+                                            <Binary_Exp op='(' typref='1'>
+                                                <Id value='mod_i16' typref='8'/>
+                                                <Binary_Exp op='|-&gt;' typref='9'>
+                                                    <Id value='cc' typref='1'/>
+                                                    <Integer_Literal value='3' typref='1'/>
+                                                </Binary_Exp>
+                                            </Binary_Exp>
+                                        </Binary_Exp>
+                                    </Binary_Exp>
+                                </Binary_Exp>
+                            </Binary_Exp>
+                            <Id value='KITTEN' typref='6'/>
+                        </Exp_Comparison>
+                    </Condition>
+                    <Then>
+                        <Assignement_Sub>
+                            <Variables>
+                                <Id value='res' typref='6'/>
+                            </Variables>
+                            <Values>
+                                <Binary_Exp op='(' typref='6'>
+                                    <Id value='tab2' typref='4'/>
+                                    <Binary_Exp op='+i' typref='1'>
+                                        <Binary_Exp op='(' typref='1'>
+                                            <Id value='mod_u8' typref='8'/>
+                                            <Binary_Exp op='|-&gt;' typref='9'>
+                                                <Binary_Exp op='(' typref='1'>
+                                                    <Id value='lshift_i16' typref='8'/>
+                                                    <Binary_Exp op='|-&gt;' typref='9'>
+                                                        <Id value='aa' typref='1'/>
+                                                        <Id value='bb' typref='1'/>
+                                                    </Binary_Exp>
+                                                </Binary_Exp>
+                                                <Integer_Literal value='2' typref='1'/>
+                                            </Binary_Exp>
+                                        </Binary_Exp>
+                                        <Binary_Exp op='(' typref='1'>
+                                            <Id value='rshift_u8' typref='8'/>
+                                            <Binary_Exp op='|-&gt;' typref='9'>
+                                                <Binary_Exp op='(' typref='1'>
+                                                    <Id value='tab1' typref='7'/>
+                                                    <Id value='bb' typref='1'/>
+                                                </Binary_Exp>
+                                                <Binary_Exp op='(' typref='1'>
+                                                    <Id value='mod_u8' typref='8'/>
+                                                    <Binary_Exp op='|-&gt;' typref='9'>
+                                                        <Integer_Literal value='3' typref='1'/>
+                                                        <Integer_Literal value='2' typref='1'/>
+                                                    </Binary_Exp>
+                                                </Binary_Exp>
+                                            </Binary_Exp>
+                                        </Binary_Exp>
+                                    </Binary_Exp>
+                                </Binary_Exp>
+                            </Values>
+                        </Assignement_Sub>
+                    </Then>
+                    <Else>
+                        <Assignement_Sub>
+                            <Variables>
+                                <Id value='res' typref='6'/>
+                            </Variables>
+                            <Values>
+                                <Binary_Exp op='(' typref='6'>
+                                    <Id value='tab2' typref='4'/>
+                                    <Binary_Exp op='(' typref='1'>
+                                        <Id value='tab1' typref='7'/>
+                                        <Binary_Exp op='(' typref='1'>
+                                            <Id value='tab1' typref='7'/>
+                                            <Binary_Exp op='(' typref='1'>
+                                                <Id value='mod_u8' typref='8'/>
+                                                <Binary_Exp op='|-&gt;' typref='9'>
+                                                    <Id value='cc' typref='1'/>
+                                                    <Binary_Exp op='(' typref='1'>
+                                                        <Id value='tab1' typref='7'/>
+                                                        <Id value='bb' typref='1'/>
+                                                    </Binary_Exp>
+                                                </Binary_Exp>
+                                            </Binary_Exp>
+                                        </Binary_Exp>
+                                    </Binary_Exp>
+                                </Binary_Exp>
+                            </Values>
+                        </Assignement_Sub>
+                    </Else>
+                </If_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='ANIMAL'/>
+</Binary_Exp>
+</Unary_Exp>
+        </Type>
+    <Type id='5'>
+        <Unary_Exp op='POW'>
+<Id value='ANIMAL'/>
+</Unary_Exp>
+        </Type>
+    <Type id='6'>
+        <Id value='ANIMAL'/>
+        </Type>
+    <Type id='7'>
+        <Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+</Unary_Exp>
+        </Type>
+    <Type id='8'>
+        <Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+<Id value='INTEGER'/>
+</Binary_Exp>
+</Unary_Exp>
+        </Type>
+    <Type id='9'>
+        <Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+        </Type>
+</TypeInfos>
+    
+</Machine>

@@ -1,0 +1,17 @@
+/* set_type_i
+ * Author: cchen4
+ * Creation date: 21/08/2023
+ */
+
+IMPLEMENTATION set_type_i
+REFINES set_type
+
+SEES
+    b2rust_types
+    
+VALUES
+    cc = MaineCoon ;
+    tabCat = (0..5)*{Tiger}
+
+
+ END

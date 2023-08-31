@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='main_set_04_r' type='refinement' position='false' semantic='true' b0check='false'>
+    <Abstraction>main_set_04</Abstraction>
+    <Sets>
+        <Set>
+            <Id value='COLORS' typref='4'/>
+            <Enumerated_Values>
+                <Id value='BLUE' typref='5'/>
+                <Id value='WHITE' typref='5'/>
+                <Id value='RED' typref='5'/>
+            </Enumerated_Values>
+        </Set>
+    </Sets>
+    <Concrete_Variables>
+        <Id value='cv' typref='6'/>
+    </Concrete_Variables>
+    <Invariant>
+        <Exp_Comparison op=':'>
+            <Id value='cv' typref='6'/>
+            <Id value='ANIMAL' typref='7'/>
+        </Exp_Comparison>
+    </Invariant>
+    <Initialisation>
+        <Assignement_Sub>
+            <Variables>
+                <Id value='cv' typref='6'/>
+            </Variables>
+            <Values>
+                <Id value='CAT' typref='6'/>
+            </Values>
+        </Assignement_Sub>
+    </Initialisation>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Unary_Exp op='POW'>
+<Id value='COLORS'/>
+</Unary_Exp>
+        </Type>
+    <Type id='5'>
+        <Id value='COLORS'/>
+        </Type>
+    <Type id='6'>
+        <Id value='ANIMAL'/>
+        </Type>
+    <Type id='7'>
+        <Unary_Exp op='POW'>
+<Id value='ANIMAL'/>
+</Unary_Exp>
+        </Type>
+</TypeInfos>
+    
+</Machine>

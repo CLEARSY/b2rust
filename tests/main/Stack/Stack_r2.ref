@@ -1,0 +1,39 @@
+﻿REFINEMENT
+    Stack_r2
+REFINES
+    Stack_r1
+
+SEES b2rust_types
+
+ABSTRACT_VARIABLES
+    Size , Contents_r2
+
+INVARIANT
+    Size = size ( Contents_r1 ) &
+    Contents_r2 : 1 .. 10 --> rust_i8 &
+    Contents_r1 = 1 .. Size <| Contents_r2
+
+INITIALISATION
+    Size := 0 ||
+    Contents_r2 := ( 1 .. 10 ) * { 0 }
+
+OPERATIONS
+
+    push ( value ) =
+    BEGIN
+        Size := Size + 1 ||
+        Contents_r2 ( Size + 1 ) := value
+    END
+    ;
+
+    value <-- pop =
+    BEGIN
+        value := Contents_r2 ( Size ) ||
+        Size := Size - 1
+    END
+
+ASSERTIONS
+    Contents_r2 : seq ( rust_i8 ) ;
+    1 .. Size <| Contents_r2 : seq ( rust_i8 )
+
+END

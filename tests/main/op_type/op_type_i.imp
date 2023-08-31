@@ -1,0 +1,26 @@
+/* op_type_i
+ * Author: cchen4
+ * Creation date: 21/08/2023
+ */
+
+IMPLEMENTATION op_type_i
+REFINES op_type
+
+SEES
+    b2rust_types
+   
+INITIALISATION
+    cv := 10
+    
+OPERATIONS
+    
+    res <-- op(tab,index,cc) =
+    BEGIN
+        res := tab(index) + cc
+    END
+    ;
+    decr =
+    BEGIN
+        cv := cv -1 
+    END
+END

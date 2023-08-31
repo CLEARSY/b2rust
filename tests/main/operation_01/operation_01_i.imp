@@ -1,0 +1,15 @@
+/* operation_01_i
+ * Author: 
+ * Creation date: 12/04/2023
+ */
+
+IMPLEMENTATION operation_01_i
+REFINES operation_01
+
+SEES b2rust_types
+
+OPERATIONS
+    boolean <-- return_true = BEGIN
+        boolean := TRUE
+    END
+END

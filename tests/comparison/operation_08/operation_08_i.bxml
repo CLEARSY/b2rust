@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='operation_08_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>operation_08</Abstraction>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Invariant>
+        <Nary_Pred op='&amp;'>
+            <Exp_Comparison op=':'>
+                <Id value='var1' typref='1'/>
+                <Id value='rust_i32' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='var2' typref='1'/>
+                <Id value='rust_i8' typref='2'/>
+            </Exp_Comparison>
+        </Nary_Pred>
+    </Invariant>
+    <Initialisation>
+        <Nary_Sub op=';'>
+            <Assignement_Sub>
+                <Variables>
+                    <Id value='var1' typref='1'/>
+                </Variables>
+                <Values>
+                    <Integer_Literal value='0' typref='1'/>
+                </Values>
+            </Assignement_Sub>
+            <Assignement_Sub>
+                <Variables>
+                    <Id value='var2' typref='1'/>
+                </Variables>
+                <Values>
+                    <Integer_Literal value='0' typref='1'/>
+                </Values>
+            </Assignement_Sub>
+        </Nary_Sub>
+    </Initialisation>
+    <Operations>
+        <Operation name='dummy_return'>
+            <Output_Parameters>
+                <Id value='boolean_r' typref='0'/>
+                <Id value='value_r' typref='1'/>
+                <Id value='other_value_r' typref='1'/>
+            </Output_Parameters>
+            <Input_Parameters>
+                <Id value='boolean' typref='0'/>
+                <Id value='value' typref='1'/>
+                <Id value='other_value' typref='1'/>
+            </Input_Parameters>
+            <Body>
+                <Nary_Sub op=';'>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Id value='var1' typref='1'/>
+                        </Variables>
+                        <Values>
+                            <Id value='other_value' typref='1'/>
+                        </Values>
+                    </Assignement_Sub>
+                    <VAR_IN>
+                        <Variables>
+                            <Id value='locale' typref='1'/>
+                        </Variables>
+                        <Body>
+                            <Nary_Sub op=';'>
+                                <Becomes_In>
+                                    <Variables>
+                                        <Id value='locale' typref='1'/>
+                                    </Variables>
+                                    <Value>
+                                        <Id value='rust_i32' typref='2'/>
+                                    </Value>
+                                </Becomes_In>
+                                <Assignement_Sub>
+                                    <Variables>
+                                        <Id value='locale' typref='1'/>
+                                    </Variables>
+                                    <Values>
+                                        <Id value='var1' typref='1'/>
+                                    </Values>
+                                </Assignement_Sub>
+                                <Assignement_Sub>
+                                    <Variables>
+                                        <Id value='other_value_r' typref='1'/>
+                                    </Variables>
+                                    <Values>
+                                        <Id value='locale' typref='1'/>
+                                    </Values>
+                                </Assignement_Sub>
+                            </Nary_Sub>
+                        </Body>
+                    </VAR_IN>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Id value='boolean_r' typref='0'/>
+                        </Variables>
+                        <Values>
+                            <Id value='boolean' typref='0'/>
+                        </Values>
+                    </Assignement_Sub>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Id value='value_r' typref='1'/>
+                        </Variables>
+                        <Values>
+                            <Id value='value' typref='1'/>
+                        </Values>
+                    </Assignement_Sub>
+                </Nary_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+    
+</Machine>

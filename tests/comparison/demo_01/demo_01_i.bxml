@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='demo_01_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>demo_01</Abstraction>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Values>
+        <Valuation ident='trains_maximum' typref='1'>
+            <Integer_Literal value='9999' typref='1'/>
+        </Valuation>
+        <Valuation ident='traffic_reduit' typref='1'>
+            <Integer_Literal value='35' typref='1'/>
+        </Valuation>
+    </Values>
+    <Concrete_Constants>
+        <Id value='traffic_reduit' typref='1'/>
+    </Concrete_Constants>
+    <Concrete_Variables>
+        <Id value='heure' typref='1'/>
+        <Id value='etat_i' typref='0'/>
+    </Concrete_Variables>
+    <Properties>
+        <Nary_Pred op='&amp;'>
+            <Exp_Comparison op=':'>
+                <Id value='trains_maximum' typref='1'/>
+                <Id value='rust_i16' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='traffic_reduit' typref='1'/>
+                <Id value='rust_i16' typref='2'/>
+            </Exp_Comparison>
+        </Nary_Pred>
+    </Properties>
+    <Invariant>
+        <Nary_Pred op='&amp;'>
+            <Exp_Comparison op=':'>
+                <Id value='trains_en_circulation' typref='1'/>
+                <Id value='rust_i16' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='heure' typref='1'/>
+                <Id value='rust_i8' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='etat_i' typref='0'/>
+                <Id value='rust_bool' typref='4'/>
+            </Exp_Comparison>
+            <Exp_Comparison op='='>
+                <Id value='etat_i' typref='0'/>
+                <Id value='etat' typref='0'/>
+            </Exp_Comparison>
+        </Nary_Pred>
+    </Invariant>
+    <Initialisation>
+        <Nary_Sub op=';'>
+            <Assignement_Sub>
+                <Variables>
+                    <Id value='trains_en_circulation' typref='1'/>
+                </Variables>
+                <Values>
+                    <Integer_Literal value='100' typref='1'/>
+                </Values>
+            </Assignement_Sub>
+            <Assignement_Sub>
+                <Variables>
+                    <Id value='heure' typref='1'/>
+                </Variables>
+                <Values>
+                    <Integer_Literal value='0' typref='1'/>
+                </Values>
+            </Assignement_Sub>
+            <Assignement_Sub>
+                <Variables>
+                    <Id value='etat_i' typref='0'/>
+                </Variables>
+                <Values>
+                    <Boolean_Literal value='FALSE' typref='0'/>
+                </Values>
+            </Assignement_Sub>
+        </Nary_Sub>
+    </Initialisation>
+    <Operations>
+        <Operation name='ajouter_train_en_circulation'>
+            <Body>
+                <If_Sub elseif='no'>
+                    <Condition>
+                        <Exp_Comparison op='&lt;i'>
+                            <Id value='trains_en_circulation' typref='1'/>
+                            <Id value='trains_maximum' typref='1'/>
+                        </Exp_Comparison>
+                    </Condition>
+                    <Then>
+                        <Assignement_Sub>
+                            <Variables>
+                                <Id value='trains_en_circulation' typref='1'/>
+                            </Variables>
+                            <Values>
+                                <Binary_Exp op='+i' typref='1'>
+                                    <Id value='trains_en_circulation' typref='1'/>
+                                    <Integer_Literal value='1' typref='1'/>
+                                </Binary_Exp>
+                            </Values>
+                        </Assignement_Sub>
+                    </Then>
+                </If_Sub>
+            </Body>
+        </Operation>
+        <Operation name='retirer_train_de_la_circulation'>
+            <Body>
+                <If_Sub elseif='no'>
+                    <Condition>
+                        <Exp_Comparison op='&gt;i'>
+                            <Id value='trains_en_circulation' typref='1'/>
+                            <Integer_Literal value='0' typref='1'/>
+                        </Exp_Comparison>
+                    </Condition>
+                    <Then>
+                        <Assignement_Sub>
+                            <Variables>
+                                <Id value='trains_en_circulation' typref='1'/>
+                            </Variables>
+                            <Values>
+                                <Binary_Exp op='-i' typref='1'>
+                                    <Id value='trains_en_circulation' typref='1'/>
+                                    <Integer_Literal value='1' typref='1'/>
+                                </Binary_Exp>
+                            </Values>
+                        </Assignement_Sub>
+                    </Then>
+                </If_Sub>
+            </Body>
+        </Operation>
+        <Operation name='ajuster_traffic'>
+            <Body>
+                <If_Sub elseif='no'>
+                    <Condition>
+                        <Exp_Comparison op='&lt;i'>
+                            <Id value='heure' typref='1'/>
+                            <Integer_Literal value='5' typref='1'/>
+                        </Exp_Comparison>
+                    </Condition>
+                    <Then>
+                        <Assignement_Sub>
+                            <Variables>
+                                <Id value='trains_en_circulation' typref='1'/>
+                            </Variables>
+                            <Values>
+                                <Id value='traffic_reduit' typref='1'/>
+                            </Values>
+                        </Assignement_Sub>
+                    </Then>
+                    <Else>
+                        <If_Sub elseif='yes'>
+                            <Condition>
+                                <Exp_Comparison op='&gt;i'>
+                                    <Id value='heure' typref='1'/>
+                                    <Integer_Literal value='23' typref='1'/>
+                                </Exp_Comparison>
+                            </Condition>
+                            <Then>
+                                <Assignement_Sub>
+                                    <Variables>
+                                        <Id value='trains_en_circulation' typref='1'/>
+                                    </Variables>
+                                    <Values>
+                                        <Id value='traffic_reduit' typref='1'/>
+                                    </Values>
+                                </Assignement_Sub>
+                            </Then>
+                            <Else>
+                                <If_Sub elseif='yes'>
+                                    <Condition>
+                                        <Exp_Comparison op='&lt;i'>
+                                            <Id value='trains_en_circulation' typref='1'/>
+                                            <Integer_Literal value='100' typref='1'/>
+                                        </Exp_Comparison>
+                                    </Condition>
+                                    <Then>
+                                        <Assignement_Sub>
+                                            <Variables>
+                                                <Id value='trains_en_circulation' typref='1'/>
+                                            </Variables>
+                                            <Values>
+                                                <Integer_Literal value='100' typref='1'/>
+                                            </Values>
+                                        </Assignement_Sub>
+                                    </Then>
+                                </If_Sub>
+                            </Else>
+                        </If_Sub>
+                    </Else>
+                </If_Sub>
+            </Body>
+        </Operation>
+        <Operation name='reinitialiser_traffic'>
+            <Body>
+                <Assignement_Sub>
+                    <Variables>
+                        <Id value='etat_i' typref='0'/>
+                    </Variables>
+                    <Values>
+                        <Boolean_Literal value='FALSE' typref='0'/>
+                    </Values>
+                </Assignement_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Unary_Exp op='POW'>
+<Id value='BOOL'/>
+</Unary_Exp>
+        </Type>
+</TypeInfos>
+    
+</Machine>

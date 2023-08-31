@@ -1,0 +1,13 @@
+/* main_imports_05_02_i
+ * Author: 
+ * Creation date: 10/05/2023
+ */
+
+IMPLEMENTATION main_imports_05_02_i
+REFINES main_imports_05_02
+
+IMPORTS
+    M1.main_imports_05_06,
+    M2.main_imports_05_04
+
+END

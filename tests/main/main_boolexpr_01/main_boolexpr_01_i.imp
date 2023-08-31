@@ -1,0 +1,30 @@
+/* main_boolexpr_01_i
+ * Author: cchen4
+ * Creation date: 07/08/2023
+ */
+
+IMPLEMENTATION main_boolexpr_01_i
+REFINES main_boolexpr_01
+
+SEES
+    b2rust_types
+    
+CONCRETE_VARIABLES
+    hapiness
+ 
+
+INVARIANT
+    hapiness : rust_u8
+   
+INITIALISATION
+    hapiness := 51
+    
+OPERATIONS
+    res <-- is_happy = 
+    BEGIN
+        res := bool(hapiness > 50 or (hapiness = 0 & hapiness /= 0) & hapiness <100)
+    END
+    
+   
+
+ END

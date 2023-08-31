@@ -1,0 +1,47 @@
+/* demo_03_i
+* Author: 
+* Creation date: 26/06/2023
+*/
+
+IMPLEMENTATION demo_03_i
+REFINES demo_03
+    
+SEES
+    b2rust_types
+    
+IMPORTS
+    demo_04
+    
+INVARIANT
+    type_trains : 0..3 --> trains &
+    taille_trains : 0..3 --> longueur
+    
+PROPERTIES
+    nombre_de_trains_max : rust_i8
+    
+VALUES
+    nombre_de_trains_max = 4
+    
+INITIALISATION
+    type_trains := {0 |-> type_non_precise, 1 |-> type_non_precise, 2 |-> type_non_precise, 3 |-> type_non_precise};
+    taille_trains := {0 |-> taille_non_precisee, 1 |-> taille_non_precisee, 2 |-> taille_non_precisee, 3 |-> taille_non_precisee}
+    
+OPERATIONS
+    change_train_type_length(numero, type, taille) = BEGIN
+        IF type_trains(numero) = type THEN
+            skip
+        ELSIF taille_trains(numero) = taille THEN
+            skip
+        ELSE
+            ASSERT type_trains(numero) /= type & taille_trains(numero) /= taille THEN
+                type_trains(numero) := type;
+                taille_trains(numero) := taille
+            END
+        END
+    END;
+    
+    type, taille <-- return_train(numero) = BEGIN
+        type := type_trains(numero);
+        taille := taille_trains(numero)
+    END
+END

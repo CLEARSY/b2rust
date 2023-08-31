@@ -1,0 +1,39 @@
+/* main_oprust_07_i
+ * Author: cchen4
+ * Creation date: 03/08/2023
+ */
+
+IMPLEMENTATION main_oprust_07_i
+REFINES main_oprust_07
+
+SEES   
+    b2rust_types
+    
+LOCAL_OPERATIONS
+    res <-- add(aa,bb) = 
+    PRE 
+        aa : rust_i16 &
+        bb : rust_i16 &
+        res : rust_i16 &
+        aa < 100 &
+        aa > -100 &
+        bb < 100 &
+        bb > -100
+     THEN
+         res :: rust_i16
+     END
+     
+     
+OPERATIONS
+    res <-- add(aa,bb) = 
+    BEGIN 
+        res :=  aa + bb
+    END
+    ;
+    res <-- som(aa,bb,cc) =
+    BEGIN
+        res <-- add(aa,bb);
+        res := res + cc
+    END
+
+ END

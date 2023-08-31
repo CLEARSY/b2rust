@@ -1,0 +1,24 @@
+/* main_oprust_06_i
+ * Author: cchen4
+ * Creation date: 02/08/2023
+ */
+
+IMPLEMENTATION main_oprust_06_i
+REFINES main_oprust_06
+
+SEES
+    b2rust_types
+    
+INITIALISATION
+    tab2 := rust_u8 * {CAT}
+
+OPERATIONS
+    res <-- compliquee(aa,bb,cc,tab1) = 
+    BEGIN
+        IF (tab2(tab1(pow_i32(aa,mod_i16(cc,3)))) = KITTEN) THEN
+                res := tab2(mod_u8(lshift_i16(aa,bb),2) + rshift_u8(tab1(bb),mod_u8(3,2)))
+        ELSE
+                res := tab2(tab1(tab1(mod_u8(cc,tab1(bb)))))
+        END
+    END
+END

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='main_sets_03_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>main_sets_03</Abstraction>
+    <Imports>
+        <Referenced_Machine>
+            <Name>main_sets_04</Name>
+            <Instance>MU</Instance>
+        </Referenced_Machine>
+    </Imports>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <Operations>
+        <Operation name='some_color'>
+            <Output_Parameters>
+                <Id value='it' typref='4'/>
+            </Output_Parameters>
+            <Body>
+                <Operation_Call>
+                    <Name>
+                        <Id value='MU.return_red' instance='MU' component='return_red'/>
+                    </Name>
+                    <Output_Parameters>
+                        <Id value='it' typref='4'/>
+                    </Output_Parameters>
+                </Operation_Call>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Id value='color'/>
+        </Type>
+</TypeInfos>
+    
+</Machine>

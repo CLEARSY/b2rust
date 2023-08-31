@@ -1,0 +1,93 @@
+/* i
+* Author: 
+* Creation date: 04/07/14
+*/
+
+IMPLEMENTATION saturn_i
+REFINES saturn
+IMPORTS
+    SPI,
+    Traitement,
+    Watchdogs,
+    Precompil,
+    Tests,
+    Erreurs,
+    Configuration,
+    PMP
+SEES
+    Types
+CONCRETE_VARIABLES
+    g_ConfigurationTerminee,
+    iTempoAutotest
+    
+INVARIANT
+    g_ConfigurationTerminee : SBOOL &
+    iTempoAutotest : uint16_t 
+    
+    
+    
+INITIALISATION
+    g_ConfigurationTerminee := SFALSE;
+    iTempoAutotest := 0
+OPERATIONS
+    
+    MainB_InitCycleB =
+    BEGIN
+        g_ConfigurationTerminee := SFALSE;
+        iTempoAutotest := 0;
+        SPI_Init;
+        Tests_Init;
+        Traitement_Init;
+        Watchdogs_Init;
+        Precompil_CrcInit;
+        PMP_Init;
+        Configuration_Init
+    END
+    ;
+    MainB_InitPinsCycleB =
+    BEGIN
+        
+        SPI_InitPins;
+        Tests_InitPins;
+        Traitement_InitPins;
+        Watchdogs_InitPins;
+        PMP_InitPins
+    END
+    ;
+    MainB_TimerIntB =
+    BEGIN
+        IF iTempoAutotest > 0 THEN
+            iTempoAutotest := iTempoAutotest - 1
+        END  ;
+        Traitement_TimerIntB;
+        Configuration_TimerIntB
+    END
+    ;
+    MainB_CycleB =
+    VAR
+        l_TempoCyc,
+        l_TempoLastSynchro,
+        l_TrameEnvoyee,
+        l_TrameDispo
+    IN
+        l_TempoCyc :: SBOOL;
+        l_TempoLastSynchro :: SBOOL;
+        l_TrameEnvoyee :: SBOOL;
+        l_TrameDispo :: SBOOL;
+        l_TrameDispo := SFALSE;
+        l_TrameEnvoyee := SFALSE;
+        l_TempoLastSynchro := SFALSE;
+        l_TempoCyc := SFALSE;
+        
+        Watchdogs_ClearInterne;
+        IF    g_ConfigurationTerminee = SFALSE THEN
+            g_ConfigurationTerminee <-- Configuration_DecouverteReseau
+        END;  
+        Watchdogs_ClearExterne;
+        IF  iTempoAutotest = 0 & l_TrameDispo = SFALSE & l_TrameEnvoyee = SFALSE & g_ConfigurationTerminee = STRUE THEN 
+            iTempoAutotest := 1000;
+            Tests_Autotests
+        END
+    END
+    
+END

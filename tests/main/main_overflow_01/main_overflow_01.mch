@@ -1,0 +1,15 @@
+MACHINE 
+    main_overflow_01
+
+SEES
+    b2rust_types 
+
+CONCRETE_CONSTANTS
+    MAXUINT64
+
+
+PROPERTIES
+    MAXUINT64 : rust_u64 &
+    MAXUINT64 = 0xFFFFFFFFFFFFFFFF
+
+END

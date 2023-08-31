@@ -1,0 +1,26 @@
+/* main_testbug_01_i
+ * Author: cchen4
+ * Creation date: 28/08/2023
+ */
+
+IMPLEMENTATION main_testbug_01_i
+REFINES main_testbug_01
+
+SEES
+    b2rust_types
+    
+
+INITIALISATION
+    cv := rust_u8 * {1}
+    
+OPERATIONS
+    res <-- ownership_bug = 
+    BEGIN
+        VAR tab IN
+            tab :: rust_u8 --> rust_i8;
+            tab := cv ;
+            res := cv
+        END
+    END
+    
+ END

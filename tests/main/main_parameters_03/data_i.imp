@@ -1,0 +1,17 @@
+/* data_i
+ * Author: cchen4
+ * Creation date: 04/08/2023
+ */
+
+IMPLEMENTATION data_i
+REFINES data
+
+SEES
+    b2rust_types
+
+VALUES
+    depart = 0;
+    arrivee = 100
+  
+
+ END

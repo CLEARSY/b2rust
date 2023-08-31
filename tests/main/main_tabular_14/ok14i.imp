@@ -1,0 +1,28 @@
+/* typage d'un par d'operation par un tableau dont le codomaine
+   est une C.A. incluse dans un set */
+
+IMPLEMENTATION
+	ok14i
+	
+REFINES
+	main_tabular_14
+
+SEES b2rust_types
+
+OPERATIONS
+	oper1(x1,x2) =
+	VAR
+		loc1,loc2, xx, yy
+	IN
+		xx :: rust_u8;
+		yy :: rust_u8;
+		loc1 :: SURTYPE;
+		loc2 :: SURTYPE;
+		xx := 1;
+		yy := 1;
+		
+		loc1:= x1(xx,yy);
+		loc2:=x2(yy)
+	END
+END
+	

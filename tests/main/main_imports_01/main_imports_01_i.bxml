@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='main_imports_01_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>main_imports_01</Abstraction>
+    <Imports>
+        <Referenced_Machine>
+            <Name>main_imports_01_01</Name>
+            <Instance>M1</Instance>
+        </Referenced_Machine>
+    </Imports>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <Operations>
+        <Operation name='return_true'>
+            <Output_Parameters>
+                <Id value='boolean' typref='0'/>
+            </Output_Parameters>
+            <Body>
+                <Operation_Call>
+                    <Name>
+                        <Id value='M1.return_true' instance='M1' component='return_true'/>
+                    </Name>
+                    <Output_Parameters>
+                        <Id value='boolean' typref='0'/>
+                    </Output_Parameters>
+                </Operation_Call>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+    
+</Machine>

@@ -1,0 +1,11 @@
+IMPLEMENTATION
+	operation_etendue_1_imp
+REFINES
+	operation_etendue_1_mch
+IMPORTS
+	BASIC_IO
+OPERATIONS
+	op_etendue_1 =
+	/* STRING_WRITE("\nOperation etendue 1\n")*/
+	skip
+END

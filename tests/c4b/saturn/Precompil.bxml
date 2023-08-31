@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='Precompil' type='abstraction' position='false' semantic='true' b0check='false'>
+    <Sees>
+        <Referenced_Machine>
+            <Name>Types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <Operations>
+        <Operation name='Precompil_CrcInit'>
+            <Body>
+                <Skip/>
+            </Body>
+        </Operation>
+        <Operation name='Precompil_CRCCreateB'>
+            <Input_Parameters>
+                <Id value='p_trame' typref='4'/>
+                <Id value='p_size' typref='1'/>
+            </Input_Parameters>
+            <Precondition>
+                <Nary_Pred op='&amp;'>
+                    <Exp_Comparison op=':'>
+                        <Id value='p_trame' typref='4'/>
+                        <Binary_Exp op='--&gt;' typref='5'>
+                            <Id value='uint8_t' typref='2'/>
+                            <Id value='uint8_t' typref='2'/>
+                        </Binary_Exp>
+                    </Exp_Comparison>
+                    <Exp_Comparison op=':'>
+                        <Id value='p_size' typref='1'/>
+                        <Id value='uint8_t' typref='2'/>
+                    </Exp_Comparison>
+                </Nary_Pred>
+            </Precondition>
+            <Body>
+                <Skip/>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+</Unary_Exp>
+        </Type>
+    <Type id='5'>
+        <Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+</Unary_Exp>
+</Unary_Exp>
+        </Type>
+</TypeInfos>
+    
+</Machine>

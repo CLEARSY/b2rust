@@ -1,0 +1,23 @@
+/* main_type_01_2r
+ * Author: cchen4
+ * Creation date: 24/07/2023
+ */
+
+REFINEMENT main_type_01_2r
+REFINES main_type_01_r
+
+SEES
+    b2rust_types
+    
+ 
+PROPERTIES
+    cc1 : rust_u8
+    
+INVARIANT
+    cv2 : rust_u16
+    
+INITIALISATION
+    cv1 := 0 ;
+    cv2 := 1
+
+ END

@@ -1,0 +1,28 @@
+/* if_1_i
+ * Author: 
+ * Creation date: 13/03/2023
+ */
+
+IMPLEMENTATION if_1_i
+REFINES if_1
+
+SEES
+    b2rust_types
+
+CONCRETE_VARIABLES
+    train_i
+    
+INVARIANT
+    train_i : rust_i32 &
+    train = train_i
+    
+INITIALISATION
+    train_i := 12
+
+OPERATIONS
+    might_change_train = BEGIN
+        IF 1 = 1 THEN
+            train_i := -60
+        END
+    END
+END

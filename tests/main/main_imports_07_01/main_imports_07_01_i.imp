@@ -1,0 +1,29 @@
+/* main_imports_07_01_i
+ * Author: 
+ * Creation date: 15/05/2023
+ */
+
+IMPLEMENTATION main_imports_07_01_i
+REFINES main_imports_07_01
+
+SEES
+    b2rust_types
+    
+IMPORTS
+    M1.main_imports_07_02
+    
+CONCRETE_VARIABLES
+    var
+    
+INVARIANT
+    var : rust_i32
+    
+INITIALISATION
+    var := 12
+    
+OPERATIONS
+    boolean <-- is_more(value) = BEGIN
+        boolean <-- M1.is_more(value, var)
+    END
+    
+END

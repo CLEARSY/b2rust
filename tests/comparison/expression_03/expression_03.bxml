@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='expression_03' type='abstraction' position='false' semantic='true' b0check='false'>
+    <Concrete_Variables>
+        <Id value='value' typref='1'/>
+    </Concrete_Variables>
+    <Invariant>
+        <Exp_Comparison op=':'>
+            <Id value='value' typref='1'/>
+            <Id value='NAT' typref='2'/>
+        </Exp_Comparison>
+    </Invariant>
+    <Initialisation>
+        <Assignement_Sub>
+            <Variables>
+                <Id value='value' typref='1'/>
+            </Variables>
+            <Values>
+                <Integer_Literal value='0' typref='1'/>
+            </Values>
+        </Assignement_Sub>
+    </Initialisation>
+    <Operations>
+        <Operation name='modify'>
+            <Body>
+                <Assignement_Sub>
+                    <Variables>
+                        <Id value='value' typref='1'/>
+                    </Variables>
+                    <Values>
+                        <Binary_Exp op='mod' typref='1'>
+                            <Id value='value' typref='1'/>
+                            <Integer_Literal value='10' typref='1'/>
+                        </Binary_Exp>
+                    </Values>
+                </Assignement_Sub>
+            </Body>
+        </Operation>
+        <Operation name='modify_again'>
+            <Body>
+                <Assignement_Sub>
+                    <Variables>
+                        <Id value='value' typref='1'/>
+                    </Variables>
+                    <Values>
+                        <Binary_Exp op='mod' typref='1'>
+                            <Binary_Exp op='+i' typref='1'>
+                                <Id value='value' typref='1'/>
+                                <Integer_Literal value='67' typref='1'/>
+                            </Binary_Exp>
+                            <Binary_Exp op='/i' typref='1'>
+                                <Binary_Exp op='*i' typref='1'>
+                                    <Id value='value' typref='1'/>
+                                    <Integer_Literal value='2' typref='1'/>
+                                </Binary_Exp>
+                                <Integer_Literal value='2' typref='1'/>
+                            </Binary_Exp>
+                        </Binary_Exp>
+                    </Values>
+                </Assignement_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+    
+</Machine>

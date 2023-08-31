@@ -1,0 +1,35 @@
+/* counter_i
+ * Author: 
+ * Creation date: 12/03/2023
+ */
+
+    IMPLEMENTATION
+        counter_i
+    REFINES
+        counter
+    SEES b2rust_types
+    CONCRETE_VARIABLES
+        value, overflow
+    INVARIANT
+        value: rust_i32 &
+        overflow: rust_bool
+    INITIALISATION
+        value := 0;
+        overflow := FALSE
+    OPERATIONS
+        zero =
+        BEGIN
+            value := 0;
+            overflow := FALSE
+        END;
+        inc =
+        BEGIN
+            IF value < 2147483647 THEN
+                value := value + 1
+            ELSE
+                overflow := TRUE
+            END
+        END
+        // BONUS SI TU AS LE TEMPS
+        // res <-- get = res := value
+    END

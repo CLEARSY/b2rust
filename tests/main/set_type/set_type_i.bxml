@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='set_type_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>set_type</Abstraction>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Values>
+        <Valuation ident='cc' typref='4'>
+            <Id value='MaineCoon' typref='4'/>
+        </Valuation>
+        <Valuation ident='tabCat' typref='5'>
+            <Binary_Exp op='*s' typref='5'>
+                <Binary_Exp op='..' typref='2'>
+                    <Integer_Literal value='0' typref='1'/>
+                    <Integer_Literal value='5' typref='1'/>
+                </Binary_Exp>
+                <Nary_Exp op='{' typref='6'>
+                    <Id value='Tiger' typref='4'/>
+                </Nary_Exp>
+            </Binary_Exp>
+        </Valuation>
+    </Values>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Id value='CAT'/>
+        </Type>
+    <Type id='5'>
+        <Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='CAT'/>
+</Binary_Exp>
+</Unary_Exp>
+        </Type>
+    <Type id='6'>
+        <Unary_Exp op='POW'>
+<Id value='CAT'/>
+</Unary_Exp>
+        </Type>
+</TypeInfos>
+    
+</Machine>

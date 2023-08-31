@@ -1,0 +1,15 @@
+pub struct c4b_types {
+// Concrete variables & constants.
+
+}
+
+impl Default for c4b_types {
+   fn default() -> Self {
+     let mut instance = Self {};
+instance.initialisation();
+instance}
+}
+impl c4b_types {
+fn initialisation(&mut self) {
+}
+}

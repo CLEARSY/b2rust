@@ -1,0 +1,41 @@
+/* main_refinement_01_r1
+ * Author: cchen4
+ * Creation date: 20/06/2023
+ */
+
+REFINEMENT main_refinement_03_r1
+    
+REFINES main_refinement_03
+
+SEES 
+    b2rust_types
+    
+
+   
+    
+CONCRETE_CONSTANTS
+    refc1
+ 
+ 
+PROPERTIES 
+    refc1 : rust_i8 
+    
+    
+CONCRETE_VARIABLES
+    refv1
+    
+INVARIANT 
+    refv1: rust_i8
+    
+INITIALISATION
+    refv1 := 3
+
+OPERATIONS
+    res <-- sum = 
+    PRE
+        res : rust_i8 
+    THEN
+        res :: rust_i8
+    END
+
+END

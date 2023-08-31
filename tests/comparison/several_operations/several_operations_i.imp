@@ -1,0 +1,14 @@
+/* several_operations_i
+ * Author: 
+ * Creation date: 16/02/2023
+ */
+
+IMPLEMENTATION several_operations_i
+REFINES several_operations
+
+OPERATIONS
+    do_nothing = skip;
+    do_nothing_bis = skip;
+    do_nothing_too = skip
+    
+END

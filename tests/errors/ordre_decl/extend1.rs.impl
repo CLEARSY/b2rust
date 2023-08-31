@@ -1,0 +1,18 @@
+pub struct extend1 {
+}
+
+impl Default for extend1 {
+   fn default() -> Self {
+     let mut instance = Self {
+};
+instance.initialisation();
+instance}
+}
+impl extend1 {
+fn initialisation(&mut self) {
+}
+
+pub fn op_extend1(&mut self) {
+unimplemented!("op_extend1 is unimplemented");
+}
+}

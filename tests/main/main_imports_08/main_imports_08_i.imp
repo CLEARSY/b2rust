@@ -1,0 +1,23 @@
+/* main_imports_08_i
+ * Author: cchen4
+ * Creation date: 11/07/2023
+ */
+
+IMPLEMENTATION main_imports_08_i
+REFINES main_imports_08
+
+SEES 
+    b2rust_types
+
+IMPORTS
+       main_imports_08_01
+
+
+    
+OPERATIONS
+    res <-- op = 
+    BEGIN
+        res := cc + cv + vf + cf
+    END
+
+ END

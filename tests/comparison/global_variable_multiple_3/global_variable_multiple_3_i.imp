@@ -1,0 +1,32 @@
+/* global_variable_multiple_3_i
+ * Author: 
+ * Creation date: 09/03/2023
+ */
+
+IMPLEMENTATION global_variable_multiple_3_i
+REFINES global_variable_multiple_3
+
+SEES
+    b2rust_types
+
+CONCRETE_VARIABLES
+    trains_i,
+    roads_i,
+    traffic_state_i
+    
+INVARIANT
+    hour : rust_i8 &
+    trains_i : rust_i16 &
+    trains_i = trains &
+    roads_i : rust_i32 &
+    roads_i = roads &
+    traffic_state_i : rust_bool
+    
+INITIALISATION
+    hour := 14;
+    trains_i := 56;
+    traffic_state_i := TRUE;
+    roads_i := 26239;
+    traffic_state_i := FALSE
+
+END

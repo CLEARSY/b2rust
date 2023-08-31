@@ -1,0 +1,31 @@
+/* local_variable_02_i
+* Author: 
+* Creation date: 16/04/2023
+*/
+
+IMPLEMENTATION local_variable_02_i
+REFINES local_variable_02
+    
+SEES b2rust_types
+    
+OPERATIONS
+    dummy_function = BEGIN
+        VAR locale IN
+            locale :: rust_bool;
+            locale := TRUE;
+            locale := FALSE;
+            VAR locale2 IN
+                locale2 :: rust_bool;
+                locale2 := locale;
+                VAR locale4, locale5, locale6 IN
+                    locale6 :: rust_i8;
+                    locale5 :: rust_i32;
+                    locale4 :: rust_bool;
+                    locale4 := locale2
+                END;
+                locale := locale2
+            END;
+            locale := TRUE
+        END
+    END
+END

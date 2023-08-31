@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='main_localoperations_01_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>main_localoperations_01</Abstraction>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Invariant>
+        <Exp_Comparison op=':'>
+            <Id value='cv' typref='1'/>
+            <Id value='rust_i8' typref='2'/>
+        </Exp_Comparison>
+    </Invariant>
+    <Initialisation>
+        <Assignement_Sub>
+            <Variables>
+                <Id value='cv' typref='1'/>
+            </Variables>
+            <Values>
+                <Integer_Literal value='0' typref='1'/>
+            </Values>
+        </Assignement_Sub>
+    </Initialisation>
+    <Local_Operations>
+        <Operation name='inc'>
+            <Body>
+                <Becomes_In>
+                    <Variables>
+                        <Id value='cv' typref='1'/>
+                    </Variables>
+                    <Value>
+                        <Id value='rust_i8' typref='2'/>
+                    </Value>
+                </Becomes_In>
+            </Body>
+        </Operation>
+        <Operation name='add'>
+            <Output_Parameters>
+                <Id value='res' typref='1'/>
+            </Output_Parameters>
+            <Input_Parameters>
+                <Id value='vv' typref='1'/>
+            </Input_Parameters>
+            <Precondition>
+                <Nary_Pred op='&amp;'>
+                    <Exp_Comparison op=':'>
+                        <Id value='res' typref='1'/>
+                        <Id value='rust_i8' typref='2'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op=':'>
+                        <Id value='vv' typref='1'/>
+                        <Id value='rust_i8' typref='2'/>
+                    </Exp_Comparison>
+                </Nary_Pred>
+            </Precondition>
+            <Body>
+                <Becomes_In>
+                    <Variables>
+                        <Id value='res' typref='1'/>
+                    </Variables>
+                    <Value>
+                        <Id value='rust_i8' typref='2'/>
+                    </Value>
+                </Becomes_In>
+            </Body>
+        </Operation>
+    </Local_Operations>
+    <Operations>
+        <Operation name='add'>
+            <Output_Parameters>
+                <Id value='res' typref='1'/>
+            </Output_Parameters>
+            <Input_Parameters>
+                <Id value='vv' typref='1'/>
+            </Input_Parameters>
+            <Body>
+                <Assignement_Sub>
+                    <Variables>
+                        <Id value='res' typref='1'/>
+                    </Variables>
+                    <Values>
+                        <Binary_Exp op='+i' typref='1'>
+                            <Id value='res' typref='1'/>
+                            <Id value='vv' typref='1'/>
+                        </Binary_Exp>
+                    </Values>
+                </Assignement_Sub>
+            </Body>
+        </Operation>
+        <Operation name='inc'>
+            <Body>
+                <Assignement_Sub>
+                    <Variables>
+                        <Id value='cv' typref='1'/>
+                    </Variables>
+                    <Values>
+                        <Binary_Exp op='+i' typref='1'>
+                            <Id value='cv' typref='1'/>
+                            <Integer_Literal value='1' typref='1'/>
+                        </Binary_Exp>
+                    </Values>
+                </Assignement_Sub>
+            </Body>
+        </Operation>
+        <Operation name='addWithCv'>
+            <Output_Parameters>
+                <Id value='res' typref='1'/>
+            </Output_Parameters>
+            <Input_Parameters>
+                <Id value='vv' typref='1'/>
+            </Input_Parameters>
+            <Body>
+                <Nary_Sub op=';'>
+                    <Operation_Call>
+                        <Name>
+                            <Id value='add'/>
+                        </Name>
+                        <Input_Parameters>
+                            <Id value='vv' typref='1'/>
+                        </Input_Parameters>
+                        <Output_Parameters>
+                            <Id value='res' typref='1'/>
+                        </Output_Parameters>
+                    </Operation_Call>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Id value='res' typref='1'/>
+                        </Variables>
+                        <Values>
+                            <Binary_Exp op='+i' typref='1'>
+                                <Id value='res' typref='1'/>
+                                <Id value='cv' typref='1'/>
+                            </Binary_Exp>
+                        </Values>
+                    </Assignement_Sub>
+                </Nary_Sub>
+            </Body>
+        </Operation>
+        <Operation name='inc10'>
+            <Body>
+                <Nary_Sub op=';'>
+                    <Operation_Call>
+                        <Name>
+                            <Id value='inc'/>
+                        </Name>
+                    </Operation_Call>
+                    <Operation_Call>
+                        <Name>
+                            <Id value='inc'/>
+                        </Name>
+                    </Operation_Call>
+                    <Operation_Call>
+                        <Name>
+                            <Id value='inc'/>
+                        </Name>
+                    </Operation_Call>
+                    <Operation_Call>
+                        <Name>
+                            <Id value='inc'/>
+                        </Name>
+                    </Operation_Call>
+                    <Operation_Call>
+                        <Name>
+                            <Id value='inc'/>
+                        </Name>
+                    </Operation_Call>
+                    <Operation_Call>
+                        <Name>
+                            <Id value='inc'/>
+                        </Name>
+                    </Operation_Call>
+                    <Operation_Call>
+                        <Name>
+                            <Id value='inc'/>
+                        </Name>
+                    </Operation_Call>
+                    <Operation_Call>
+                        <Name>
+                            <Id value='inc'/>
+                        </Name>
+                    </Operation_Call>
+                    <Operation_Call>
+                        <Name>
+                            <Id value='inc'/>
+                        </Name>
+                    </Operation_Call>
+                    <Operation_Call>
+                        <Name>
+                            <Id value='inc'/>
+                        </Name>
+                    </Operation_Call>
+                </Nary_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+    
+</Machine>

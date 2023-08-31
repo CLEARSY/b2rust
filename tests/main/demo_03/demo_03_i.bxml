@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='demo_03_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>demo_03</Abstraction>
+    <Imports>
+        <Referenced_Machine>
+            <Name>demo_04</Name>
+        </Referenced_Machine>
+    </Imports>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Values>
+        <Valuation ident='nombre_de_trains_max' typref='1'>
+            <Integer_Literal value='4' typref='1'/>
+        </Valuation>
+    </Values>
+    <Properties>
+        <Exp_Comparison op=':'>
+            <Id value='nombre_de_trains_max' typref='1'/>
+            <Id value='rust_i8' typref='2'/>
+        </Exp_Comparison>
+    </Properties>
+    <Invariant>
+        <Nary_Pred op='&amp;'>
+            <Exp_Comparison op=':'>
+                <Id value='type_trains' typref='4'/>
+                <Binary_Exp op='--&gt;' typref='5'>
+                    <Binary_Exp op='..' typref='2'>
+                        <Integer_Literal value='0' typref='1'/>
+                        <Integer_Literal value='3' typref='1'/>
+                    </Binary_Exp>
+                    <Id value='trains' typref='6'/>
+                </Binary_Exp>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='taille_trains' typref='7'/>
+                <Binary_Exp op='--&gt;' typref='8'>
+                    <Binary_Exp op='..' typref='2'>
+                        <Integer_Literal value='0' typref='1'/>
+                        <Integer_Literal value='3' typref='1'/>
+                    </Binary_Exp>
+                    <Id value='longueur' typref='9'/>
+                </Binary_Exp>
+            </Exp_Comparison>
+        </Nary_Pred>
+    </Invariant>
+    <Initialisation>
+        <Nary_Sub op=';'>
+            <Assignement_Sub>
+                <Variables>
+                    <Id value='type_trains' typref='4'/>
+                </Variables>
+                <Values>
+                    <Nary_Exp op='{' typref='4'>
+                        <Binary_Exp op='|-&gt;' typref='10'>
+                            <Integer_Literal value='0' typref='1'/>
+                            <Id value='type_non_precise' typref='11'/>
+                        </Binary_Exp>
+                        <Binary_Exp op='|-&gt;' typref='10'>
+                            <Integer_Literal value='1' typref='1'/>
+                            <Id value='type_non_precise' typref='11'/>
+                        </Binary_Exp>
+                        <Binary_Exp op='|-&gt;' typref='10'>
+                            <Integer_Literal value='2' typref='1'/>
+                            <Id value='type_non_precise' typref='11'/>
+                        </Binary_Exp>
+                        <Binary_Exp op='|-&gt;' typref='10'>
+                            <Integer_Literal value='3' typref='1'/>
+                            <Id value='type_non_precise' typref='11'/>
+                        </Binary_Exp>
+                    </Nary_Exp>
+                </Values>
+            </Assignement_Sub>
+            <Assignement_Sub>
+                <Variables>
+                    <Id value='taille_trains' typref='7'/>
+                </Variables>
+                <Values>
+                    <Nary_Exp op='{' typref='7'>
+                        <Binary_Exp op='|-&gt;' typref='12'>
+                            <Integer_Literal value='0' typref='1'/>
+                            <Id value='taille_non_precisee' typref='13'/>
+                        </Binary_Exp>
+                        <Binary_Exp op='|-&gt;' typref='12'>
+                            <Integer_Literal value='1' typref='1'/>
+                            <Id value='taille_non_precisee' typref='13'/>
+                        </Binary_Exp>
+                        <Binary_Exp op='|-&gt;' typref='12'>
+                            <Integer_Literal value='2' typref='1'/>
+                            <Id value='taille_non_precisee' typref='13'/>
+                        </Binary_Exp>
+                        <Binary_Exp op='|-&gt;' typref='12'>
+                            <Integer_Literal value='3' typref='1'/>
+                            <Id value='taille_non_precisee' typref='13'/>
+                        </Binary_Exp>
+                    </Nary_Exp>
+                </Values>
+            </Assignement_Sub>
+        </Nary_Sub>
+    </Initialisation>
+    <Operations>
+        <Operation name='change_train_type_length'>
+            <Input_Parameters>
+                <Id value='numero' typref='1'/>
+                <Id value='type' typref='11'/>
+                <Id value='taille' typref='13'/>
+            </Input_Parameters>
+            <Body>
+                <If_Sub elseif='no'>
+                    <Condition>
+                        <Exp_Comparison op='='>
+                            <Binary_Exp op='(' typref='11'>
+                                <Id value='type_trains' typref='4'/>
+                                <Id value='numero' typref='1'/>
+                            </Binary_Exp>
+                            <Id value='type' typref='11'/>
+                        </Exp_Comparison>
+                    </Condition>
+                    <Then>
+                        <Skip/>
+                    </Then>
+                    <Else>
+                        <If_Sub elseif='yes'>
+                            <Condition>
+                                <Exp_Comparison op='='>
+                                    <Binary_Exp op='(' typref='13'>
+                                        <Id value='taille_trains' typref='7'/>
+                                        <Id value='numero' typref='1'/>
+                                    </Binary_Exp>
+                                    <Id value='taille' typref='13'/>
+                                </Exp_Comparison>
+                            </Condition>
+                            <Then>
+                                <Skip/>
+                            </Then>
+                            <Else>
+                                <Assert_Sub>
+                                    <Guard>
+                                        <Nary_Pred op='&amp;'>
+                                            <Exp_Comparison op='/='>
+                                                <Binary_Exp op='(' typref='11'>
+                                                    <Id value='type_trains' typref='4'/>
+                                                    <Id value='numero' typref='1'/>
+                                                </Binary_Exp>
+                                                <Id value='type' typref='11'/>
+                                            </Exp_Comparison>
+                                            <Exp_Comparison op='/='>
+                                                <Binary_Exp op='(' typref='13'>
+                                                    <Id value='taille_trains' typref='7'/>
+                                                    <Id value='numero' typref='1'/>
+                                                </Binary_Exp>
+                                                <Id value='taille' typref='13'/>
+                                            </Exp_Comparison>
+                                        </Nary_Pred>
+                                    </Guard>
+                                    <Body>
+                                        <Nary_Sub op=';'>
+                                            <Assignement_Sub>
+                                                <Variables>
+                                                    <Binary_Exp op='(' typref='11'>
+                                                        <Id value='type_trains' typref='4'/>
+                                                        <Id value='numero' typref='1'/>
+                                                    </Binary_Exp>
+                                                </Variables>
+                                                <Values>
+                                                    <Id value='type' typref='11'/>
+                                                </Values>
+                                            </Assignement_Sub>
+                                            <Assignement_Sub>
+                                                <Variables>
+                                                    <Binary_Exp op='(' typref='13'>
+                                                        <Id value='taille_trains' typref='7'/>
+                                                        <Id value='numero' typref='1'/>
+                                                    </Binary_Exp>
+                                                </Variables>
+                                                <Values>
+                                                    <Id value='taille' typref='13'/>
+                                                </Values>
+                                            </Assignement_Sub>
+                                        </Nary_Sub>
+                                    </Body>
+                                </Assert_Sub>
+                            </Else>
+                        </If_Sub>
+                    </Else>
+                </If_Sub>
+            </Body>
+        </Operation>
+        <Operation name='return_train'>
+            <Output_Parameters>
+                <Id value='type' typref='11'/>
+                <Id value='taille' typref='13'/>
+            </Output_Parameters>
+            <Input_Parameters>
+                <Id value='numero' typref='1'/>
+            </Input_Parameters>
+            <Body>
+                <Nary_Sub op=';'>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Id value='type' typref='11'/>
+                        </Variables>
+                        <Values>
+                            <Binary_Exp op='(' typref='11'>
+                                <Id value='type_trains' typref='4'/>
+                                <Id value='numero' typref='1'/>
+                            </Binary_Exp>
+                        </Values>
+                    </Assignement_Sub>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Id value='taille' typref='13'/>
+                        </Variables>
+                        <Values>
+                            <Binary_Exp op='(' typref='13'>
+                                <Id value='taille_trains' typref='7'/>
+                                <Id value='numero' typref='1'/>
+                            </Binary_Exp>
+                        </Values>
+                    </Assignement_Sub>
+                </Nary_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='trains'/>
+</Binary_Exp>
+</Unary_Exp>
+        </Type>
+    <Type id='5'>
+        <Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='trains'/>
+</Binary_Exp>
+</Unary_Exp>
+</Unary_Exp>
+        </Type>
+    <Type id='6'>
+        <Unary_Exp op='POW'>
+<Id value='trains'/>
+</Unary_Exp>
+        </Type>
+    <Type id='7'>
+        <Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='longueur'/>
+</Binary_Exp>
+</Unary_Exp>
+        </Type>
+    <Type id='8'>
+        <Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='longueur'/>
+</Binary_Exp>
+</Unary_Exp>
+</Unary_Exp>
+        </Type>
+    <Type id='9'>
+        <Unary_Exp op='POW'>
+<Id value='longueur'/>
+</Unary_Exp>
+        </Type>
+    <Type id='10'>
+        <Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='trains'/>
+</Binary_Exp>
+        </Type>
+    <Type id='11'>
+        <Id value='trains'/>
+        </Type>
+    <Type id='12'>
+        <Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='longueur'/>
+</Binary_Exp>
+        </Type>
+    <Type id='13'>
+        <Id value='longueur'/>
+        </Type>
+</TypeInfos>
+    
+</Machine>

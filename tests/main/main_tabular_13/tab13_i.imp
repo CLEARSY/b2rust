@@ -1,0 +1,32 @@
+/* tab13_i
+ * Author: cchen4
+ * Creation date: 27/07/2023
+ */
+
+IMPLEMENTATION tab13_i
+REFINES main_tabular_13
+
+        
+SEES
+	b2rust_types
+	
+CONCRETE_VARIABLES
+        vartab4,
+        tab
+    
+INVARIANT 
+    tab : 0..2 --> (0..2 --> rust_i32) &
+    vartab4 : (0..2) * rust_u8 * rust_u8 --> rust_i32
+    
+INITIALISATION
+    vartab4 := (0..2) * rust_u8 *  rust_u8 * {-1};
+    tab := {0 |-> {0 |-> 1, 1 |-> 2, 2 |-> 3}, 1 |-> {0 |-> 1, 1 |-> 2, 2 |-> 3}, 2 |-> {0 |-> 1, 1 |-> 2, 2 |-> 3}}
+        
+        
+OPERATIONS
+        res <-- access(aa,bb) = 
+        BEGIN
+            res := vartab4(aa,bb,1) + tab(aa)(bb)
+        END
+END
+

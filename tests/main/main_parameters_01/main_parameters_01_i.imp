@@ -1,0 +1,25 @@
+/* main_parameters_01_i
+ * Author: cchen4
+ * Creation date: 31/07/2023
+ */
+
+IMPLEMENTATION main_parameters_01_i
+REFINES main_parameters_01
+
+SEES
+    b2rust_types
+    
+IMPORTS
+    M1.imported(10),
+    M2.imported(15),
+    M3.imported(5)
+    
+    
+OPERATIONS
+    res <-- total = 
+    BEGIN
+        res <--  M2.sum(M2.cv,M1.cv,M3.cv) 
+    END
+    
+
+ END

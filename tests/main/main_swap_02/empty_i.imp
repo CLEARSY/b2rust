@@ -1,0 +1,10 @@
+/* empty_i
+ * Author: cchen4
+ * Creation date: 21/07/2023
+ */
+
+IMPLEMENTATION empty_i
+REFINES empty
+
+
+ END

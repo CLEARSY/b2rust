@@ -1,0 +1,21 @@
+/* main_set_04_r
+ * Author: cchen4
+ * Creation date: 25/08/2023
+ */
+
+REFINEMENT main_set_04_r
+REFINES main_set_04
+
+SETS
+    COLORS={BLUE,WHITE,RED}
+    
+CONCRETE_VARIABLES
+    cv 
+    
+INVARIANT
+    cv : ANIMAL
+    
+INITIALISATION
+    cv := CAT
+    
+ END

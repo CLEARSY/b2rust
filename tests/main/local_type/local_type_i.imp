@@ -1,0 +1,29 @@
+/* local_type_i
+ * Author: cchen4
+ * Creation date: 21/08/2023
+ */
+
+IMPLEMENTATION local_type_i
+    
+REFINES
+	local_type
+
+SEES b2rust_types
+
+OPERATIONS
+	op(tab1,tab2) =
+	VAR
+		loc1,loc2, xx, yy
+	IN
+	   // If the becom
+		xx :: rust_u8; 
+		yy : (yy : rust_u8);
+		loc1 :(loc1: SURTYPE);
+		loc2 :: SURTYPE;
+		xx := 1;
+		yy := 1;
+		loc1:= tab1(xx,yy);
+		loc2:=tab2(yy)
+	END
+END
+	

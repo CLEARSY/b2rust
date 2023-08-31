@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='main_assertion_01_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>main_assertion_01</Abstraction>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <Operations>
+        <Operation name='inc'>
+            <Output_Parameters>
+                <Id value='value' typref='1'/>
+            </Output_Parameters>
+            <Input_Parameters>
+                <Id value='integer' typref='1'/>
+            </Input_Parameters>
+            <Body>
+                <Assert_Sub>
+                    <Guard>
+                        <Exp_Comparison op=':'>
+                            <Id value='integer' typref='1'/>
+                            <Id value='rust_i32' typref='2'/>
+                        </Exp_Comparison>
+                    </Guard>
+                    <Body>
+                        <VAR_IN>
+                            <Variables>
+                                <Id value='var' typref='1'/>
+                            </Variables>
+                            <Body>
+                                <Nary_Sub op=';'>
+                                    <Becomes_In>
+                                        <Variables>
+                                            <Id value='var' typref='1'/>
+                                        </Variables>
+                                        <Value>
+                                            <Id value='rust_i32' typref='2'/>
+                                        </Value>
+                                    </Becomes_In>
+                                    <Assignement_Sub>
+                                        <Variables>
+                                            <Id value='var' typref='1'/>
+                                        </Variables>
+                                        <Values>
+                                            <Integer_Literal value='0' typref='1'/>
+                                        </Values>
+                                    </Assignement_Sub>
+                                    <Assert_Sub>
+                                        <Guard>
+                                            <Nary_Pred op='or'>
+                                                <Nary_Pred op='&amp;'>
+                                                    <Exp_Comparison op='='>
+                                                        <Id value='var' typref='1'/>
+                                                        <Integer_Literal value='0' typref='1'/>
+                                                    </Exp_Comparison>
+                                                    <Exp_Comparison op='='>
+                                                        <Integer_Literal value='1' typref='1'/>
+                                                        <Integer_Literal value='1' typref='1'/>
+                                                    </Exp_Comparison>
+                                                </Nary_Pred>
+                                                <Exp_Comparison op='='>
+                                                    <Integer_Literal value='2' typref='1'/>
+                                                    <Integer_Literal value='1' typref='1'/>
+                                                </Exp_Comparison>
+                                            </Nary_Pred>
+                                        </Guard>
+                                        <Body>
+                                            <If_Sub elseif='no'>
+                                                <Condition>
+                                                    <Exp_Comparison op='&lt;=i'>
+                                                        <Id value='integer' typref='1'/>
+                                                        <Integer_Literal value='1000' typref='1'/>
+                                                    </Exp_Comparison>
+                                                </Condition>
+                                                <Then>
+                                                    <Assignement_Sub>
+                                                        <Variables>
+                                                            <Id value='value' typref='1'/>
+                                                        </Variables>
+                                                        <Values>
+                                                            <Binary_Exp op='+i' typref='1'>
+                                                                <Id value='integer' typref='1'/>
+                                                                <Integer_Literal value='1' typref='1'/>
+                                                            </Binary_Exp>
+                                                        </Values>
+                                                    </Assignement_Sub>
+                                                </Then>
+                                                <Else>
+                                                    <Assignement_Sub>
+                                                        <Variables>
+                                                            <Id value='value' typref='1'/>
+                                                        </Variables>
+                                                        <Values>
+                                                            <Integer_Literal value='0' typref='1'/>
+                                                        </Values>
+                                                    </Assignement_Sub>
+                                                </Else>
+                                            </If_Sub>
+                                        </Body>
+                                    </Assert_Sub>
+                                </Nary_Sub>
+                            </Body>
+                        </VAR_IN>
+                    </Body>
+                </Assert_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+    
+</Machine>

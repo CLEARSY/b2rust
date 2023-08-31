@@ -1,0 +1,41 @@
+/* assertion_01_i
+ * Author: 
+ * Creation date: 13/04/2023
+ */
+
+IMPLEMENTATION assertion_01_i
+REFINES assertion_01
+
+SEES
+    b2rust_types
+    
+CONCRETE_VARIABLES
+    var1, var2, var3
+    
+INVARIANT
+    var1 : rust_i32 &
+    var2 : rust_i32 &
+    var3 : rust_i32
+
+INITIALISATION
+    var1 := 0;
+    var2 := 10;
+    var3 := 3615
+    
+OPERATIONS
+    dummy_inversion = BEGIN
+        var3 := var1;
+        ASSERT
+            var3 = var1
+        THEN
+            var1 := var2;
+            var2 := var3;
+            ASSERT
+                var2 = var3
+            THEN
+                var2 := var3
+            END
+        END
+    END
+
+END

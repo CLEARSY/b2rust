@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='operation_05' type='abstraction' position='false' semantic='true' b0check='false'>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <Operations>
+        <Operation name='return_twelve'>
+            <Output_Parameters>
+                <Id value='integer' typref='1'/>
+            </Output_Parameters>
+            <Precondition>
+                <Nary_Pred op='&amp;'>
+                    <Exp_Comparison op='='>
+                        <Integer_Literal value='1' typref='1'/>
+                        <Integer_Literal value='1' typref='1'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op='='>
+                        <Integer_Literal value='2' typref='1'/>
+                        <Integer_Literal value='2' typref='1'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op='='>
+                        <Integer_Literal value='3' typref='1'/>
+                        <Integer_Literal value='3' typref='1'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op=':'>
+                        <Id value='integer' typref='1'/>
+                        <Id value='rust_i32' typref='2'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op=':'>
+                        <Id value='integer' typref='1'/>
+                        <Id value='rust_i8' typref='2'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op='='>
+                        <Integer_Literal value='4' typref='1'/>
+                        <Integer_Literal value='4' typref='1'/>
+                    </Exp_Comparison>
+                </Nary_Pred>
+            </Precondition>
+            <Body>
+                <Assignement_Sub>
+                    <Variables>
+                        <Id value='integer' typref='1'/>
+                    </Variables>
+                    <Values>
+                        <Integer_Literal value='12' typref='1'/>
+                    </Values>
+                </Assignement_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+    
+</Machine>

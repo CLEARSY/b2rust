@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='main_imports_06_02_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>main_imports_06_02</Abstraction>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <Operations>
+        <Operation name='give_true'>
+            <Output_Parameters>
+                <Id value='boolean' typref='0'/>
+            </Output_Parameters>
+            <Body>
+                <Assignement_Sub>
+                    <Variables>
+                        <Id value='boolean' typref='0'/>
+                    </Variables>
+                    <Values>
+                        <Boolean_Literal value='TRUE' typref='0'/>
+                    </Values>
+                </Assignement_Sub>
+            </Body>
+        </Operation>
+        <Operation name='give_false'>
+            <Output_Parameters>
+                <Id value='boolean' typref='0'/>
+            </Output_Parameters>
+            <Body>
+                <Assignement_Sub>
+                    <Variables>
+                        <Id value='boolean' typref='0'/>
+                    </Variables>
+                    <Values>
+                        <Boolean_Literal value='FALSE' typref='0'/>
+                    </Values>
+                </Assignement_Sub>
+            </Body>
+        </Operation>
+        <Operation name='give_true_and_false'>
+            <Output_Parameters>
+                <Id value='true' typref='0'/>
+                <Id value='false' typref='0'/>
+            </Output_Parameters>
+            <Body>
+                <Nary_Sub op=';'>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Id value='true' typref='0'/>
+                        </Variables>
+                        <Values>
+                            <Boolean_Literal value='TRUE' typref='0'/>
+                        </Values>
+                    </Assignement_Sub>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Id value='false' typref='0'/>
+                        </Variables>
+                        <Values>
+                            <Boolean_Literal value='FALSE' typref='0'/>
+                        </Values>
+                    </Assignement_Sub>
+                </Nary_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+    
+</Machine>

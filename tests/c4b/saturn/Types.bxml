@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='Types' type='abstraction' position='false' semantic='true' b0check='false'>
+    <Concrete_Constants>
+        <Id value='uint8_t' typref='2'/>
+        <Id value='uint16_t' typref='2'/>
+        <Id value='uint32_t' typref='2'/>
+        <Id value='SBOOL' typref='2'/>
+        <Id value='STRUE' typref='1'/>
+        <Id value='SFALSE' typref='1'/>
+        <Id value='SYNCHRONISATION' typref='1'/>
+        <Id value='REQUETE_SECU' typref='1'/>
+        <Id value='REQUETE_NON_SECU' typref='1'/>
+        <Id value='REPONSE_SECU' typref='1'/>
+        <Id value='REPONSE_NON_SECU' typref='1'/>
+        <Id value='ATTRIBUTION_TID' typref='1'/>
+        <Id value='ATTRIBUTION_SID' typref='1'/>
+        <Id value='ACQ_ATTRIBUTION_SID' typref='1'/>
+        <Id value='REPROGRAMMATION_SECU' typref='1'/>
+    </Concrete_Constants>
+    <Properties>
+        <Nary_Pred op='&amp;'>
+            <Exp_Comparison op='='>
+                <Id value='uint8_t' typref='2'/>
+                <Binary_Exp op='..' typref='2'>
+                    <Integer_Literal value='0' typref='1'/>
+                    <Integer_Literal value='255' typref='1'/>
+                </Binary_Exp>
+            </Exp_Comparison>
+            <Exp_Comparison op='='>
+                <Id value='uint16_t' typref='2'/>
+                <Binary_Exp op='..' typref='2'>
+                    <Integer_Literal value='0' typref='1'/>
+                    <Integer_Literal value='65535' typref='1'/>
+                </Binary_Exp>
+            </Exp_Comparison>
+            <Exp_Comparison op='='>
+                <Id value='uint32_t' typref='2'/>
+                <Binary_Exp op='..' typref='2'>
+                    <Integer_Literal value='0' typref='1'/>
+                    <Integer_Literal value='4294967295' typref='1'/>
+                </Binary_Exp>
+            </Exp_Comparison>
+            <Exp_Comparison op='='>
+                <Id value='SBOOL' typref='2'/>
+                <Binary_Exp op='..' typref='2'>
+                    <Integer_Literal value='0' typref='1'/>
+                    <Integer_Literal value='255' typref='1'/>
+                </Binary_Exp>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='STRUE' typref='1'/>
+                <Id value='SBOOL' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='SFALSE' typref='1'/>
+                <Id value='SBOOL' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op='/='>
+                <Id value='STRUE' typref='1'/>
+                <Id value='SFALSE' typref='1'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='SYNCHRONISATION' typref='1'/>
+                <Id value='uint8_t' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='REQUETE_SECU' typref='1'/>
+                <Id value='uint8_t' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='REQUETE_NON_SECU' typref='1'/>
+                <Id value='uint8_t' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='REPONSE_SECU' typref='1'/>
+                <Id value='uint8_t' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='REPONSE_NON_SECU' typref='1'/>
+                <Id value='uint8_t' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='ATTRIBUTION_TID' typref='1'/>
+                <Id value='uint8_t' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='ATTRIBUTION_SID' typref='1'/>
+                <Id value='uint8_t' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='ACQ_ATTRIBUTION_SID' typref='1'/>
+                <Id value='uint8_t' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='REPROGRAMMATION_SECU' typref='1'/>
+                <Id value='uint8_t' typref='2'/>
+            </Exp_Comparison>
+        </Nary_Pred>
+    </Properties>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+    
+</Machine>

@@ -1,0 +1,31 @@
+/* if_07_i
+ * Author: 
+ * Creation date: 07/04/2023
+ */
+
+IMPLEMENTATION if_07_i
+REFINES if_07
+
+SEES
+    b2rust_types
+    
+CONCRETE_VARIABLES
+    value
+    
+INVARIANT
+    value : rust_i16
+    
+INITIALISATION
+    value := 12
+    
+OPERATIONS
+    might_change_value = BEGIN
+        IF value > 0 & value < 500 THEN
+            value := value * 2
+        ELSIF value = 0 or value >= 500 THEN
+            IF value = 0 THEN
+                value := value + 1
+            END
+        END
+    END
+ END

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='Stack_r1' type='refinement' position='false' semantic='true' b0check='false'>
+    <Abstraction>Stack</Abstraction>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Abstract_Variables>
+        <Id value='Contents_r1' typref='4'/>
+    </Abstract_Variables>
+    <Invariant>
+        <Nary_Pred op='&amp;'>
+            <Exp_Comparison op=':'>
+                <Id value='Contents_r1' typref='4'/>
+                <Unary_Exp op='seq' typref='5'>
+                    <Id value='rust_i8' typref='2'/>
+                </Unary_Exp>
+            </Exp_Comparison>
+            <Exp_Comparison op='='>
+                <Id value='Contents' typref='4'/>
+                <Unary_Exp op='rev' typref='4'>
+                    <Id value='Contents_r1' typref='4'/>
+                </Unary_Exp>
+            </Exp_Comparison>
+        </Nary_Pred>
+    </Invariant>
+    <Initialisation>
+        <Assignement_Sub>
+            <Variables>
+                <Id value='Contents_r1' typref='4'/>
+            </Variables>
+            <Values>
+                <EmptySeq typref='4'/>
+            </Values>
+        </Assignement_Sub>
+    </Initialisation>
+    <Assertions>
+        <Exp_Comparison op='='>
+            <Id value='Contents_r1' typref='4'/>
+            <Unary_Exp op='rev' typref='4'>
+                <Id value='Contents' typref='4'/>
+            </Unary_Exp>
+        </Exp_Comparison>
+        <Exp_Comparison op='&lt;=i'>
+            <Unary_Exp op='size' typref='1'>
+                <Id value='Contents_r1' typref='4'/>
+            </Unary_Exp>
+            <Integer_Literal value='10' typref='1'/>
+        </Exp_Comparison>
+    </Assertions>
+    <Operations>
+        <Operation name='push'>
+            <Input_Parameters>
+                <Id value='value' typref='1'/>
+            </Input_Parameters>
+            <Body>
+                <Assignement_Sub>
+                    <Variables>
+                        <Id value='Contents_r1' typref='4'/>
+                    </Variables>
+                    <Values>
+                        <Binary_Exp op='&lt;-' typref='4'>
+                            <Id value='Contents_r1' typref='4'/>
+                            <Id value='value' typref='1'/>
+                        </Binary_Exp>
+                    </Values>
+                </Assignement_Sub>
+            </Body>
+        </Operation>
+        <Operation name='pop'>
+            <Output_Parameters>
+                <Id value='value' typref='1'/>
+            </Output_Parameters>
+            <Body>
+                <Nary_Sub op='||'>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Id value='value' typref='1'/>
+                        </Variables>
+                        <Values>
+                            <Unary_Exp op='last' typref='1'>
+                                <Id value='Contents_r1' typref='4'/>
+                            </Unary_Exp>
+                        </Values>
+                    </Assignement_Sub>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Id value='Contents_r1' typref='4'/>
+                        </Variables>
+                        <Values>
+                            <Unary_Exp op='front' typref='4'>
+                                <Id value='Contents_r1' typref='4'/>
+                            </Unary_Exp>
+                        </Values>
+                    </Assignement_Sub>
+                </Nary_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+</Unary_Exp>
+        </Type>
+    <Type id='5'>
+        <Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+</Unary_Exp>
+</Unary_Exp>
+        </Type>
+</TypeInfos>
+    
+</Machine>

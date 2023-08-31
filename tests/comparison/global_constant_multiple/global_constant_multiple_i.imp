@@ -1,0 +1,25 @@
+/* global_constant_multiple_i
+ * Author: 
+ * Creation date: 16/02/2023
+ */
+
+IMPLEMENTATION global_constant_multiple_i
+REFINES global_constant_multiple
+
+SEES
+    b2rust_types
+    
+VALUES
+    size_v = 7;
+    is_the_machine_on = TRUE;
+    annual_growth = -3615
+
+PROPERTIES
+    size_v : rust_i8 &
+    is_the_machine_on : rust_bool &
+    annual_growth : rust_i32
+    
+CONCRETE_CONSTANTS
+    size_v, is_the_machine_on, annual_growth
+
+END

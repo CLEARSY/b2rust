@@ -1,0 +1,29 @@
+/* main_imports_08_01_i
+ * Author: cchen4
+ * Creation date: 11/07/2023
+ */
+
+IMPLEMENTATION main_imports_08_01_i
+REFINES main_imports_08_01
+
+SEES 
+    b2rust_types
+    
+IMPORTS
+    main_imports_08_01_01
+    
+PROPERTIES
+    cc : rust_i8
+INVARIANT
+    cv : rust_i8
+
+INITIALISATION
+    cv := 10 
+ 
+VALUES
+    cc = 5 
+ 
+
+
+
+ END

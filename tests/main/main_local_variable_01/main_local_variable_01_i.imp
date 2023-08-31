@@ -1,0 +1,34 @@
+/* main_local_variable_01_i
+ * Author: 
+ * Creation date: 27/04/2023
+ */
+
+IMPLEMENTATION main_local_variable_01_i
+REFINES main_local_variable_01
+
+SEES
+    b2rust_types
+    
+OPERATIONS
+
+    value <-- inc(integer) = BEGIN
+        VAR one, two, three IN
+            one :: rust_i32;
+            two :: rust_i32;
+            three :: rust_i32;
+            one := 1;
+            two := 2;
+            three := one + two;
+            VAR four IN
+                four :: rust_i32;
+                four := 4;
+                one := four - three
+            END;
+            IF integer <= 1000 THEN
+                value := integer + one
+            ELSE
+                value := 0
+            END
+        END
+    END
+END

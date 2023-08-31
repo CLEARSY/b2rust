@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='main_imports_04_03' type='abstraction' position='false' semantic='true' b0check='false'>
+    <Includes>
+        <Referenced_Machine>
+            <Name>main_imports_04_05</Name>
+        </Referenced_Machine>
+        <Referenced_Machine>
+            <Name>main_imports_04_04</Name>
+        </Referenced_Machine>
+    </Includes>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+    
+</Machine>

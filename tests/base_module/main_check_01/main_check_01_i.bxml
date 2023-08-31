@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='main_check_01_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>main_check_01</Abstraction>
+    <Imports>
+        <Referenced_Machine>
+            <Name>g_standard_types</Name>
+        </Referenced_Machine>
+    </Imports>
+    <Values>
+        <Valuation ident='STRUE' typref='1'>
+            <Integer_Literal value='2' typref='1'/>
+        </Valuation>
+        <Valuation ident='SFALSE' typref='1'>
+            <Integer_Literal value='1' typref='1'/>
+        </Valuation>
+        <Valuation ident='MAX_UINT32' typref='1'>
+            <Integer_Literal value='4294967295' typref='1'/>
+        </Valuation>
+        <Valuation ident='MAX_UINT16' typref='1'>
+            <Integer_Literal value='65535' typref='1'/>
+        </Valuation>
+        <Valuation ident='MAX_UINT8' typref='1'>
+            <Integer_Literal value='255' typref='1'/>
+        </Valuation>
+    </Values>
+    <Properties>
+        <Nary_Pred op='&amp;'>
+            <Exp_Comparison op=':'>
+                <Id value='MAX_UINT32' typref='1'/>
+                <Id value='uint32_t' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='MAX_UINT16' typref='1'/>
+                <Id value='uint16_t' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='MAX_UINT8' typref='1'/>
+                <Id value='uint8_t' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='STRUE' typref='1'/>
+                <Id value='uint8_t' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='SFALSE' typref='1'/>
+                <Id value='uint8_t' typref='2'/>
+            </Exp_Comparison>
+        </Nary_Pred>
+    </Properties>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+    
+</Machine>

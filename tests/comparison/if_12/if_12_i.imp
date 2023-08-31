@@ -1,0 +1,29 @@
+/* if_12_i
+ * Author: 
+ * Creation date: 11/04/2023
+ */
+
+IMPLEMENTATION if_12_i
+REFINES if_12
+
+SEES
+    b2rust_types
+    
+CONCRETE_VARIABLES
+    value
+    
+INVARIANT
+    value : rust_i16
+    
+INITIALISATION
+    value := 12
+    
+OPERATIONS
+    might_change_value = BEGIN
+        IF value = 10  THEN
+            IF 1 = 0 THEN
+                value := value ** (value ** (3 / 8))
+            END
+        END
+    END
+ END

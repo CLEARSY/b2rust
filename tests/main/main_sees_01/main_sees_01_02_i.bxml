@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='main_sees_01_02_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>main_sees_01_02</Abstraction>
+    <Sets>
+        <Set>
+            <Id value='animal' typref='4'/>
+            <Enumerated_Values>
+                <Id value='dog' typref='5'/>
+                <Id value='cat' typref='5'/>
+            </Enumerated_Values>
+        </Set>
+    </Sets>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <Operations>
+        <Operation name='op_02'>
+            <Output_Parameters>
+                <Id value='res' typref='6'/>
+            </Output_Parameters>
+            <Body>
+                <Assignement_Sub>
+                    <Variables>
+                        <Id value='res' typref='6'/>
+                    </Variables>
+                    <Values>
+                        <Id value='red' typref='6'/>
+                    </Values>
+                </Assignement_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Unary_Exp op='POW'>
+<Id value='animal'/>
+</Unary_Exp>
+        </Type>
+    <Type id='5'>
+        <Id value='animal'/>
+        </Type>
+    <Type id='6'>
+        <Id value='color'/>
+        </Type>
+</TypeInfos>
+    
+</Machine>

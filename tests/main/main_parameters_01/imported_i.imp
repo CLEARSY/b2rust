@@ -1,0 +1,29 @@
+/* imported_i
+ * Author: cchen4
+ * Creation date: 31/07/2023
+ */
+
+IMPLEMENTATION imported_i(param)
+    
+REFINES imported
+
+SEES
+    b2rust_types
+    
+INVARIANT
+    param : rust_i8
+    
+VALUES
+    cc = 10
+    
+INITIALISATION
+    cv := param
+    
+    
+OPERATIONS
+    res <-- sum(aa,bb,dd) = 
+    BEGIN
+        res := aa + bb + dd
+    END
+    
+ END

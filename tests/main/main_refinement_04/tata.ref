@@ -1,0 +1,43 @@
+/* main_refinement_03_r2
+ * Author: cchen4
+ * Creation date: 22/06/2023
+ */
+
+REFINEMENT tata
+REFINES toto
+
+SEES 
+    b2rust_types
+    
+    
+
+    
+CONCRETE_CONSTANTS
+    refc2
+ 
+ 
+PROPERTIES 
+    refc2 : rust_i8 
+    
+    
+CONCRETE_VARIABLES
+    refv2
+    
+INVARIANT 
+    refv2: rust_i8
+    
+INITIALISATION
+    refv2 := 2 ;
+    refv1 := 3
+
+OPERATIONS
+    res <-- sum = 
+    PRE
+        res : rust_i8
+    THEN
+        res :: rust_i8
+    END
+
+
+
+ END

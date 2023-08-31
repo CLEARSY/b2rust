@@ -1,0 +1,31 @@
+/* main_while_01_i
+* Author: 
+* Creation date: 02/05/2023
+*/
+
+IMPLEMENTATION main_while_01_i
+REFINES main_while_01
+    
+SEES
+    b2rust_types
+    
+OPERATIONS
+    result <-- sum(integer) = BEGIN
+        VAR ii IN
+            ii :: rust_i16;
+            ii := 0;
+            result := 0;
+            WHILE ii <= integer DO
+                result := result + ii;
+                ii := ii + 1
+            INVARIANT
+                result <= integer &
+                1 = 1
+            VARIANT
+                ii
+            END
+            
+        END
+        
+    END
+END

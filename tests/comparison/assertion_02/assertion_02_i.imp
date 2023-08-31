@@ -1,0 +1,37 @@
+/* assertion_02_i
+ * Author: 
+ * Creation date: 13/04/2023
+ */
+
+IMPLEMENTATION assertion_02_i
+REFINES assertion_02
+
+SEES b2rust_types
+    
+CONCRETE_VARIABLES
+    var1, var2, var3
+    
+INVARIANT
+    var1 : rust_i32 &
+    var2 : rust_i32 &
+    var3 : rust_i32
+
+INITIALISATION
+    var1 := 0;
+    var2 := 10;
+    var3 := 3615
+    
+OPERATIONS
+    zero = BEGIN
+        var1 := 0;
+        var2 := 0;
+        var3 := 0;
+        ASSERT
+            var1 = 0 &
+            var2 = var1 &
+            var3 = (var1 + var2)
+        THEN
+            var1 := 0
+        END
+    END
+END

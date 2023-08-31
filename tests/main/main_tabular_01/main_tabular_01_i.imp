@@ -1,0 +1,29 @@
+/* main_tabular_01_i
+ * Author: 
+ * Creation date: 24/05/2023
+ */
+
+IMPLEMENTATION main_tabular_01_i
+REFINES main_tabular_01
+
+SEES
+    b2rust_types
+
+CONCRETE_VARIABLES
+    tab
+    
+INVARIANT
+    tab : 0..5 --> rust_i32
+    
+INITIALISATION
+    tab := {0 |-> 1, 1 |-> 2, 2 |-> 18, 3 |-> 25, 4 |-> 32, 5 |-> 0}
+    
+OPERATIONS
+    reset(value) = BEGIN
+        tab(value) := 1
+    END;
+    
+    the_tab <-- get_tab = BEGIN
+        the_tab := tab
+    END
+END

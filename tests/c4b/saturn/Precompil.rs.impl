@@ -1,0 +1,22 @@
+pub struct Precompil {
+}
+
+impl Default for Precompil {
+   fn default() -> Self {
+     let mut instance = Self {
+};
+instance.initialisation();
+instance}
+}
+impl Precompil {
+fn initialisation(&mut self) {
+}
+
+pub fn Precompil_CrcInit(&mut self) {
+unimplemented!("Precompil_CrcInit is unimplemented");
+}
+
+pub fn Precompil_CRCCreateB(&mut self, r#p_trame: &[u8; 256], r#p_size: &u8) {
+unimplemented!("Precompil_CRCCreateB is unimplemented");
+}
+}

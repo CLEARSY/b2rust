@@ -1,0 +1,15 @@
+﻿IMPLEMENTATION
+        mm8_i
+REFINES
+        main_tabular_12
+
+SEES
+        b2rust_types
+
+CONCRETE_VARIABLES
+        vartab4
+INVARIANT
+        vartab4 : ( 0 .. 10 ) *  ( 0 .. 12 ) * ( 0 .. 15 )  *rust_u8 --> rust_i32
+INITIALISATION
+        vartab4 := ( 0 .. 10 ) * ( 0 .. 12 ) * ( 0 .. 15 ) * rust_u8 * { - 1 }
+END

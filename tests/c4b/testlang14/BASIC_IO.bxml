@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='BASIC_IO' type='abstraction' position='false' semantic='true' b0check='false'>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <Operations>
+        <Operation name='INTERVAL_READ'>
+            <Output_Parameters>
+                <Id value='bb' typref='1'/>
+            </Output_Parameters>
+            <Input_Parameters>
+                <Id value='mm' typref='1'/>
+                <Id value='nn' typref='1'/>
+            </Input_Parameters>
+            <Precondition>
+                <Nary_Pred op='&amp;'>
+                    <Exp_Comparison op=':'>
+                        <Id value='nn' typref='1'/>
+                        <Id value='rust_u8' typref='2'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op=':'>
+                        <Id value='mm' typref='1'/>
+                        <Id value='rust_u8' typref='2'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op='&lt;=i'>
+                        <Id value='mm' typref='1'/>
+                        <Id value='nn' typref='1'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op=':'>
+                        <Id value='bb' typref='1'/>
+                        <Id value='rust_u8' typref='2'/>
+                    </Exp_Comparison>
+                </Nary_Pred>
+            </Precondition>
+            <Body>
+                <Becomes_In>
+                    <Variables>
+                        <Id value='bb' typref='1'/>
+                    </Variables>
+                    <Value>
+                        <Binary_Exp op='..' typref='2'>
+                            <Id value='mm' typref='1'/>
+                            <Id value='nn' typref='1'/>
+                        </Binary_Exp>
+                    </Value>
+                </Becomes_In>
+            </Body>
+        </Operation>
+        <Operation name='INT_WRITE'>
+            <Input_Parameters>
+                <Id value='vv' typref='1'/>
+            </Input_Parameters>
+            <Precondition>
+                <Exp_Comparison op=':'>
+                    <Id value='vv' typref='1'/>
+                    <Id value='rust_u8' typref='2'/>
+                </Exp_Comparison>
+            </Precondition>
+            <Body>
+                <Skip/>
+            </Body>
+        </Operation>
+        <Operation name='BOOL_READ'>
+            <Output_Parameters>
+                <Id value='bb' typref='0'/>
+            </Output_Parameters>
+            <Precondition>
+                <Exp_Comparison op=':'>
+                    <Id value='bb' typref='0'/>
+                    <Id value='BOOL' typref='4'/>
+                </Exp_Comparison>
+            </Precondition>
+            <Body>
+                <Skip/>
+            </Body>
+        </Operation>
+        <Operation name='BOOL_WRITE'>
+            <Input_Parameters>
+                <Id value='bb' typref='0'/>
+            </Input_Parameters>
+            <Precondition>
+                <Exp_Comparison op=':'>
+                    <Id value='bb' typref='0'/>
+                    <Id value='BOOL' typref='4'/>
+                </Exp_Comparison>
+            </Precondition>
+            <Body>
+                <Skip/>
+            </Body>
+        </Operation>
+        <Operation name='STRING_WRITE'>
+            <Input_Parameters>
+                <Id value='ss' typref='5'/>
+            </Input_Parameters>
+            <Precondition>
+                <Exp_Comparison op=':'>
+                    <Id value='ss' typref='5'/>
+                    <Id value='STRING' typref='6'/>
+                </Exp_Comparison>
+            </Precondition>
+            <Body>
+                <Skip/>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Unary_Exp op='POW'>
+<Id value='BOOL'/>
+</Unary_Exp>
+        </Type>
+    <Type id='5'>
+        <Id value='STRING'/>
+        </Type>
+    <Type id='6'>
+        <Unary_Exp op='POW'>
+<Id value='STRING'/>
+</Unary_Exp>
+        </Type>
+</TypeInfos>
+    
+</Machine>

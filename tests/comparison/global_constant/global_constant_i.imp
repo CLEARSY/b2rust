@@ -1,0 +1,21 @@
+/* global_constant_i
+ * Author: 
+ * Creation date: 16/02/2023
+ */
+
+IMPLEMENTATION global_constant_i
+REFINES global_constant
+
+SEES
+    b2rust_types
+    
+VALUES
+    growth = -2
+    
+PROPERTIES
+    growth : rust_i32
+    
+CONSTANTS
+    growth
+    
+END

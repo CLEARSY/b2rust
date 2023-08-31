@@ -1,0 +1,42 @@
+/* main_tabular_03_i
+ * Author: 
+ * Creation date: 25/05/2023
+ */
+
+IMPLEMENTATION not_interval_i
+REFINES not_interval
+
+SEES
+    b2rust_types
+
+CONCRETE_VARIABLES
+    tab1,
+    tab2
+    
+	
+INVARIANT
+    tab1 : (0..6) * (zero2Five) --> rust_i32 &
+    tab2 : 0..5 --> rust_i32
+    
+INITIALISATION
+    tab1 := (0..6) * (0..5) * {1} ;
+    tab2 := {0 |-> 1, 1 |-> 1, 2 |-> 1, 3 |-> 1, 4 |-> 1, 5 |-> 1}
+    
+OPERATIONS
+    the_tab <-- get_tab1 = BEGIN
+        the_tab := tab1
+    END;
+    
+        
+    the_tab <-- get_tab2 = BEGIN
+   the_tab := tab2
+
+    END;
+    
+    the_tab <-- set_tab(aa) = BEGIN
+     
+    the_tab := (0..5) * {aa}
+    END
+    
+    
+END

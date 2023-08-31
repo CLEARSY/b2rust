@@ -1,0 +1,25 @@
+/* main_promotes_03_i
+ * Author: cchen4
+ * Creation date: 07/07/2023
+ */
+
+IMPLEMENTATION main_promotes_05_i
+REFINES main_promotes_05
+
+SEES b2rust_types
+    
+IMPORTS
+    m1.main_promotes_05_01 ,
+    main_promotes_05_02
+    
+PROMOTES
+    m1.op_01,
+    op_02
+    
+OPERATIONS
+    res <-- op = 
+    BEGIN
+        res := 0
+    END
+    
+ END

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='main_sets_01_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>main_sets_01</Abstraction>
+    <Sets>
+        <Set>
+            <Id value='animal' typref='4'/>
+            <Enumerated_Values>
+                <Id value='cat' typref='5'/>
+                <Id value='dog' typref='5'/>
+            </Enumerated_Values>
+        </Set>
+    </Sets>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <Operations>
+        <Operation name='return_red'>
+            <Output_Parameters>
+                <Id value='it' typref='6'/>
+            </Output_Parameters>
+            <Body>
+                <Nary_Sub op=';'>
+                    <VAR_IN>
+                        <Variables>
+                            <Id value='an' typref='5'/>
+                        </Variables>
+                        <Body>
+                            <Nary_Sub op=';'>
+                                <Becomes_In>
+                                    <Variables>
+                                        <Id value='an' typref='5'/>
+                                    </Variables>
+                                    <Value>
+                                        <Id value='animal' typref='4'/>
+                                    </Value>
+                                </Becomes_In>
+                                <Assignement_Sub>
+                                    <Variables>
+                                        <Id value='an' typref='5'/>
+                                    </Variables>
+                                    <Values>
+                                        <Id value='cat' typref='5'/>
+                                    </Values>
+                                </Assignement_Sub>
+                            </Nary_Sub>
+                        </Body>
+                    </VAR_IN>
+                    <Assignement_Sub>
+                        <Variables>
+                            <Id value='it' typref='6'/>
+                        </Variables>
+                        <Values>
+                            <Id value='red' typref='6'/>
+                        </Values>
+                    </Assignement_Sub>
+                </Nary_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Unary_Exp op='POW'>
+<Id value='animal'/>
+</Unary_Exp>
+        </Type>
+    <Type id='5'>
+        <Id value='animal'/>
+        </Type>
+    <Type id='6'>
+        <Id value='color'/>
+        </Type>
+</TypeInfos>
+    
+</Machine>

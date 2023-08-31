@@ -1,0 +1,26 @@
+/* global_variable_multiple_2_i
+ * Author: 
+ * Creation date: 09/03/2023
+ */
+
+IMPLEMENTATION global_variable_multiple_2_i
+REFINES global_variable_multiple_2
+
+SEES
+    b2rust_types
+    
+CONCRETE_VARIABLES
+    OuiGo,
+    trains
+    
+INVARIANT
+    OuiGo : rust_i8 &
+    trains : rust_i16
+    
+INITIALISATION
+    trains := 56;
+    OuiGo := trains;
+    trains := 256;
+    trains := OuiGo
+    
+END

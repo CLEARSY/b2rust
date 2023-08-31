@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='imported_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>imported</Abstraction>
+    <Parameters>
+        <Id value='param' typref='1'/>
+    </Parameters>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Values>
+        <Valuation ident='cc' typref='1'>
+            <Integer_Literal value='10' typref='1'/>
+        </Valuation>
+    </Values>
+    <Invariant>
+        <Exp_Comparison op=':'>
+            <Id value='param' typref='1'/>
+            <Id value='rust_i8' typref='2'/>
+        </Exp_Comparison>
+    </Invariant>
+    <Initialisation>
+        <Assignement_Sub>
+            <Variables>
+                <Id value='cv' typref='1'/>
+            </Variables>
+            <Values>
+                <Id value='param' typref='1'/>
+            </Values>
+        </Assignement_Sub>
+    </Initialisation>
+    <Operations>
+        <Operation name='sum'>
+            <Output_Parameters>
+                <Id value='res' typref='1'/>
+            </Output_Parameters>
+            <Input_Parameters>
+                <Id value='aa' typref='1'/>
+                <Id value='bb' typref='1'/>
+                <Id value='dd' typref='1'/>
+            </Input_Parameters>
+            <Body>
+                <Assignement_Sub>
+                    <Variables>
+                        <Id value='res' typref='1'/>
+                    </Variables>
+                    <Values>
+                        <Binary_Exp op='+i' typref='1'>
+                            <Binary_Exp op='+i' typref='1'>
+                                <Id value='aa' typref='1'/>
+                                <Id value='bb' typref='1'/>
+                            </Binary_Exp>
+                            <Id value='dd' typref='1'/>
+                        </Binary_Exp>
+                    </Values>
+                </Assignement_Sub>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+</TypeInfos>
+    
+</Machine>

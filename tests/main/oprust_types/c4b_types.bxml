@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='c4b_types' type='abstraction' position='false' semantic='true' b0check='false'>
+    <Concrete_Constants>
+        <Id value='bitwise_sll_uint8' typref='4'/>
+        <Id value='add_uint32' typref='4'/>
+        <Id value='sub_uint32' typref='4'/>
+        <Id value='fit_in_u8' typref='5'/>
+        <Id value='uint8_t' typref='2'/>
+        <Id value='uint16_t' typref='2'/>
+        <Id value='uint32_t' typref='2'/>
+        <Id value='MAX_UINT32' typref='1'/>
+        <Id value='MAX_UINT16' typref='1'/>
+        <Id value='MAX_UINT8' typref='1'/>
+    </Concrete_Constants>
+    <Properties>
+        <Nary_Pred op='&amp;'>
+            <Exp_Comparison op='='>
+                <Id value='MAX_UINT32' typref='1'/>
+                <Integer_Literal value='4294967295' typref='1'/>
+            </Exp_Comparison>
+            <Exp_Comparison op='='>
+                <Id value='MAX_UINT16' typref='1'/>
+                <Integer_Literal value='65535' typref='1'/>
+            </Exp_Comparison>
+            <Exp_Comparison op='='>
+                <Id value='MAX_UINT8' typref='1'/>
+                <Integer_Literal value='255' typref='1'/>
+            </Exp_Comparison>
+            <Exp_Comparison op='='>
+                <Id value='uint32_t' typref='2'/>
+                <Binary_Exp op='..' typref='2'>
+                    <Integer_Literal value='0' typref='1'/>
+                    <Integer_Literal value='4294967295' typref='1'/>
+                </Binary_Exp>
+            </Exp_Comparison>
+            <Exp_Comparison op='='>
+                <Id value='uint16_t' typref='2'/>
+                <Binary_Exp op='..' typref='2'>
+                    <Integer_Literal value='0' typref='1'/>
+                    <Integer_Literal value='65535' typref='1'/>
+                </Binary_Exp>
+            </Exp_Comparison>
+            <Exp_Comparison op='='>
+                <Id value='uint8_t' typref='2'/>
+                <Binary_Exp op='..' typref='2'>
+                    <Integer_Literal value='0' typref='1'/>
+                    <Integer_Literal value='255' typref='1'/>
+                </Binary_Exp>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='bitwise_sll_uint8' typref='4'/>
+                <Binary_Exp op='--&gt;' typref='6'>
+                    <Binary_Exp op='*s' typref='5'>
+                        <Id value='uint8_t' typref='2'/>
+                        <Id value='uint8_t' typref='2'/>
+                    </Binary_Exp>
+                    <Id value='uint8_t' typref='2'/>
+                </Binary_Exp>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='add_uint32' typref='4'/>
+                <Binary_Exp op='--&gt;' typref='6'>
+                    <Binary_Exp op='*s' typref='5'>
+                        <Id value='uint32_t' typref='2'/>
+                        <Id value='uint32_t' typref='2'/>
+                    </Binary_Exp>
+                    <Id value='uint32_t' typref='2'/>
+                </Binary_Exp>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='sub_uint32' typref='4'/>
+                <Binary_Exp op='--&gt;' typref='6'>
+                    <Binary_Exp op='*s' typref='5'>
+                        <Id value='uint32_t' typref='2'/>
+                        <Id value='uint32_t' typref='2'/>
+                    </Binary_Exp>
+                    <Id value='uint32_t' typref='2'/>
+                </Binary_Exp>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='fit_in_u8' typref='5'/>
+                <Binary_Exp op='--&gt;' typref='7'>
+                    <Id value='uint8_t' typref='2'/>
+                    <Id value='uint8_t' typref='2'/>
+                </Binary_Exp>
+            </Exp_Comparison>
+            <Exp_Comparison op='='>
+                <Id value='bitwise_sll_uint8' typref='4'/>
+                <Quantified_Exp type='%' typref='4'>
+                    <Variables>
+                        <Id value='x1' typref='1'/>
+                        <Id value='x2' typref='1'/>
+                    </Variables>
+                    <Pred>
+                        <Nary_Pred op='&amp;'>
+                            <Exp_Comparison op=':'>
+                                <Id value='x1' typref='1'/>
+                                <Id value='uint8_t' typref='2'/>
+                            </Exp_Comparison>
+                            <Exp_Comparison op=':'>
+                                <Id value='x2' typref='1'/>
+                                <Id value='uint8_t' typref='2'/>
+                            </Exp_Comparison>
+                        </Nary_Pred>
+                    </Pred>
+                    <Body>
+                        <Binary_Exp op='mod' typref='1'>
+                            <Binary_Exp op='*i' typref='1'>
+                                <Id value='x1' typref='1'/>
+                                <Binary_Exp op='**i' typref='1'>
+                                    <Integer_Literal value='2' typref='1'/>
+                                    <Id value='x2' typref='1'/>
+                                </Binary_Exp>
+                            </Binary_Exp>
+                            <Binary_Exp op='+i' typref='1'>
+                                <Id value='MAX_UINT8' typref='1'/>
+                                <Integer_Literal value='1' typref='1'/>
+                            </Binary_Exp>
+                        </Binary_Exp>
+                    </Body>
+                </Quantified_Exp>
+            </Exp_Comparison>
+            <Exp_Comparison op='='>
+                <Id value='add_uint32' typref='4'/>
+                <Quantified_Exp type='%' typref='4'>
+                    <Variables>
+                        <Id value='x1' typref='1'/>
+                        <Id value='x2' typref='1'/>
+                    </Variables>
+                    <Pred>
+                        <Nary_Pred op='&amp;'>
+                            <Exp_Comparison op=':'>
+                                <Id value='x1' typref='1'/>
+                                <Id value='uint32_t' typref='2'/>
+                            </Exp_Comparison>
+                            <Exp_Comparison op=':'>
+                                <Id value='x2' typref='1'/>
+                                <Id value='uint32_t' typref='2'/>
+                            </Exp_Comparison>
+                        </Nary_Pred>
+                    </Pred>
+                    <Body>
+                        <Binary_Exp op='mod' typref='1'>
+                            <Binary_Exp op='+i' typref='1'>
+                                <Id value='x1' typref='1'/>
+                                <Id value='x2' typref='1'/>
+                            </Binary_Exp>
+                            <Binary_Exp op='+i' typref='1'>
+                                <Id value='MAX_UINT32' typref='1'/>
+                                <Integer_Literal value='1' typref='1'/>
+                            </Binary_Exp>
+                        </Binary_Exp>
+                    </Body>
+                </Quantified_Exp>
+            </Exp_Comparison>
+            <Exp_Comparison op='='>
+                <Id value='sub_uint32' typref='4'/>
+                <Quantified_Exp type='%' typref='4'>
+                    <Variables>
+                        <Id value='x1' typref='1'/>
+                        <Id value='x2' typref='1'/>
+                    </Variables>
+                    <Pred>
+                        <Nary_Pred op='&amp;'>
+                            <Exp_Comparison op=':'>
+                                <Id value='x1' typref='1'/>
+                                <Id value='uint32_t' typref='2'/>
+                            </Exp_Comparison>
+                            <Exp_Comparison op=':'>
+                                <Id value='x2' typref='1'/>
+                                <Id value='uint32_t' typref='2'/>
+                            </Exp_Comparison>
+                        </Nary_Pred>
+                    </Pred>
+                    <Body>
+                        <Binary_Exp op='mod' typref='1'>
+                            <Binary_Exp op='+i' typref='1'>
+                                <Binary_Exp op='+i' typref='1'>
+                                    <Binary_Exp op='-i' typref='1'>
+                                        <Id value='x1' typref='1'/>
+                                        <Id value='x2' typref='1'/>
+                                    </Binary_Exp>
+                                    <Id value='MAX_UINT32' typref='1'/>
+                                </Binary_Exp>
+                                <Integer_Literal value='1' typref='1'/>
+                            </Binary_Exp>
+                            <Binary_Exp op='+i' typref='1'>
+                                <Id value='MAX_UINT32' typref='1'/>
+                                <Integer_Literal value='1' typref='1'/>
+                            </Binary_Exp>
+                        </Binary_Exp>
+                    </Body>
+                </Quantified_Exp>
+            </Exp_Comparison>
+            <Exp_Comparison op='='>
+                <Id value='fit_in_u8' typref='5'/>
+                <Quantified_Exp type='%' typref='5'>
+                    <Variables>
+                        <Id value='xx' typref='1'/>
+                    </Variables>
+                    <Pred>
+                        <Exp_Comparison op=':'>
+                            <Id value='xx' typref='1'/>
+                            <Id value='uint8_t' typref='2'/>
+                        </Exp_Comparison>
+                    </Pred>
+                    <Body>
+                        <Id value='xx' typref='1'/>
+                    </Body>
+                </Quantified_Exp>
+            </Exp_Comparison>
+        </Nary_Pred>
+    </Properties>
+    <Initialisation>
+        <Skip/>
+    </Initialisation>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+<Id value='INTEGER'/>
+</Binary_Exp>
+</Unary_Exp>
+        </Type>
+    <Type id='5'>
+        <Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+</Unary_Exp>
+        </Type>
+    <Type id='6'>
+        <Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+<Id value='INTEGER'/>
+</Binary_Exp>
+</Unary_Exp>
+</Unary_Exp>
+        </Type>
+    <Type id='7'>
+        <Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+</Unary_Exp>
+</Unary_Exp>
+        </Type>
+</TypeInfos>
+    
+</Machine>

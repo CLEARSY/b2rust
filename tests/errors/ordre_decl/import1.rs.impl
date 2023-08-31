@@ -1,0 +1,37 @@
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub enum ss_import1 {
+}
+
+#[derive(Clone, Copy, Default, Debug, Eq, PartialEq)]
+pub enum en_import1 {
+#[default]
+elt_import1,
+}
+
+pub struct import1 {
+// Concrete variables & constants.
+pub r#cc_import1: i32,
+//pub r#it_import1: TODO,
+pub r#vv_import1: i32,
+}
+
+impl Default for import1 {
+   fn default() -> Self {
+     let mut instance = Self {
+r#cc_import1 : Default::default(),
+//r#it_import1 : Default::default(),
+r#vv_import1 : Default::default(),
+};
+instance.initialisation();
+instance}
+}
+impl import1 {
+fn initialisation(&mut self) {
+// `INITIALISATION` clause.
+self.r#vv_import1 = 1;
+}
+
+pub fn op_promotes1(&mut self) {
+unimplemented!("op_promotes1 is unimplemented");
+}
+}

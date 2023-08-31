@@ -1,0 +1,22 @@
+IMPLEMENTATION testlang14_i
+REFINES testlang14
+SEES
+b2rust_types
+IMPORTS BASIC_IO
+OPERATIONS
+Out1,
+Out2,
+Out3,
+Out4
+<--Op =
+BEGIN
+Out1 := 1 ;
+INT_WRITE(Out1) ;
+Out2 := 2 ;
+INT_WRITE(Out2) ;
+Out3 := 3 ;
+INT_WRITE(Out3) ;
+Out4 := 4 ;
+INT_WRITE(Out4)
+END
+END

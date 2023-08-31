@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='main_oprust_06' type='abstraction' position='false' semantic='true' b0check='false'>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Sets>
+        <Set>
+            <Id value='ANIMAL' typref='4'/>
+            <Enumerated_Values>
+                <Id value='CAT' typref='5'/>
+                <Id value='KITTEN' typref='5'/>
+                <Id value='TIGGER' typref='5'/>
+            </Enumerated_Values>
+        </Set>
+    </Sets>
+    <Concrete_Variables>
+        <Id value='tab2' typref='6'/>
+    </Concrete_Variables>
+    <Invariant>
+        <Exp_Comparison op=':'>
+            <Id value='tab2' typref='6'/>
+            <Binary_Exp op='--&gt;' typref='7'>
+                <Id value='rust_u8' typref='2'/>
+                <Id value='ANIMAL' typref='4'/>
+            </Binary_Exp>
+        </Exp_Comparison>
+    </Invariant>
+    <Initialisation>
+        <Assignement_Sub>
+            <Variables>
+                <Id value='tab2' typref='6'/>
+            </Variables>
+            <Values>
+                <Binary_Exp op='*s' typref='6'>
+                    <Id value='rust_u8' typref='2'/>
+                    <Nary_Exp op='{' typref='4'>
+                        <Id value='CAT' typref='5'/>
+                    </Nary_Exp>
+                </Binary_Exp>
+            </Values>
+        </Assignement_Sub>
+    </Initialisation>
+    <Operations>
+        <Operation name='compliquee'>
+            <Output_Parameters>
+                <Id value='res' typref='5'/>
+            </Output_Parameters>
+            <Input_Parameters>
+                <Id value='aa' typref='1'/>
+                <Id value='bb' typref='1'/>
+                <Id value='cc' typref='1'/>
+                <Id value='tab1' typref='8'/>
+            </Input_Parameters>
+            <Precondition>
+                <Nary_Pred op='&amp;'>
+                    <Exp_Comparison op=':'>
+                        <Id value='res' typref='5'/>
+                        <Id value='ANIMAL' typref='4'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op=':'>
+                        <Id value='aa' typref='1'/>
+                        <Id value='rust_i16' typref='2'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op=':'>
+                        <Id value='bb' typref='1'/>
+                        <Id value='rust_u8' typref='2'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op=':'>
+                        <Id value='cc' typref='1'/>
+                        <Id value='rust_i16' typref='2'/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op=':'>
+                        <Id value='tab1' typref='8'/>
+                        <Binary_Exp op='--&gt;' typref='9'>
+                            <Id value='rust_u8' typref='2'/>
+                            <Id value='rust_u8' typref='2'/>
+                        </Binary_Exp>
+                    </Exp_Comparison>
+                </Nary_Pred>
+            </Precondition>
+            <Body>
+                <Skip/>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Unary_Exp op='POW'>
+<Id value='ANIMAL'/>
+</Unary_Exp>
+        </Type>
+    <Type id='5'>
+        <Id value='ANIMAL'/>
+        </Type>
+    <Type id='6'>
+        <Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='ANIMAL'/>
+</Binary_Exp>
+</Unary_Exp>
+        </Type>
+    <Type id='7'>
+        <Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='ANIMAL'/>
+</Binary_Exp>
+</Unary_Exp>
+</Unary_Exp>
+        </Type>
+    <Type id='8'>
+        <Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+</Unary_Exp>
+        </Type>
+    <Type id='9'>
+        <Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Binary_Exp op='*'>
+<Id value='INTEGER'/>
+<Id value='INTEGER'/>
+</Binary_Exp>
+</Unary_Exp>
+</Unary_Exp>
+        </Type>
+</TypeInfos>
+    
+</Machine>

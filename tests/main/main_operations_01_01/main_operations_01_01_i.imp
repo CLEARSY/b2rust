@@ -1,0 +1,28 @@
+/* main_operations_01_01_i
+* Author: 
+* Creation date: 17/05/2023
+*/
+
+IMPLEMENTATION main_operations_01_01_i
+REFINES main_operations_01_01
+    
+SEES
+    b2rust_types
+    
+OPERATIONS
+    boolean <-- return_opposite(entry) = BEGIN
+        IF entry = TRUE THEN
+            boolean := FALSE
+        ELSE
+            boolean := TRUE
+        END
+    END;
+    
+    two <-- return_two = BEGIN
+        VAR entry IN
+            entry :: rust_i8;
+            entry := 1;
+            two := entry + entry
+        END
+    END
+END

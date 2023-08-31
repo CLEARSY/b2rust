@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Machine xmlns='https://www.atelierb.eu/Formats/bxml' version='1.0' name='local_variable_04_i' type='implementation' position='false' semantic='true' b0check='false'>
+    <Abstraction>local_variable_04</Abstraction>
+    <Sees>
+        <Referenced_Machine>
+            <Name>b2rust_types</Name>
+        </Referenced_Machine>
+    </Sees>
+    <Concrete_Variables>
+        <Id value='var' typref='1'/>
+        <Id value='var2' typref='0'/>
+    </Concrete_Variables>
+    <Invariant>
+        <Nary_Pred op='&amp;'>
+            <Exp_Comparison op=':'>
+                <Id value='var' typref='1'/>
+                <Id value='rust_i32' typref='2'/>
+            </Exp_Comparison>
+            <Exp_Comparison op=':'>
+                <Id value='var2' typref='0'/>
+                <Id value='rust_bool' typref='4'/>
+            </Exp_Comparison>
+        </Nary_Pred>
+    </Invariant>
+    <Initialisation>
+        <Nary_Sub op=';'>
+            <Assignement_Sub>
+                <Variables>
+                    <Id value='var' typref='1'/>
+                </Variables>
+                <Values>
+                    <Integer_Literal value='7348' typref='1'/>
+                </Values>
+            </Assignement_Sub>
+            <Assignement_Sub>
+                <Variables>
+                    <Id value='var2' typref='0'/>
+                </Variables>
+                <Values>
+                    <Boolean_Literal value='TRUE' typref='0'/>
+                </Values>
+            </Assignement_Sub>
+        </Nary_Sub>
+    </Initialisation>
+    <Operations>
+        <Operation name='dummy_function'>
+            <Body>
+                <VAR_IN>
+                    <Variables>
+                        <Id value='locale2' typref='1'/>
+                        <Id value='locale8' typref='0'/>
+                    </Variables>
+                    <Body>
+                        <Nary_Sub op=';'>
+                            <Becomes_In>
+                                <Variables>
+                                    <Id value='locale2' typref='1'/>
+                                </Variables>
+                                <Value>
+                                    <Id value='rust_i32' typref='2'/>
+                                </Value>
+                            </Becomes_In>
+                            <Becomes_In>
+                                <Variables>
+                                    <Id value='locale8' typref='0'/>
+                                </Variables>
+                                <Value>
+                                    <Id value='rust_bool' typref='4'/>
+                                </Value>
+                            </Becomes_In>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='locale2' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Integer_Literal value='9' typref='1'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='locale8' typref='0'/>
+                                </Variables>
+                                <Values>
+                                    <Boolean_Literal value='FALSE' typref='0'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='var' typref='1'/>
+                                </Variables>
+                                <Values>
+                                    <Binary_Exp op='+i' typref='1'>
+                                        <Binary_Exp op='*i' typref='1'>
+                                            <Id value='locale2' typref='1'/>
+                                            <Integer_Literal value='2' typref='1'/>
+                                        </Binary_Exp>
+                                        <Id value='locale2' typref='1'/>
+                                    </Binary_Exp>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='var2' typref='0'/>
+                                </Variables>
+                                <Values>
+                                    <Boolean_Literal value='TRUE' typref='0'/>
+                                </Values>
+                            </Assignement_Sub>
+                            <Assignement_Sub>
+                                <Variables>
+                                    <Id value='var2' typref='0'/>
+                                </Variables>
+                                <Values>
+                                    <Id value='locale8' typref='0'/>
+                                </Values>
+                            </Assignement_Sub>
+                        </Nary_Sub>
+                    </Body>
+                </VAR_IN>
+            </Body>
+        </Operation>
+    </Operations>
+    <TypeInfos>
+<Type id='0'>
+<Id value='BOOL'/>
+</Type>
+<Type id='1'>
+<Id value='INTEGER'/>
+</Type>
+<Type id='2'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Type>
+<Type id='3'>
+<Unary_Exp op='POW'>
+<Unary_Exp op='POW'>
+<Id value='INTEGER'/>
+</Unary_Exp>
+</Unary_Exp>
+</Type>
+    <Type id='4'>
+        <Unary_Exp op='POW'>
+<Id value='BOOL'/>
+</Unary_Exp>
+        </Type>
+</TypeInfos>
+    
+</Machine>

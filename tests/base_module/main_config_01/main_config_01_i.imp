@@ -1,0 +1,38 @@
+/* main_config_01_i
+ * Author: cchen4
+ * Creation date: 17/07/2023
+ */
+
+IMPLEMENTATION main_config_01_i
+REFINES main_config_01_r
+
+SEES 
+    b2rust_types, c4b_types
+    
+    
+CONCRETE_CONSTANTS 
+    imp1
+ 
+PROPERTIES 
+    imp1 : int8 &
+    refc : rust_i8
+    
+INVARIANT 
+    refv : rust_i8 &
+    refv <= 121
+    
+VALUES
+    refc = 2;
+    imp1 = 4
+    
+INITIALISATION
+    refv := 3
+ 
+OPERATIONS 
+    
+    res <-- sum = 
+    BEGIN
+        res := refc+ refv + imp1
+    END
+END
+

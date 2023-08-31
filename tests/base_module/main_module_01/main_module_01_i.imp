@@ -1,0 +1,25 @@
+/* main_module_01_i
+ * Author: cchen4
+ * Creation date: 22/06/2023
+ */
+
+IMPLEMENTATION main_module_01_i
+REFINES main_module_01
+
+IMPORTS main_module_01_01
+
+SEES
+    b2rust_types
+
+
+OPERATIONS
+    res <-- sum(aa,bb) = 
+    BEGIN
+        IF ((aa+bb > 120) or ((aa+bb) < -120)) THEN
+            res <-- addVar(4)
+        ELSE
+            res := aa + bb
+        END
+    END
+
+ END

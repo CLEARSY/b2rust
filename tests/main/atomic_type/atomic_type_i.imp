@@ -1,0 +1,30 @@
+/* atomic_type_i
+ * Author: cchen4
+ * Creation date: 21/08/2023
+ */
+
+IMPLEMENTATION atomic_type_i
+REFINES atomic_type
+
+SEES
+    b2rust_types
+    
+// Another variable or constant can be declared in refinement
+CONCRETE_VARIABLES
+    cv2
+   
+INVARIANT
+    //cv1 was typed in abstract machine, however it can be retyped 
+    cv1 : rust_i8 &
+    
+    cv2 : rust_i16
+    
+VALUES
+    cc1 = 11 ;
+    cc2 = FALSE
+    
+INITIALISATION
+    cv1 := 1 ;
+    cv2 := 2
+
+ END

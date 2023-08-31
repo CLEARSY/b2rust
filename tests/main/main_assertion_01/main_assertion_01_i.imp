@@ -1,0 +1,34 @@
+/* main_assertion_01_i
+* Author: 
+* Creation date: 27/04/2023
+*/
+
+IMPLEMENTATION main_assertion_01_i
+REFINES main_assertion_01
+    
+SEES
+    b2rust_types
+    
+OPERATIONS
+    value <-- inc(integer) = BEGIN
+        ASSERT
+            integer : rust_i32
+        THEN
+            VAR var IN
+                var :: rust_i32;
+                var := 0;
+                ASSERT
+                    var = 0 &
+                    1 = 1 or
+                    2 = 1
+                THEN 
+                    IF integer <= 1000 THEN
+                        value := integer + 1
+                    ELSE
+                        value := 0
+                    END
+                END
+            END
+        END
+    END
+END

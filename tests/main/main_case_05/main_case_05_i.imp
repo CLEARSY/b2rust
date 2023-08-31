@@ -1,0 +1,24 @@
+/* main_case_05_i
+* Author: 
+* Creation date: 27/06/2023
+*/
+
+IMPLEMENTATION main_case_05_i
+REFINES main_case_05
+    
+SEES
+    b2rust_types
+    
+OPERATIONS
+    
+    res <-- meilleur ( jour ) =
+    BEGIN
+        CASE jour OF
+            EITHER 1,2,3,4  THEN res := FALSE
+            OR 5,6 THEN res:= TRUE
+            OR 7,8,11,120,-56,-2, 0, -7, -33, 44, 55, 66, 77 THEN res := TRUE 
+            END
+        END
+        
+    END
+END
