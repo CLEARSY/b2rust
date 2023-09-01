@@ -40,13 +40,3 @@ They can also be found in
 https://packages.debian.org/buster/libtinyxml2-dev  
 https://pkgs.org/download/libboost-dev  
 	
-# SEES clause 
-
-SEES clause is not well translated yet, please refer to the reference manual of B language. For the moment; sees clause is exactly like an import.
-
-# Ce qu’il manque dans `b2rust`
-
-Quelques remarques en langue française pour les futurs développeurs: une section dans la documentation vous est destinée (elle s’appelle « Development conventions »). Dans la théorie elle devrait aussi contenir des pistes d’amélioration, mais elle est lacunaire pour l’instant. Donc, je vais dire ce qu’il serait bon de faire ici. Par ordre décroissant de priorité:
-
-* "Deviner" les types quand c’est possible, c’est-à-dire lever l’obligation de devoir SEES un composant qui contient les types Rust et obliger l’utilisateur à s’en servir.
-
