@@ -12,11 +12,9 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-
 #include "../util/report.h"
 
 #include <fmt/format.h>
-
 
 // Machine file for template functions.
 
@@ -74,6 +72,8 @@ void Parser::workOnElements(XMLElement* const element,
   for (XMLNode* node = element->FirstChild(); node != NULL; node = node->NextSibling()) {
     XMLElement* const subelement = node->ToElement();
     std::string name = subelement->Name();
+    if (name == "Attr")
+        continue;
     auto it = actions.find(name);
     if (it == actions.end()) {
       // The element isn’t on the list of recognized elements of b2rust.
@@ -93,9 +93,9 @@ void Parser::workOnElements(XMLElement* const element,
 	      vectorAction<Ts> v = std::get<vectorAction<Ts>>(*action);
 	      v.first->push_back(v.second(subelement));
 	    }
-	  }	
+	  }
 	}(), ...);
       }
     }
-  }  
+  }
 }

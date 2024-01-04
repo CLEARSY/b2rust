@@ -1,7 +1,4 @@
-# TODO try to lower the requirement
-cmake_minimum_required(VERSION 3.22)
-
-
+cmake_minimum_required(VERSION 3.16)
 project(PROJECT_B2RUST)
 
 set(CMAKE_CXX_STANDARD 17)  # Spécifie la version C++17

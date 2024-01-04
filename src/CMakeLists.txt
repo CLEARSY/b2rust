@@ -1,6 +1,6 @@
 project(B2RUST)
 
-set(CMAKE_CXX_STANDARD 17)  # Spécifie la version C++17
+set(CMAKE_CXX_STANDARD 17)
 
 set(SOURCES
   b2rust.cpp
@@ -191,10 +191,3 @@ find_package(Boost REQUIRED)
 target_link_libraries(b2rust
   PRIVATE fmt::fmt-header-only
   -Bdynamic tinyxml2::tinyxml2 ${Boost_LIBRARIES})
-
-# Add warning flags
-if(MSVC)
-  target_compile_options(b2rust PRIVATE /W4 /WX)
-else()
-  target_compile_options(b2rust PRIVATE -Wall -Wextra -Wpedantic)
-endif()
