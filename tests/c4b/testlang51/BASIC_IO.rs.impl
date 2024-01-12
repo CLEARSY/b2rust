@@ -1,34 +1,33 @@
-pub struct BASIC_IO {
-}
+use std::convert::TryFrom;
 
-impl Default for BASIC_IO {
-   fn default() -> Self {
-     let mut instance = Self {
-};
-instance.initialisation();
-instance}
-}
+pub struct BASIC_IO {}
+
 impl BASIC_IO {
-fn initialisation(&mut self) {
-}
+    pub fn new(id: usize) -> Self {
+        let mut instance = Self {};
+        instance.initialisation();
+        instance
+    }
 
-pub fn INTERVAL_READ(&mut self, r#mm: &u8, r#nn: &u8, r#bb: &mut u8) {
-unimplemented!("INTERVAL_READ is unimplemented");
-}
+    fn initialisation(&mut self) {}
 
-pub fn INT_WRITE(&mut self, r#vv: &u8) {
-unimplemented!("INT_WRITE is unimplemented");
-}
+    pub fn INTERVAL_READ(&mut self, r#mm: &u8, r#nn: &u8, r#bb: &mut u8) {
+        unimplemented!("INTERVAL_READ is unimplemented");
+    }
 
-pub fn BOOL_READ(&mut self, r#bb: &mut bool) {
-unimplemented!("BOOL_READ is unimplemented");
-}
+    pub fn INT_WRITE(&mut self, r#vv: &u8) {
+        unimplemented!("INT_WRITE is unimplemented");
+    }
 
-pub fn BOOL_WRITE(&mut self, r#bb: &bool) {
-unimplemented!("BOOL_WRITE is unimplemented");
-}
+    pub fn BOOL_READ(&mut self, r#bb: &mut bool) {
+        unimplemented!("BOOL_READ is unimplemented");
+    }
 
-pub fn STRING_WRITE(&mut self, r#ss: &str) {
-unimplemented!("STRING_WRITE is unimplemented");
-}
+    pub fn BOOL_WRITE(&mut self, r#bb: &bool) {
+        unimplemented!("BOOL_WRITE is unimplemented");
+    }
+
+    pub fn STRING_WRITE(&mut self, r#ss: &str) {
+        unimplemented!("STRING_WRITE is unimplemented");
+    }
 }

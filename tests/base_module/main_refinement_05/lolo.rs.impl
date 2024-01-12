@@ -1,16 +1,13 @@
 use std::convert::TryFrom;
 
-pub struct lolo {
-}
+pub struct lolo {}
 
-impl Default for lolo {
-   fn default() -> Self {
-     let mut instance = Self {
-};
-instance.initialisation();
-instance}
-}
 impl lolo {
-fn initialisation(&mut self) {
-}
+    pub fn new(id: usize) -> Self {
+        let mut instance = Self {};
+        instance.initialisation();
+        instance
+    }
+
+    fn initialisation(&mut self) {}
 }

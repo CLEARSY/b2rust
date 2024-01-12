@@ -70,6 +70,10 @@ public:
  // The list of asociations between an instance of an imported machine name and a the original machine name.
  // Note that if a machine is imported multiple times, this map would be broken, however the instances Name assoc will be not empty , please manipulate both map
   std::unordered_map<std::string, const std::string*> machineNameAssoc;
+  /*!
+   * \brief The list of associations between the rust translation of a machine and its type
+   */
+  std::unordered_map<std::string, std::string> machineTypeAssoc;
 
   const std::string* getFormatedMachineName(std::string) const;
 

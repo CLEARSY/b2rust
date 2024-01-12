@@ -1,17 +1,19 @@
-pub struct g_standard_types {
-// Concrete variables & constants.
-//pub r#uint16_t: TODO,
-//pub r#uint32_t: TODO,
-//pub r#uint8_t: TODO,
-}
+use std::convert::TryFrom;
 
-impl Default for g_standard_types {
-   fn default() -> Self {
-     let mut instance = Self {};
-instance.initialisation();
-instance}
-}
+pub struct g_standard_types {}
+
 impl g_standard_types {
-fn initialisation(&mut self) {
-}
+    pub fn new(id: usize) -> Self {
+        let mut instance = Self {};
+        instance.initialisation();
+        instance
+    }
+
+    // Constant’s `VALUES`.
+    /*
+    //pub const r#uint16_t : TODO = TODO
+    //pub const r#uint32_t : TODO = TODO
+    //pub const r#uint8_t : TODO = TODO
+    */
+    fn initialisation(&mut self) {}
 }

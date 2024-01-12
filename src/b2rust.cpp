@@ -19,7 +19,9 @@
 #include "b2rust.h"
 #include "debug.h"
 #include "./parser/bxml/machine.h"
+#include "./printer/instances_printer.h"
 #include "util/report.h"
+
 
 Module* b2rust::main_module;
 std::unordered_map<std::string, Module> b2rust::imports;
@@ -34,7 +36,7 @@ int main(const int argc, const char* const* const argv) { // This one is fine.
 
   // We parse the BXML file.
   b2rust::p_main_module = new Parser(b2rust::main_module);
-
+  
   // We also parse transitively imported components.
   for (const auto& [key, value] : b2rust::imports) {
     b2rust::p_imports.insert({key, new Parser(&value)});
@@ -59,11 +61,17 @@ int main(const int argc, const char* const* const argv) { // This one is fine.
   b2rust::r_main_module = new RustModule(b2rust::p_main_module);
 
   // We print the module.
+  InstancesPrinter instances_printer;
   PrintAll(b2rust::r_main_module->name, b2rust::r_main_module);
   // And also the imported components. Each of them needs its own file.
   for (const auto& [key, value] : b2rust::r_imports) {
     PrintAll(key, value);
+    // We also add the imported modules to instanciate
+    instances_printer.addModule(value->context);
   }
 
-  Report::endExecution(EXIT_SUCCESS);
+  instances_printer.addModule(b2rust::r_main_module->context);
+  instances_printer.print(Input::output_dir);
+  
+  return OK;
 }

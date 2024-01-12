@@ -1,11 +1,14 @@
+mod ____Instances____;
 mod comparison_call_01_02;
 
+use ____Instances____::*;
 use std::convert::TryFrom;
+use std::sync::{Arc, RwLock};
 
 pub struct comparison_call_01_01 {
     // Instances of imported modules.
-    pub _1_M1: comparison_call_01_02::comparison_call_01_02,
-    pub _2_M2: comparison_call_01_02::comparison_call_01_02,
+    pub __M1_comparison_call_01_02: Arc<RwLock<comparison_call_01_02::comparison_call_01_02>>,
+    pub __M2_comparison_call_01_02: Arc<RwLock<comparison_call_01_02::comparison_call_01_02>>,
 
     // Concrete variables.
     pub r#false: bool,
@@ -14,10 +17,14 @@ pub struct comparison_call_01_01 {
 
 impl Default for comparison_call_01_01 {
     fn default() -> Self {
+        let id = ____Instances____::instanciate_comparison_call_01_02();
+        ____Instances____::instanciate_comparison_call_01_02();
         let mut instance = Self {
             // Instances of imported modules initialization.
-            _1_M1: Default::default(),
-            _2_M2: Default::default(),
+            __M1_comparison_call_01_02: ____Instances____::get_comparison_call_01_02(id)
+                .get___M1_comparison_call_01_02(),
+            __M2_comparison_call_01_02: ____Instances____::get_comparison_call_01_02(id)
+                .get___M2_comparison_call_01_02(),
             r#false: bool::default(),
             r#true: bool::default(),
         };
@@ -31,12 +38,26 @@ impl comparison_call_01_01 {
         // `INITIALISATION` clause.
         {
             let mut r#outputCopy1 = self.r#true as bool;
-            self._1_M1.give_true(&mut r#outputCopy1);
+            {
+                let tmp = self
+                    .__M1_comparison_call_01_02
+                    .write()
+                    .unwrap()
+                    .give_true(&mut r#outputCopy1);
+                tmp
+            }
             self.r#true = bool::try_from(r#outputCopy1).unwrap();
         }
         {
             let mut r#outputCopy1 = self.r#false as bool;
-            self._2_M2.give_false(&mut r#outputCopy1);
+            {
+                let tmp = self
+                    .__M2_comparison_call_01_02
+                    .write()
+                    .unwrap()
+                    .give_false(&mut r#outputCopy1);
+                tmp
+            }
             self.r#false = bool::try_from(r#outputCopy1).unwrap();
         }
     }

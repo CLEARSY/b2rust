@@ -1,18 +1,20 @@
-pub struct error {
-}
+use std::convert::TryFrom;
 
-impl Default for error {
-   fn default() -> Self {
-     let mut instance = Self {
-};
-instance.initialisation();
-instance}
-}
+pub struct error {}
+
 impl error {
-fn initialisation(&mut self) {
+    pub fn new(id: usize) -> Self {
+        let mut instance = Self {};
+        instance.initialisation();
+        instance
+    }
+
+    fn initialisation(&mut self) {}
+
+    pub fn error_msg(&mut self, r#message: &str) {
+        println!("{}",r#message);
+    }
 }
 
-pub fn error_msg(&mut self, r#message: &str) {
-	println!("{}",r#message);
-}
-}
+
+

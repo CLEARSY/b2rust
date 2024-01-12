@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 project(PROJECT_B2RUST)
+message(STATUS "Processing ${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt")
 
 set(CMAKE_CXX_STANDARD 17)  # Spécifie la version C++17
 
@@ -11,7 +12,7 @@ if (${CMAKE_PROJECT_NAME} STREQUAL ${PROJECT_NAME})
 else()
   set(PROJECT_IS_TOP_LEVEL FALSE)
 endif()
-
+   	
 if (PROJECT_IS_TOP_LEVEL)
 	
 # The directory containing the binaries.
@@ -51,6 +52,6 @@ enable_testing()
 # The tests list.
 include(${TESTS_FILE})
 
-endif()
+endif(PROJECT_IS_TOP_LEVEL)
 
 add_subdirectory(src)

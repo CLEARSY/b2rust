@@ -6,7 +6,7 @@ fn main() {
 	s.total(&mut res);
 	assert_eq!(res,15);
 	
-	s._1_M1.r#cv = 1;
+	s.__M1_imported.write().unwrap().r#cv = 1;
 	s.total(&mut res);
 	assert_eq!(res,11);
 	

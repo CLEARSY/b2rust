@@ -18,6 +18,7 @@
 #include "../parser/miscellaneous.h"
 #include "function.h"
 #include "../util/tools.h"
+#include "../printer/instances_printer.h"
 #include <vector>
 
 auto customEqual = [](const std::string* ptr1, const std::string* ptr2) { return *ptr1 == *ptr2; };
@@ -40,6 +41,8 @@ RustModule::RustModule(const Parser* const module)
       for (const auto& [key, value] : b2rust::p_imports) {
         mods.insert(&key);
       }
+      if (not b2rust::p_imports.empty())
+        mods.insert(new std::string(InstancesPrinter::getModuleName()));
     } else {
       // --- Add the `uses`. Well, it is only suitable for non-main modules.
       // We have to add an "use" for every import of the component.
@@ -102,7 +105,7 @@ RustModule::RustModule(const Parser* const module)
 
   auto path = new std::vector<std::pair<std::string, std::string>>();
   FindDataAssociation(&context, path);
- 
+
   FindConstantAssociation(&context);
 
   for (const std::string* s : *parser->getParametersDeclaration()) {
@@ -148,17 +151,15 @@ void RustModule::TranslateEnumsFrom(const Machine* machine) {
 void RustModule::CreateInstances(Context* context) {
   if (!is_base()) {
     if (impl->imports) {
-      // The renaming prefix. Useful to prevent collision and to give an idea of the order of initialization.
-      unsigned int prefix = 1;
       // There are at least one import to add a instance for.
       for (const ReferencedMachine* rm : impl->imports->referencedMachine) {
         const std::string* rm_name = rm->name;
         const std::string* rm_instance = rm->instance;
-        std::string* renamed_name = new std::string("_" + std::to_string(prefix) + "_");
-        // We use the instance name if provided, the machine name otherwise.
+        std::string* renamed_name = new std::string("__");
+        // We use the instance name and its name if provided, the machine name otherwise.
         if (rm_instance) {
           // A rename is provided.
-          *renamed_name += *rm_instance;
+          *renamed_name += *rm_instance + "_" + *rm->name;
           // We add the association (instance name -> renamed name) to the context.
           context->instancesNameAssoc.insert({*rm_instance, renamed_name});
         } else {
@@ -177,6 +178,7 @@ void RustModule::CreateInstances(Context* context) {
         }
 
         context->referencedMachineNames.insert(rm_name);
+        context->machineTypeAssoc[*renamed_name] = *rm_name;
 
         // context->machineNameAssoc.insert({*rm_name, renamed_name});
 
@@ -184,8 +186,6 @@ void RustModule::CreateInstances(Context* context) {
         instances.push_back({renamed_name, rm_name});
         // We also add the instance name to the `instances_init` object...
         instances_init.push_back(renamed_name);
-
-        prefix++;
 
         // We take the occasion to translate this mere imported machine... If it has not already be done, of course.
         // std::cout << *name << std::endl;

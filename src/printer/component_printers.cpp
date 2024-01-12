@@ -26,6 +26,7 @@
 #include "../converter/match.h"
 #include "../converter/delegatecall.h"
 #include "../converter/arrayaccess.h"
+#include "instances_printer.h"
 
 using namespace std;
 
@@ -66,7 +67,14 @@ std::string RustModule::PrintMe() const {
     output += "\n\n";
   }
 
-  output += "use std::convert::TryFrom;\n\n";
+  output += "use std::convert::TryFrom;\n";
+  if (not instances.empty()) {
+      output += "use std::sync::{RwLock, Arc};\n";
+      output += name == Input::main_module_name ?
+                  "use " + InstancesPrinter::getModuleName() + "::*;\n\n":
+                  "use " + InstancesPrinter::getModuleName() + ";\n";
+  }
+  output += "\n";
 
 
   // The enums.
@@ -83,12 +91,12 @@ std::string RustModule::PrintMe() const {
        output += "#[default]\n";
 
       for (std::string str : pair.second) {
-	      output += str + ",\n";
+          output += str + ",\n";
       }
       output += "}\n\n";
     }
   }
-  
+
   // The variables & imports are printed inside a struct.
   output += "pub struct " + name + " {\n";
 
@@ -96,7 +104,7 @@ std::string RustModule::PrintMe() const {
   if (!instances.empty()) {
     output += "// Instances of imported modules.\n";
     for (const auto& [first, second] : instances) {
-      output +="pub " + *first+": "+*second+"::"+*second+",\n";
+      output +="pub " + *first+": Arc<RwLock<"+*second+"::"+*second+">>,\n";
     }
     if (!variables.empty()) {
       output += "\n";
@@ -128,46 +136,95 @@ std::string RustModule::PrintMe() const {
   }
   output += "}\n\n";
 
-  // add derivation from default manually
-  output += "impl Default for "+name+" {\n";
-  output += "   fn default() -> Self {\n";
-  output += "     let mut instance = Self {\n";
+  // The default trait is implemented only if it is the main module and it has no parameter
+  if (name == Input::main_module_name && parameters.empty()) {
+      output += "impl Default for " + name + "{\n";
+      output += "   fn default() -> Self {\n";
+
+      // Instanciating the needed machines
+      if (not instances.empty())
+        output += "let id = ";
+      for (const auto& [_, type] : instances) {
+          output += InstancesPrinter::getModuleName() + "::" + InstancesPrinter::getConstructorName(*type) + "();\n";
+      }
+
+      output += "     let mut instance = Self {\n";
 
 
 
-  // We start by the imports initialisation.
-  if (!instances_init.empty()) {
-    output += "// Instances of imported modules initialization.\n";
-    for (auto name : instances_init) {
-      output += *name+" : Default::default(),\n";
-    }
+      // We start by the imports initialisation.
+      if (!instances_init.empty()) {
+        output += "// Instances of imported modules initialization.\n";
+        for (const auto& [instance, type] : instances) {
+          output += *instance + ": " + InstancesPrinter::getModuleName() + "::" +
+                  InstancesPrinter::getGetterName(*type) + "(id)." +
+                  InstancesPrinter::getInstancesGetterName(*instance) + "(),";
+        }
+      }
+
+      for (std::map<std::string, const RustType*>::const_iterator it = variables.begin(); it != variables.end(); ++it) {
+        if (it->second) {
+          output += "r#" + it->first + " : " +  it->second->PrintMeDefault() + ",\n";
+        } else {
+           output += "//r#" + it->first + " : Default::default(),\n";
+        }
+      }
+
+
+      output += "\n};\n";
+      output += "instance.initialisation();\n";
+      output += "instance";
+      output += "\n}\n}\n";
   }
 
-  for (std::map<std::string, const RustType*>::const_iterator it = parameters.begin(); it != parameters.end(); ++it) {
-    if (it->second) {
-      output += "r#" + it->first + " : " +  it->second->PrintMeDefault() + ",\n";
-    } else {
-       output += "//r#" + it->first + " : Default::default(),\n";
-    }
-  }
-
-  for (std::map<std::string, const RustType*>::const_iterator it = variables.begin(); it != variables.end(); ++it) {
-    if (it->second) {
-      output += "r#" + it->first + " : " +  it->second->PrintMeDefault() + ",\n";
-    } else {
-       output += "//r#" + it->first + " : Default::default(),\n";
-    }
-  }
-
-
-  output += "};\n";
-  output += "instance.initialisation();\n";
-  output += "instance";
-  output += "}\n";
-  output += "}\n";
-
-  // There is at least an initialisation.
   output += "impl " + name + " {\n";
+
+  if (name != Input::main_module_name) {
+      // There is at least a constructor and an initialisation.
+
+      output += "   pub fn new(id: usize) -> Self {\n";
+
+      // Instanciating the needed machines
+      for (const auto& [_, type] : instances) {
+          output += InstancesPrinter::getModuleName() + "::" + InstancesPrinter::getConstructorName(*type) + "();\n";
+      }
+
+      output += "     let mut instance = Self {\n";
+
+
+
+      // We start by the imports initialisation.
+      if (!instances_init.empty()) {
+        output += "// Instances of imported modules initialization.\n";
+        for (const auto& [instance, type] : instances) {
+          output += *instance + ": " + InstancesPrinter::getModuleName() + "::" +
+                  InstancesPrinter::getGetterName(*type) + "(id)." +
+                  InstancesPrinter::getInstancesGetterName(*instance) + "(),";
+        }
+      }
+
+      for (std::map<std::string, const RustType*>::const_iterator it = parameters.begin(); it != parameters.end(); ++it) {
+        if (it->second) {
+          output += "r#" + it->first + " : " +  it->second->PrintMeDefault() + ",\n";
+        } else {
+           output += "//r#" + it->first + " : Default::default(),\n";
+        }
+      }
+
+      for (std::map<std::string, const RustType*>::const_iterator it = variables.begin(); it != variables.end(); ++it) {
+        if (it->second) {
+          output += "r#" + it->first + " : " +  it->second->PrintMeDefault() + ",\n";
+        } else {
+           output += "//r#" + it->first + " : Default::default(),\n";
+        }
+      }
+
+
+      output += "\n};\n";
+      output += "instance.initialisation();\n";
+      output += "instance";
+      output += "\n}\n\n";
+  }
 
   std::string eventualComment = ((impl)? "" : "//");
 
@@ -179,7 +236,7 @@ std::string RustModule::PrintMe() const {
         }
     }
   } else {
-   
+
       if (!constants.empty()) {
         output += "// Constant’s `VALUES`.\n";
         output += "/* \n";
@@ -198,51 +255,70 @@ std::string RustModule::PrintMe() const {
 
 
   if (!parameters.empty()){
-    output += "pub fn new(";
+    // If it is the main module, new does not exist
+    bool is_main_module = name == Input::main_module_name;
+    output += is_main_module ? "pub fn new(" : "pub fn set_parameters(&mut self,";
+
     for (const auto& [para, type]: parameters){
       auto newParameter ="r#" + para + "_arg";
       output  += newParameter + " : " + type->PrintMe() + ", ";
     }
-    output += ") -> Self {\n";
+    output += ")";
 
-    output += "     let mut instance = Self {\n";
-
-
-
-  // We start by the imports initialisation.
-  if (!instances_init.empty()) {
-    output += "// Instances of imported modules initialization.\n";
-    for (auto name : instances_init) {
-      output += *name+" : Default::default(),\n";
+    if (is_main_module) {
+        output += " -> Self {\n ";
+        // Instanciating the needed machines
+        if (not instances.empty())
+          output += "let id = ";
+        for (const auto& [_, type] : instances) {
+            output += InstancesPrinter::getModuleName() + "::" + InstancesPrinter::getConstructorName(*type) + "();\n";
+        }
+        output += "let mut instance = Self { \n";
     }
-  }
+    else
+        output += " {\n";
 
-  for (std::map<std::string, const RustType*>::const_iterator it = parameters.begin(); it != parameters.end(); ++it) {
-    if (it->second) {
-      output += "r#" + it->first + " : " +  "r#" + it->first +"_arg" + ",\n";
-    } else {
-       output += "//r#" + it->first + " : Default::default(),\n";
+    string prefix = is_main_module ? "r#" : "self.r#";
+    string op = is_main_module ? " : " : " = ";
+    string delim = is_main_module ? ",\n" : ";\n";
+
+    for (std::map<std::string, const RustType*>::const_iterator it = parameters.begin(); it != parameters.end(); ++it) {
+      if (it->second) {
+        output += prefix + it->first + op +  "r#" + it->first +"_arg" + delim;
+      } else {
+         output += "//" + prefix + it->first + op + "Default::default()" + delim;
+      }
     }
-  }
 
-  for (std::map<std::string, const RustType*>::const_iterator it = variables.begin(); it != variables.end(); ++it) {
-    if (it->second) {
-      output += "r#" + it->first + " : " +  it->second->PrintMeDefault() + ",\n";
-    } else {
-       output += "//r#" + it->first + " : Default::default(),\n";
+
+    for (std::map<std::string, const RustType*>::const_iterator it = variables.begin(); it != variables.end(); ++it) {
+      if (it->second) {
+        output += prefix + it->first + op + it->second->PrintMeDefault() + delim;
+      } else {
+        output += prefix + it->first + op + "Default::default()" + delim;
+      }
     }
-  }
 
+    if (is_main_module and !instances_init.empty()) {
+      output += "// Instances of imported modules initialization.\n";
+      for (const auto& [instance, type] : instances) {
+        output += *instance + ": " + InstancesPrinter::getModuleName() + "::" +
+                InstancesPrinter::getGetterName(*type) + "(id)." +
+                InstancesPrinter::getInstancesGetterName(*instance) + "(),";
+      }
+    }
 
-  output += "};\n";
-  output += "instance.initialisation();\n";
-  output += "instance\n";
+  if (is_main_module)
+      output += "};\n"
+                "instance.initialisation();"
+                "instance";
+  else
+    output += "self.initialisation();\n";
   output += "}\n";
 
-
   }
 
-  
+
 
   //private method
   output += "fn initialisation(&mut self) {\n";
@@ -252,15 +328,16 @@ std::string RustModule::PrintMe() const {
     output += "// Instances of imported modules.\n";
     for (const auto& [renamed, machineName] : instances) {
       if(instancesArguments.find(renamed) != instancesArguments.end()){
-        output += "self."+*renamed+" = "+*machineName+"::"+*machineName+"::new(";
-        auto args = instancesArguments.at(renamed);
-        for (auto arg : args){
-          output += arg->PrintMe() + ",";
+        output += "self." + *renamed + ".write().unwrap().set_parameters(";
+        for (const auto arg : instancesArguments.at(renamed)) {
+            output += arg->PrintMe() + ", ";
         }
+        output.pop_back();
+        output.pop_back();
         output += ");\n";
       }
     }
-    
+
   }
 
   if (!initialisations.empty()) {
@@ -279,7 +356,7 @@ std::string RustModule::PrintMe() const {
   output += "}\n";
 
   // No `main` is printed (we generate a library).
-  
+
   return output;
 }
 
@@ -309,7 +386,7 @@ string Function::PrintMe() const {
 
 std::string RustIf::PrintMe() const {
   std::string str = "if "+predicate->PrintMe()+" {\n" + _PrintMe(then_instr) + "}";
-  
+
   // The else might not be printed.
   if (!else_instr->empty()) {
     str += " else {\n" + _PrintMe(else_instr) + "}";
@@ -545,7 +622,7 @@ string ParameterVariable::PrintMe() const {
 string FieldAccess::PrintMe() const {
   std::string str = "self.";
   for (std::string mod : *_path){
-      str += mod + ".";
+      str += mod + ".read().unwrap().";
   }
   str += "r#"+name;
   return str;
@@ -573,7 +650,7 @@ std::string BinaryRustExpression::PrintMe() const {
     } else {
       return left+"[("+right_expr->PrintMe()+") as usize]";
     }
-    
+
   } else {
       std::map<binaryExpression, std::string> assoc = {
         {addition, ") + ("},
@@ -617,7 +694,7 @@ std::string BinaryRustExpression::PrintMeConst() const {
     } else {
       return left+"[("+right_expr->PrintMeConst()+") as usize]";
     }
-    
+
   } else {
       std::map<binaryExpression, std::string> assoc = {
         {addition, ") + ("},
@@ -699,7 +776,7 @@ std::string Block::PrintMeInit() const {
       auto inst2 = dynamic_cast<const RustAssignement*>(inst);
       str +=  inst2->PrintMeInit2() + "\n";
     }
-  } 
+  }
   return str;
 }
 
@@ -745,11 +822,11 @@ std::string Declaration::PrintMeInit() const {
   std::string str = ((type)? "" : "//");
   str += "pub const ";
   if (type){
-    str += "r#"+*this->name + " : " + this->type->PrintMe() + " = " + this->expr->PrintMeConst() + ";\n"; 
+    str += "r#"+*this->name + " : " + this->type->PrintMe() + " = " + this->expr->PrintMeConst() + ";\n";
   } else {
     str += "r#"+*this->name + " : " + "TODO" + " = " + this->expr->PrintMeConst() + ";\n";
   }
-  
+
   return str;
 }
 
@@ -759,21 +836,30 @@ std::string FunctionCall::PrintMe() const {
  // for (auto op: outputParameters) {
  //   str += op->PrintMe() + " = Default::default();\n";
   //}
-  
+
+  // If the function belongs to another machine, it may need write rights. Therefore, we
+  // need to evaluate the call in a block to prevent blocking any other writing in the current block
+  if (moduleName != "")
+      str += "{ let tmp = ";
+
   // There’s always a field associated with the converted instance name inside the struct, so, we use `self.`.
-  str += "self." + ((moduleName!="")? moduleName + "." : "")+ function->name + "(";
-  
+  str += "self." + ((moduleName!="")? moduleName + ".write().unwrap()." : "")+ function->name + "(";
+
   // We add the input parameters. They are given as immutable references. Hopefully, Rust accepts borrows of litterals, so, we can just print "&" and print the expression.
   for (auto ip : inputParameters) {
     str += "&" + ip->PrintMe() + ", ";
   }
-  
+
   // The output parameters are also `RustExpression`s, but are only `Variable`s. They are translated as mutable borrows.
   for (auto op: outputParameters) {
     str += "&mut " + op->PrintMe() + ", ";
   }
 
   str += ");\n";
+
+  if (moduleName != "")
+      str += "tmp }";
+
   return str;
 }
 
@@ -781,33 +867,33 @@ std::string FunctionCall::PrintMe() const {
 std::string DelegateCall::PrintMe() const {
   std::string str;
   // There’s always a field associated with the converted instance name inside the struct, so, we use `self.`.
-  str += "self." + moduleName + "." + functionName + "(";
-  
+  str += "{ let tmp = self." + moduleName + ".write().unwrap()." + functionName + "(";
+
   //parameters are already a reference, no need to add &
   for (auto ip : inputParameters) {
     str += "r#"+*ip + ", ";
   }
-  
+
   // parameters are already a reference, no need to add &
   for (auto op: outputParameters) {
     str +=  "r#"+*op + ", ";
   }
 
-  str += ");\n";
+  str += "); tmp }\n";
   return str;
 }
 
 
 std::string RustArray::PrintMe() const {
   std::string str;
-  
+
   str += "[";
   for (const RustExpression* re : values) {
     str += re->PrintMe() + ", ";
   }
 
   // Removing the two latter chars is useless (`rustfmt` can remove them).
-  
+
   str += "]";
 
   return str;
@@ -852,7 +938,7 @@ std::string Enumerator::PrintMe() const {
   str += _enum;
   str += "::";
   str += name;
-  
+
   return str;
 }
 
@@ -862,9 +948,9 @@ std::string RustCase::PrintMe() const {
 
   std::string vals;
   for (std::size_t  i = 0; i < value->size() -1  ; i++) {
-		vals += value -> at(i) -> PrintMe() + " | ";
+        vals += value -> at(i) -> PrintMe() + " | ";
    //str.back() = ',';  // Modifier le dernier caractère de la chaîne
-	}
+    }
   vals += value -> back() -> PrintMe() ;
   str += vals + " => " + then -> PrintMe();
   return str;
@@ -874,17 +960,17 @@ std::string RustCase::PrintMe() const {
 std::string Match::PrintMe() const {
 
 
-	std::string str;
-	str += str + "match " + target -> PrintMe() + "{\n";
-	for (std::size_t  i = 0; i < cases->size() ; i++) {
-		str += cases -> at(i) -> PrintMe();
+    std::string str;
+    str += str + "match " + target -> PrintMe() + "{\n";
+    for (std::size_t  i = 0; i < cases->size() ; i++) {
+        str += cases -> at(i) -> PrintMe();
    //str.back() = ',';  // Modifier le dernier caractère de la chaîne
-	}
-  
+    }
+
   str += "_ => " + _default ->PrintMe();
-  
+
   str += "}";
-	return str;
+    return str;
 
 }
 

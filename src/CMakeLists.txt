@@ -1,3 +1,4 @@
+cmake_minimum_required(VERSION 3.1)
 project(B2RUST)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -89,6 +90,7 @@ set(SOURCES
 
   printer/printer.cpp
   printer/component_printers.cpp
+  printer/instances_printer.cpp
 
   input.cpp
   debug.cpp
@@ -171,7 +173,9 @@ set(HEADERS
   parser/expression_leaf.h
   parser/recognized_types.h
   error_codes.h
+
   printer/printer.h
+  printer/instances_printer.h
 
   util/report.h
   util/tools.h
