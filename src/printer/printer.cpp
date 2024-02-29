@@ -16,24 +16,19 @@
 
 namespace fs = std::filesystem;
 
-Printer::Printer(const std::string* const path_arg, bool* const error)
-    : path(*path_arg) {
-  // Before appending test, we want to verify the file does not already exist.
-  const fs::path fpath = *path_arg;
-  if (fs::exists(fpath)) {
-    Input::err << "I want to output code to the `" << *path_arg
-               << "` file, but it already exists. Nothing shall be written to this file. Please delete or move it before processing.\n";
+Printer::Printer(const std::filesystem::path &path, bool* const error)
+    : path(path) {
+  if (fs::exists(path)) {
+    Input::err << path.string() << " already exists. Delete or move existing file before generating new one.\n";
     // Fatal error, but no exit now (we eventually want to write to other files...)
     *error = true;
     return;
   }
 
-  codeStream = std::ofstream(*path_arg, std::ios::out);
-
-  // It could be possible the opening failed, for example if we do not have permission.
+  codeStream = std::ofstream(path, std::ios::out);
   if (codeStream.fail()) {
-    cerr << "Could not create file `" << *path_arg << "`! " << (codeStream.bad() ? "(Bad bit error.)" : "(Fail bit error.)")
-         << " Does the directory exist? Do you have writing permissions to it?\n";
+    cerr << "Could not create file \"" << path.string() << "\"." << std::endl
+         << "Check permissions." << std::endl;
     *error = true;
     return;
   }
@@ -45,24 +40,26 @@ Printer::~Printer() {
 
   // We verify if there’s no error.
   if (codeStream.fail()) {
-    cerr << "Could not close file `" << path << "`! " << (codeStream.bad() ? "(Bad bit error.)" : "(Fail bit error.)")
-         << " Code might have been appened to files, but do not rely on them!\n";
+    cerr << "Error detected while closing file \"" << path.string() << "\"." << std::endl
+         << "Contents may be corrupted." << std::endl;
     exit(ERR_OUTPUT_STREAM);
   }
 }
 
-void PrintAll(const std::string* name, const RustModule* const module) {
+void PrintAll(const std::string &name, const RustModule* const module) {
   // Create a stream for the output file.
-  std::string file;
+  string filename {name};
   if (module->impl) {
-    file = *Input::output_dir + *name + ".rs";
+    filename.append(".rs");
   } else {
     // base module
-    file = *Input::output_dir + *name + ".rs.template";
+    filename.append("rs.template");
   }
+  std::filesystem::path filepath;
+  filepath = Input::output_dir / filename;
 
   bool error = false;
-  Printer printer(&file, &error);
+  Printer printer(filepath, &error);
 
   // We check there’s no error.
   if (error) {
@@ -72,10 +69,10 @@ void PrintAll(const std::string* name, const RustModule* const module) {
 
   // Do not format the output with `rustfmt` for now... It is no more in the needs of b2rust.
   const std::string code = module->PrintMe();
-  printer.print(&code);
+  printer.print(code);
 }
 
-void Printer::print(const std::string* const code) {
-  codeStream << *code;
+void Printer::print(const std::string &code) {
+  codeStream << code;
   codeStream.flush();
 }

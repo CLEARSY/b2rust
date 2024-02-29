@@ -18,37 +18,45 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
-#include <optional>
-#include <string.h>
-#include <tinyxml2.h>
-#include <unordered_map>
+#include <string>
 #include <unordered_set>
 #include <vector>
 
-#include "error_codes.h"
+namespace tinyxml2 {
+  class XMLElement;
+};
 
 // A module is just an abstract machine and an implementation, for now.
 struct Module {
   tinyxml2::XMLElement* am;
-  std::vector<tinyxml2::XMLElement*>* ref = NULL;
-  tinyxml2::XMLElement* impl = NULL;
+  std::vector<tinyxml2::XMLElement*>* ref = nullptr;
+  tinyxml2::XMLElement* impl = nullptr;
 
-  bool is_base() { return (impl == NULL); }
+  bool is_base() { return (impl == nullptr); }
 };
 
+///@todo make a namespace, not a class
 class Input {
 public:
   Input(const int argc, const char* const* const argv); // This one is fine.
 
   // The stream where to output errors.
-  static std::ostream& err;
+  static std::ostream& err; ///@todo no need to alias std::cerr
 
-  // A path. WITH A TRAILING SLASH!
-  static std::optional<std::string> include_path;
+  /// @brief the path of the directory containing configuration files.
+  static std::filesystem::path config_path;
+
+  /// @nbrief paths of the directory containing BXML files of the main project
+  static std::filesystem::path project_path;
+
+  /// @nbrief paths of the directories containing BXML files of library projects
+  static std::unordered_set<std::filesystem::path> libraries_path;
+
   // Just a name without any slash. So, NOT a path.
-  static std::optional<std::string> main_module_name;
-  // The directory we want to input the files to. WITH A TRAILING SLASH!
-  static std::optional<std::string> output_dir;
+  static std::string main_module_name;
+
+  // The directory we want to output the files to. WITH A TRAILING SLASH!
+  static std::filesystem::path output_dir;
 
   // file that should be ignored
   static std::unordered_set<std::string> exceptions;

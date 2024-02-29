@@ -15,12 +15,12 @@
 #ifndef H_PRINTER
 #define H_PRINTER
 
-#include <string>
-#include <iostream>
+#include <filesystem>
 #include <fstream>
-#include <unistd.h>
+#include <iostream>
+#include <string>
 #include <sys/wait.h>
-
+#include <unistd.h>
 
 #include "../b2rust.h"
 #include "../input.h"
@@ -32,20 +32,20 @@
 class Printer {
 public:
   // You need to put the exact path, e.g. `/home/atelierb/code/component.rs`.
-  Printer(const std::string* path, bool* error);
+  Printer(const std::filesystem::path &path, bool* error);
   ~Printer();
 
-  void print(const std::string*);
+  void print(const std::string&);
 
 private:
-  const std::string path;
+  const std::filesystem::path path;
 
   std::ofstream codeStream;
-  
+
   friend std::ostream& operator<<(std::ostream& os, const Printer*);
 };
 
 
-void PrintAll(const std::string*, const RustModule*);
+void PrintAll(const std::string &, const RustModule*);
 
 #endif

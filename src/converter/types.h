@@ -20,6 +20,8 @@
 /* The recognized types of `b2rust`. This document is extremely similar with `../parser/recognized_types.h`, except it uses a class and inheritance.
  */
 
+#include <filesystem>
+
 #include "../parser/recognized_types.h"
 #include <boost/multiprecision/cpp_int.hpp>
 
@@ -78,8 +80,8 @@ public:
   virtual const RustType* convertIfPartial(const Context*) const;
 };
 
-// usefull for namespace to load static types map
-bool loadTypesFromConfig();
+extern bool loadTypesFromConfig(const std::filesystem::path &config_path);
+extern bool loadOperationAssociationFromConfig(const std::filesystem::path &config_path);
 
 // List of all recognized types objects. NOTE that it should absolutely match the ones defind in `RightExprType`, or it will not recognize them!
 

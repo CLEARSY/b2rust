@@ -48,31 +48,22 @@ ErrorType RustType::error_o;
 
 
 //====================this block only consist to load b2rust_types.cfg file ===============================//
-bool loadTypesFromConfig() {
+bool loadTypesFromConfig(const std::filesystem::path &config_path) {
 
-  const char* envPath = std::getenv("B2RUST_CONF_HOME");
+  const std::filesystem::path types_path = config_path / "b2rust_types.cfg";
 
-  if (envPath == nullptr) {
-    std::cerr << "The environement variable of b2rust.cfg home is not defined.\n" << std::endl;
-    std::cerr << "Indication : export B2RUST_CONF_HOME=\"path/to/b2rust/files/\"" << std::endl;
-    Checker::checking_error = true;
-  }
-  std::filesystem::path configPath = std::filesystem::path(envPath) / "b2rust_types.cfg";
-  configPath = Tools::expandTilde(configPath);
-  
   // Path to config file
-  std::ifstream file(configPath);
+  std::ifstream file(types_path);
   if (!file.is_open()) {
-    std::cerr << "Error the type file can not be opened " << std::endl;
     return false;
   }
 
   std::string key, value;
   while (file >> key >> value) {
-    
+
     const RustType* rustType = nullptr;
 
-  
+
     if (value == "rust_bool") {
       rustType = &RustType::bool_o;
     } else if (value == "rust_i8") {
@@ -109,44 +100,13 @@ bool loadTypesFromConfig() {
   return true;
 }
 
-// Using the namespace can make this program execute before the main
-namespace {
-struct TypesLoader {
-  TypesLoader() {
-    bool success = loadTypesFromConfig();
-    if (!success) {
-      std::cerr << "Error: b2rust failed to load types from config file." << std::endl;
-      exit(1);
-    }
-  }
-};
-
-//===============================================END=====================================================//
-
-
-
-//====================this block only consist to load b2rust_operations.cfg file ===============================//
-static TypesLoader typesLoader;
-} // namespace
-
 std::map<std::string, std::string> RustType::operationAssociation;
 
-bool loadOperationAssociationFromConfig() {
+bool loadOperationAssociationFromConfig(const std::filesystem::path &config_path) {
 
-  const char* envPath = std::getenv("B2RUST_CONF_HOME");
-
-  if (envPath == nullptr) {
-    std::cerr << "The environement variable of b2rust.cfg home is not defined.\n" << std::endl;
-    std::cerr << "Indication : export B2RUST_CONF_HOME=\"path/to/b2rust/files/\"" << std::endl;
-    Checker::checking_error = true;
-  }
-  std::filesystem::path configPath = std::filesystem::path(envPath) / "b2rust_operations.cfg";
-  configPath = Tools::expandTilde(configPath);
-  
-
+  const std::filesystem::path configPath = config_path / "b2rust_operations.cfg";
   std::ifstream file(configPath);
   if (!file.is_open()) {
-    std::cerr << "Error the op file can not be opened ." << std::endl;
     return false;
   }
 
@@ -159,28 +119,10 @@ bool loadOperationAssociationFromConfig() {
   return true;
 }
 
-namespace {
-struct OperationAssociationLoader {
-  OperationAssociationLoader() {
-    bool success = loadOperationAssociationFromConfig();
-    if (!success) {
-      std::cerr << "Error: b2rust failed to load op from config file." << std::endl;
-      exit(1);
-    }
-  }
-};
-
-static OperationAssociationLoader operationAssociationLoader;
-} // namespace
-
-
-//===============================================END=====================================================//
-
-
 
 // By default, it doesn’t match the requirements.
-const RustType* Exp::RightExprType(std::unordered_map<std::string, const std::string*>*) const { 
-  return NULL; 
+const RustType* Exp::RightExprType(std::unordered_map<std::string, const std::string*>*) const {
+  return NULL;
 }
 
 
@@ -329,4 +271,3 @@ const RustType* RustType::convertIfPartial(const Context*) const {
 const RustType* PartialTabular::convertIfPartial(const Context* context) const {
   return new RustTabular(this->size->ConvertMe(context),this->elementsType->convertIfPartial(context));
 }
-

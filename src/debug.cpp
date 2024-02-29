@@ -75,15 +75,15 @@ ostream& operator<<(ostream& os, std::optional<std::string> o) {
   if (!o) {
     return os << (std::string) "(undefined)\n";
   }
-  return os << (std::string) "`" << *o << (std::string) "`\n";
+  return os << (std::string) "`" << *o << (std::string) "\n";
 }
 
 
 ostream& operator<<(ostream& os, const Input* const input) {
-  os << (std::string) "The input has parsed the following elements:\n";
-  os << (std::string) " – As `include_path`: " << input->include_path;
-  os << (std::string) " – As `main_module_name`: " << input->main_module_name;
-  os << (std::string) " – As `output_directory`: " << input->output_dir;
+  os << "The input has parsed the following elements:" << std::endl
+     << " – As `include_path`: " << input->project_path << std::endl
+     << " – As `main_module_name`: " << input->main_module_name << std::endl
+     << " – As `output_directory`: " << input->output_dir << std::endl;
   return os;
 }
 
@@ -119,7 +119,7 @@ ostream& operator<<(ostream& os, const bool* bl) {
 }
 
 
-  
+
 ostream& operator<<(ostream& os, const Printer* const printer) {
   os << "This is a `Printer`; it contains: \n — A path, `" << printer->path << "`;\n – A code stream.\n";
   return os;
@@ -163,7 +163,7 @@ void BooleanLiteral::DebugMe(std::ostream& os) const {
   os << "[BooleanLiteral 3/3: `typref`:] " << typref;
 }
 
-void StringLiteral::DebugMe(std::ostream& os) const { 
+void StringLiteral::DebugMe(std::ostream& os) const {
   os << "An `StringLiteral`; it contains:\n";
   os << "[BooleanLiteral 1/3: `attr`:] " << "(non parsed)\n";
   os << "[BooleanLiteral 2/3: `value`:] " << value;
@@ -224,7 +224,7 @@ ostream& operator<<(ostream& os, const RecognizedType type) {
   }
 }
 
-  
+
 void AssignementSub::DebugMe(std::ostream&) const {
   // TODO rewrite this
   // os << "An assignement which assigns this value:\n" << values << "to the variable `" << variable << "`.\n";
@@ -282,7 +282,7 @@ ostream& operator<<(ostream& os, const RustModule* const md) {
       os << "    – " << s;
     }
   }
-  
+
   if (!md->uses.empty()) {
     os << "  – A `use`s set; it contains:\n";
     for (auto s : md->uses) {
@@ -435,7 +435,7 @@ void VarIn::DebugMe(std::ostream&) const {
 }
 
 
-ostream& operator<<(ostream& os, std::set<std::string> set) {  
+ostream& operator<<(ostream& os, std::set<std::string> set) {
   for (std::string str : set) {
     os << "`" << str << "`, ";
   }
@@ -736,7 +736,7 @@ ostream& operator<<(ostream& os, const Operations* operations) {
   } else {
     os << "(undefined)\n";
   }
-  
+
   return os;
 }
 
@@ -762,7 +762,7 @@ ostream& operator<<(ostream& os, const Id* id) {
 
 std::ostream& operator<<(std::ostream& os, const InstanceListType* ilt) {
   if (!ilt) return os << "(undefined)\n";
-  os << "An `InstanceListType`; it contains:\n";  
+  os << "An `InstanceListType`; it contains:\n";
   os << "  – A vector of `ReferencedMachine`; it contains:\n";
   for (auto r : ilt->referencedMachine) {
     os << r;
@@ -850,7 +850,7 @@ std::string* Abstraction::debugMe() const {
 std::string* BinaryPred::debugMe() const {
   std::string* output = new std::string;
   *output += "A `BinaryPred`; to implement!\n";
-  return output;  
+  return output;
 }
 
 // --- CONTEXT ---
@@ -877,7 +877,7 @@ std::string* ExpComparison::debugMe() const {
   std::string* output = new std::string;
   *output += "An `ExpComparison`; it contains:\n";
   // *output += "  – As `operationNameAssoc`:\n    " + *printIt(&operationNameAssoc);
-  return output;  
+  return output;
 }
 
 // --- FUNCTION_CALL ---
@@ -924,7 +924,7 @@ std::string* Invariant::debugMe() const {
   std::string* output = new std::string;
   *output += "An `Invariant`; to implement!:\n";
   // *output += "  – As `operationNameAssoc`:\n    " + *printIt(&operationNameAssoc);
-  return output;  
+  return output;
 }
 
 // --- MACHINE ---
@@ -1131,7 +1131,7 @@ std::string* VariablesType::debugMe() const {
 std::string* While::debugMe() const {
   std::string* output = new std::string;
   *output += "A `While`; to implement!:\n";
-  return output;  
+  return output;
 }
 
 // --- __EXPVECTOR ---
@@ -1165,7 +1165,7 @@ std::string* __IdVector::debugMe() const {
   sss << ss.rdbuf();
   std::string str = sss.str();
   *output += "    " + *indentMe(&str) + "\n";
-  
+
   return output;
 }
 
@@ -1180,14 +1180,14 @@ void Match::DebugMe(std::ostream& os) const {
   if (_default != NULL){
     _default -> DebugMe(os);
   }
-  
+
 
 };
 
 
 void RustCase::DebugMe(std::ostream& os) const {
   os << "[Case]" << " : " ;
-  
+
   for (size_t i = 0; i<value->size(); i++){
     value->at(i) -> DebugMe(os);
   }

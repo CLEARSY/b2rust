@@ -1,6 +1,6 @@
 # TODO try to lower the requirement
 cmake_minimum_required(VERSION 3.22)
-
+project(b2rust)
 # -------------------------
 # Parameters
 # -------------------------
@@ -10,16 +10,14 @@ add_compile_options("-g")
 
 set(CMAKE_CXX_STANDARD 17)  # Spécifie la version C++17
 
-# The project name. The binary will be `${BIN}/${NAME}`.
-set(NAME b2rust)
 # The directory containing the sources.
 set(SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/)
 # The source files. `GLOB` is often used, but its use is discouraged from the developpers.
 set(SOURCE_FILES
   ${SRC}/b2rust.cpp
-	
+
   ${SRC}/util/tools.cpp
-   	
+
   ${SRC}/parser/parser.cpp
   ${SRC}/parser/tinyxml2ext.cpp
   ${SRC}/parser/expression_leaf.cpp
@@ -96,16 +94,16 @@ set(SOURCE_FILES
   ${SRC}/converter/r_module.cpp
   ${SRC}/converter/r_while.cpp
   ${SRC}/converter/types.cpp
-  
+
 
 
   ${SRC}/converter/r_predicate/r_predicate.cpp
-  
+
 
   ${SRC}/printer/printer.cpp
   ${SRC}/printer/component_printers.cpp
-  
-  ${SRC}/input.cpp  
+
+  ${SRC}/input.cpp
   ${SRC}/debug.cpp
 )
 # The directory containing the binaries.
@@ -135,31 +133,27 @@ set(CALL_CODE_DIR ${TESTS}/call_code/)
 # -------------------------------------------
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BIN})
-project(${NAME})
-add_executable(${NAME} ${SOURCE_FILES})
+add_executable(b2rust ${SOURCE_FILES})
 
 find_library(TINYXML2_LIBRARY
 	NAMES tinyxml2
 	PATHS /usr/lib/x86_64-linux-gnu)
 target_link_libraries(b2rust ${TINYXML2_LIBRARIES} -ltinyxml2)
 
-
 find_package(Boost REQUIRED)
 target_link_libraries(b2rust ${Boost_LIBRARIES})
 
-
 # Add warning flags
 if(MSVC)
-  target_compile_options(${NAME} PRIVATE /W4 /WX)
+  target_compile_options(b2rust PRIVATE /W4 /WX)
 else()
-  target_compile_options(${NAME} PRIVATE -Wall -Wextra -Wpedantic)
+  target_compile_options(b2rust PRIVATE -Wall -Wextra -Wpedantic)
 endif()
 
 # The tests.
-execute_process(COMMAND ${GEN_TESTS_SCRIPT} ${BIN}/${NAME} ${TESTS_FILE} ${COMPARISON_DIR} ${ERRORS_DIR} ${MAIN_DIR} ${CALL_CODE_DIR} ${BASE_DIR} ${C4B_DIR} ${INDUSTRIAL_DIR})
+execute_process(COMMAND ${GEN_TESTS_SCRIPT} ${BIN}/b2rust ${TESTS_FILE} ${COMPARISON_DIR} ${ERRORS_DIR} ${MAIN_DIR} ${CALL_CODE_DIR} ${BASE_DIR} ${C4B_DIR} ${INDUSTRIAL_DIR})
 
 enable_testing()
 
 # The tests list.
 include(${TESTS_FILE})
-
