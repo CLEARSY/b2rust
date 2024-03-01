@@ -40,7 +40,7 @@ Input::Input(const int argc, const char* const* const argv) {
 Usage:
   b2rust [-h | --help]
   b2rust [-v | --version]
-  b2rust -C cfgpath -I src [-L lib ]* [-O dst] module
+  b2rust -i src [ -c cfgpath ] ( -l lib )* [ -o dst ] component
 Options:
   -c, --configuration path  Sets the path to the configuration directory
   -I, -i, --include path    Sets the path to a directory containing BXML files of the main project
@@ -49,8 +49,10 @@ Options:
   -h, --help                Display this help message and exits
   -v, --version             Displays the program version and exits
 
-Generates Rust code from the given module, using the settings in the given configuration directory,
-and the BXML files of the module and its dependencies.
+Generates Rust code from the given component, using the settings in the given configuration directory,
+and the BXML files of the module and its dependencies. If the component has an implementation, the
+generated code is that of this implementation. Otherwise, the component is considered that of a base
+module.
 )";
 
   static const string version = "1.0";
@@ -59,7 +61,7 @@ and the BXML files of the module and its dependencies.
   string project;
   std::unordered_set<string> libraries;
   string output;
-  string module_name{};
+  string component {};
 
   // Parse the command line
   for (int i = 1; i < argc; ++i) {
@@ -105,16 +107,16 @@ and the BXML files of the module and its dependencies.
                    << usage;
         exit(EXIT_FAILURE);
     } else {
-      if (!module_name.empty()) {
-        Input::err << "Error: module argument already set to " << module_name << "." << std::endl;
+      if (!component.empty()) {
+        Input::err << "Error: component argument already set to " << component << "." << std::endl;
         exit(EXIT_FAILURE);
       }
-      module_name = arg;
+      component = arg;
     }
   }
   // Check mandatory arguments have been passed
-  if (module_name.empty()) {
-    Input::err << "Error: missing argument identifying the module to translate." << std::endl;
+  if (component.empty()) {
+    Input::err << "Error: missing argument identifying the component to translate." << std::endl;
     exit(EXIT_FAILURE);
   }
   if (project.empty()) {
@@ -194,6 +196,8 @@ and the BXML files of the module and its dependencies.
   std::map<std::string, XMLElement*> XmlOfComponent;
   // map between the name of a file and the file that it refines by
   std::map<std::string, std::string> refinedBy;
+  // and the reverse relation
+  std::map<std::string, std::string> refines;
   // set of implementation file
   std::set<std::string> implementationFiles;
 
@@ -238,14 +242,16 @@ and the BXML files of the module and its dependencies.
   }
 
   for (const auto& entry : XmlOfComponent) {
-    string component = entry.first;
+    string comp = entry.first;
     XMLElement *xml = entry.second;
     const XMLElement* abstraction = xml->FirstChildElement("Abstraction");
-    if (nullptr != abstraction) {                               // so actually the entry refines something
-      refinedBy.insert({abstraction->GetText(), component});// refinedBy.at(B) = A means the file name B is refined by file A
+    if (nullptr != abstraction) {
+      string absName{abstraction->GetText()};               // so actually the entry refines something
+      refinedBy.insert({absName, comp});// refinedBy.at(B) = A means the file name B is refined by file A
+      refines.insert({comp, absName});
       const std::string type = xml->Attribute("type");
       if (type == "implementation") {
-        implementationFiles.insert(component);
+        implementationFiles.insert(comp);
       }
     }
   }
@@ -294,9 +300,16 @@ and the BXML files of the module and its dependencies.
     return NULL;
   };
 
-  const fs::path main_module_path = project_path / module_name;
+  string module_name; // name of the module to be translated
+  {
+    module_name = component;
+    auto it = refines.find(module_name);
+    while (it != refines.end()) {
+      module_name = it->second;
+      it = refines.find(module_name);
+    }
+  }
 
-  // Load the main module
   auto module = new Module;
   module->am = read_file(module_name);
   module->ref = load_refinement(module_name);
