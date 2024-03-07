@@ -15,7 +15,14 @@
 #ifndef H_MODULE
 #define H_MODULE
 
+#include <string>
+
+#include <map>
+#include <unordered_set>
 #include <vector>
+
+#include <iostream>
+using std::ostream;
 
 #include "../parser/bxml/machine.h"
 #include "types.h"
@@ -87,7 +94,7 @@ public:
   std::vector<const RustInstruction*> initialisations;
 
   // The list of functions.
-  vector<const Function*> functions;
+  std::vector<const Function*> functions;
 
   RustModule();
   RustModule(const Parser*);

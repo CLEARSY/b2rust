@@ -20,7 +20,7 @@ const InstanceListType* _InstanceListType(XMLElement* element) {
   InstanceListType* instanceListType = new InstanceListType;
   vectorAction<const ReferencedMachine*> a_referencedMachine = {&instanceListType->referencedMachine, &_ReferencedMachine};
 
-  Parser::workOnElements<const ReferencedMachine*>(element, {{"Attr", nullopt}, {"Referenced_Machine", a_referencedMachine}}, Parser::uncompliant);
+  Parser::workOnElements<const ReferencedMachine*>(element, {{"Attr", std::nullopt}, {"Referenced_Machine", a_referencedMachine}}, Parser::uncompliant);
 
   ;
 

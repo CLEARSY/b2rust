@@ -43,11 +43,11 @@ const PredGroup* a_NaryPred(XMLElement* element) {
   Parser::workOnElements<const Attr*, const PredGroup*>(element, {
       {"Attr", a_attr},
 
-      {"Binary_Pred", nullopt},
+      {"Binary_Pred", std::nullopt},
       {"Exp_Comparison", a_expcomparison},
-      {"Nary_Pred", nullopt},
-      {"Quantified_Pred", nullopt},
-      {"Unary_Pred", nullopt}
+      {"Nary_Pred", std::nullopt},
+      {"Quantified_Pred", std::nullopt},
+      {"Unary_Pred", std::nullopt}
     },
     Parser::uncompliant);
 

@@ -91,7 +91,7 @@ To translate a B component, use the following command :
 Usage:
   b2rust [-h | --help]
   b2rust [-v | --version]
-  b2rust -i src [ -c cfgpath ] ( -l lib )* [ -o dst ] component
+  b2rust [-x] -i src [ -c cfgpath ] ( -l lib )* [ -o dst ] component
 Options:
   -c, --configuration path  Sets the path to the configuration directory
   -I, -i, --include path    Sets the path to a directory containing BXML files of the main project
@@ -99,6 +99,7 @@ Options:
   -o, --output path         Sets the path to a directory where the generated Rust files are stored
   -h, --help                Display this help message and exits
   -v, --version             Displays the program version and exits
+  -x, --xml                 Output messages are embedded in XML elements (does not apply to -h and -v)
 ```
 
 This command also recursively translates all modules that are seen, imported, and extended by the module of the given component.

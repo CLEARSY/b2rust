@@ -29,6 +29,11 @@
 #include "./arrayaccess.h"
 #include "../parser/bxml/booleanexp.h"
 
+#include <string>
+
+#include <map>
+#include <unordered_set>
+#include <vector>
 
 const RustExpression* Id::ConvertMe(const Context* context) const {
   return _Variable(context, value);
@@ -55,7 +60,7 @@ const RustExpression* BooleanExp::ConvertMe(const Context* context) const {
 
 
 bool is_domain(const std::string target) {
-  std::unordered_set<string> domaine = {"_i8", "_u8", "_i16", "_u16", "_i32", "_u32","_i64","_u64","_i128","_u128"};
+  std::unordered_set<std::string> domaine = {"_i8", "_u8", "_i16", "_u16", "_i32", "_u32","_i64","_u64","_i128","_u128"};
   return domaine.count(target) > 0;
 }
 
@@ -121,7 +126,7 @@ const RustExpression* BinaryExp::ConvertMe(const Context* context) const {
     if (!symb.empty()) {
       return right->ConvertMe(context);
     }
-    
+
     auto tuple = dynamic_cast<const BinaryExp*>(right);
     if (tuple && *tuple->op == "|->"){
       auto leafs = tuple->getTupleLeafs();
@@ -133,7 +138,7 @@ const RustExpression* BinaryExp::ConvertMe(const Context* context) const {
       });
       return new ArrayAccess(left->ConvertMe(context),convertedLeafs);
     }
-  } else if (*op == "*s"){ 
+  } else if (*op == "*s"){
       //ensemble des ids representants des intervalles  ou intervalles
       auto leafs = this->getLeafs();
       RustUniformArray* result = nullptr;
@@ -149,9 +154,9 @@ const RustExpression* BinaryExp::ConvertMe(const Context* context) const {
         }
       }
       return result;
-      
-  } 
-  
+
+  }
+
   return new BinaryRustExpression(exp.at(0)->ConvertMe(context), op, exp.at(1)->ConvertMe(context));
 }
 
@@ -162,8 +167,8 @@ const RustExpression* EmptySet::ConvertMe(const Context*) const {
 }
 
 const RustExpression* NaryExp::ConvertMe(const Context* context) const {
-  // It is a nary expression. We suppose it is a tabular instanciation. It has at least one element; if it wasn’t the case, it 
-  // no you can not assume this 
+  // It is a nary expression. We suppose it is a tabular instanciation. It has at least one element; if it wasn’t the case, it
+  // no you can not assume this
 
   if(exp.size() == 1){
     auto notSingleton = dynamic_cast<const BinaryExp*>(exp.at(0));
@@ -176,7 +181,7 @@ const RustExpression* NaryExp::ConvertMe(const Context* context) const {
 
   // Ordered map for values.
   std::map<cpp_int, const RustExpression*> values;
-  
+
   for (const Exp* e : exp) {
     // According to the checking, it is necessarily a `BinaryExp` whose left members are `IntegerLiteral`s.
     auto be = reinterpret_cast<const BinaryExp*>(e);
@@ -190,9 +195,9 @@ const RustExpression* NaryExp::ConvertMe(const Context* context) const {
   for (auto const& [_, v] : values) {
     ra->values.push_back(v);
   }
-  
-  
-  return ra;  
+
+
+  return ra;
 }
 
 
@@ -275,7 +280,7 @@ const Variable* _Variable(const Context* context, const std::string* value) {
     // It is a local variable.
     return new LocalVariable(value, (context->local.at(*value))->convertIfPartial(context));
   } else if (context->parameters.find(*value) != context->parameters.end()) {
-    // It is a parameters variable. 
+    // It is a parameters variable.
     return new ParameterVariable(value, (context->parameters.at(*value))->convertIfPartial(context));
   } else if (context->globalVariables.find(*value) != context->globalVariables.end()) {
     // The variable is a global variable.
@@ -295,7 +300,7 @@ const Variable* _Variable(const Context* context, const std::string* value) {
       auto childModule = b2rust::r_imports.at(path->back().second);
       auto childContext = childModule->context;
       auto name = Tools::getLastWord(*value);
-      auto var = _Variable(&childContext, &name); 
+      auto var = _Variable(&childContext, &name);
       std::vector<std::string>* firstMembers = new std::vector<std::string>();
       firstMembers->reserve(path->size()); // Pour éviter les réallocations
       for (const auto& pair : *path) {
@@ -303,21 +308,21 @@ const Variable* _Variable(const Context* context, const std::string* value) {
       }
 
       return new FieldAccess(&name,firstMembers,var->getType());
-      
+
   } else if (context->constantNameAssoc.count(*value)){
       auto mch_name = context->constantNameAssoc.at(*value);
       auto childModule = b2rust::r_imports.at(*mch_name);
       auto childContext = childModule->context;
       auto name = Tools::getLastWord(*value);
-      auto var = _Variable(&childContext, &name); 
+      auto var = _Variable(&childContext, &name);
       return new ConstantAccess(&name,mch_name,var->getType());
-      
+
   } else {
-    Input::err << "Warning: b2rust meet an untyped variable " << *value << ", a segmentation fault may occur if you use the variable other than belongsto"  << std::endl;
+    Report::emitWarning(fmt::format("untyped variable found: {}", *value));
 
     return new UnknownVariable(value,NULL);
   }
-  
+
 }
 
 
@@ -344,7 +349,6 @@ BinaryRustExpression::BinaryRustExpression(const RustExpression* left, const std
   };
   type = assoc.at(*symbol);
 }
-
 
 BinaryRustExpression::BinaryRustExpression(const RustExpression* left, const std::string* symbol, const RustExpression* right) :
   left_expr(left),
@@ -379,14 +383,11 @@ BinaryRustExpression::BinaryRustExpression(const RustExpression* left, const std
 
 void Select::ConvertMe(const Context*, std::vector<const RustInstruction*>*) const {
   // By default, it is a non-implem thing and it should not be translated.
-  Input::err << "Fatal error: I was asked to translate a `Select` substitution, but this is not an implementation substitution. It you see this message, the checker didn’t work as expected and this is a b2rust bug." << std::endl;
-  exit(1);
+  Report::emit(Report::Level::FATAL, "Unexpected Select substitution");
 }
 
-RustUniformArray::RustUniformArray(const RustExpression* size_arg,  const RustExpression* value_arg) : 
+RustUniformArray::RustUniformArray(const RustExpression* size_arg,  const RustExpression* value_arg) :
   size(size_arg),
   value(value_arg){
-  
-}
-  
 
+}

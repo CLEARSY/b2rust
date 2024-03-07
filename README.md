@@ -1,4 +1,9 @@
-b2rust is written in C++ and converts a B program into a Rust library (a set of Rust code files) which can be compiled without errors (but not necessarily without warnings). The functions it defines can be used in a separate Rust project.
+# b2rust
+
+b2rust is written in C++ and converts a B implementation component
+into a Rust library (a set of Rust code files) which can be compiled
+without errors (but not necessarily without warnings). The functions
+it defines can be used in a separate Rust project.
 
 Its calling syntax is the following:
 
@@ -15,38 +20,84 @@ Input requirements:
 
 `b2rust module -I directory [-O output_directory]`
 
-If these requirements are not respected, an unknown behaviour could happen.
+If these requirements are not respected, an unknown behaviour could
+happen.
 
-If the B module associated with the `module.bxml` and `module_i.bxml` as well as recursively imported modules codes match some specifications, b2rust shall generate a Rust library (a code file for each module whose name is the name of the module) which matches the specification of the B entry module. To put in a nutshell, b2rust translates variables, constants, assignments, `if`/`then`/`else`, asserts, local variables definitions, and operation definition with any number of input or output parameters, imports, operation calls, some expressions using tabulars, integers, booleans, basic maths.
+If the B module associated with the `module.bxml` and `module_i.bxml`
+as well as recursively imported modules codes match some
+specifications, b2rust shall generate a Rust library (a code file for
+each module whose name is the name of the module) which matches the
+specification of the B entry module. To put in a nutshell, b2rust
+translates variables, constants, assignments, `if`/`then`/`else`,
+asserts, local variables definitions, and operation definition with
+any number of input or output parameters, imports, operation calls,
+some expressions using tabulars, integers, booleans, basic maths.
 
-If the B implementation associated with the provided BXML file matches some specifications, b2rust shall give the user a Rust library which matches the specification of the B module. To put in a nutshell, b2rust translates variables, constants, assignments, if/then/else, asserts, local variables definitions, and operation definition with any number of input or output parameters.
+If the B implementation associated with the provided BXML file matches
+some specifications, b2rust shall give the user a Rust library which
+matches the specification of the B module. To put in a nutshell,
+b2rust translates variables, constants, assignments, if/then/else,
+asserts, local variables definitions, and operation definition with
+any number of input or output parameters.
 
-The library can be compiled with the command `rustc --crate-type=lib a.rs` (if `a.rs` is the generated file). The library can then be used in a Rust project (with a `main`), using the compilation option `--extern out=libout.rlib`.
+The library can be compiled with the command 
 
-Run `cmake . && make` if you want to compile, `ctest .` if you want to run the tests.
+```sh
+rustc --crate-type=lib a.rs
+```
+(if `a.rs` is the generated file). The library can then be used
+in a Rust project (with a `main`), using the compilation option
+`--extern out=libout.rlib`.
 
-For further details, read the documentation: `doc/specification.pdf` (`doc/specification.tex` if you cannot read PDFs).
+Run `cmake . && make` if you want to compile, `ctest .` if you want to
+run the tests.
 
-If the B module associated with the `module.bxml` and `module_i.bxml` as well as recursively imported modules codes match some specifications, b2rust shall generate a Rust library (a code file for each module whose name is the name of the module) which matches the specification of the B entry module. To put in a nutshell, b2rust translates variables, constants, assignments, `if`/`then`/`else`, asserts, local variables definitions, and operation definition with any number of input or output parameters, imports, operation calls, some expressions using tabulars, integers, booleans, basic maths.
+If the B module associated with the `module.bxml` and `module_i.bxml`
+as well as recursively imported modules codes match some
+specifications, b2rust shall generate a Rust library (a code file for
+each module whose name is the name of the module) which matches the
+specification of the B entry module. To put in a nutshell, b2rust
+translates variables, constants, assignments, `if`/`then`/`else`,
+asserts, local variables definitions, and operation definition with
+any number of input or output parameters, imports, operation calls,
+some expressions using tabulars, integers, booleans, basic maths.
 
-# Dependencies
+## Dependencies
 
-b2rust relies on tinyxml2 and libboost. The src code of tinyxml2 and libboost are not included in b2rust. In order to use both package please download them and configure the CMakeList yourself.  
-	
-	sudo apt-get install libtinyxml2-dev
-	sudo apt-get install libboost-dev
+`b2rust` has dependencies on `fmtlib/fmt` (which should be 
+replaced by `smt::format` in the future) and on `tinyxml2`.
+They are available at the following URLs:
 
-They can also be found in  
-https://packages.debian.org/buster/libtinyxml2-dev  
-https://pkgs.org/download/libboost-dev  
-	
-# SEES clause 
+* <https://github.com/fmtlib/fmt>
+* <https://github.com/leethomason/tinyxml2>
 
-SEES clause is not well translated yet, please refer to the reference manual of B language. For the moment; sees clause is exactly like an import.
+`b2rust` has also a dependency on `boost`. 
 
-# Ce qu’il manque dans `b2rust`
+    sudo apt-get install libboost-dev
 
-Quelques remarques en langue française pour les futurs développeurs: une section dans la documentation vous est destinée (elle s’appelle « Development conventions »). Dans la théorie elle devrait aussi contenir des pistes d’amélioration, mais elle est lacunaire pour l’instant. Donc, je vais dire ce qu’il serait bon de faire ici. Par ordre décroissant de priorité:
+## Future work
 
-* "Deviner" les types quand c’est possible, c’est-à-dire lever l’obligation de devoir SEES un composant qui contient les types Rust et obliger l’utilisateur à s’en servir.
+* Have a `b2rustc` binary that checks if a B implementation is 
+  compliant with the subset of B translatable wit `b2rust`.
+  The output produced by such tool should be as user-friendly
+  as possible by providing clear messages with line and column
+  numbers of problems detected in the source file.
 
+### Miscellaneous notes in French
+
+Quelques remarques en langue française pour les futurs développeurs:
+une section dans la documentation vous est destinée (elle s’appelle
+« Development conventions »). Dans la théorie elle devrait aussi
+contenir des pistes d’amélioration, mais elle est lacunaire pour
+l’instant. Donc, je vais dire ce qu’il serait bon de faire ici. Par
+ordre décroissant de priorité:
+
+* "Deviner" les types quand c’est possible, c’est-à-dire lever
+  l’obligation de devoir SEES un composant qui contient les types Rust
+  et obliger l’utilisateur à s’en servir.
+* Le produit cartésien pour définir un tableau, par exemple (0..4) *
+  {0} pour un tableau de taille 5 ne contenant que des tableaux.
+* La syntaxe alternative pour les tableaux: par exemple ((0..2) *
+  (0..4)) --> rust_i32 au lieu de (0..2) --> ((0..4) -->
+  rust_i32). Même chose pour ls définitions d’éléments & les accès aux
+  éléments.

@@ -15,6 +15,9 @@
 #include "parser.h"
 #include "./bxml/id.h"
 #include "./bxml/machine.h"
+#include "../util/report.h"
+
+#include<fmt/format.h>
 
 bool Parser::checking_error = false;
 std::string Parser::uncompliant = "Error: it seems your input files are not BXML 1.0 compliant.\n";
@@ -49,12 +52,11 @@ Parser::Parser(const Module* const module) {
 // -- NodeAction
 // see `.tcc` file.
 
-void Parser::workOnAttributes(XMLElement* const element, attributeActions* actions, const std::string error) {
+void Parser::workOnAttributes(XMLElement* const element, attributeActions* actions, const std::string) {
   for (const XMLAttribute* attr = element->FirstAttribute(); attr != NULL; attr = attr->Next()) {
     auto it = actions->find(attr->Name());
     if (it == actions->end()) {
-      Input::err << error << "\x1B[37mError while reading attributes of element `" << element->Name() << "`: the attribute `" << attr->Name()
-                 << "` was found, but is unexpected.\033[0m\n";
+      Report::emitError(fmt::format("forbidden attribute {} for BXML element {}", attr->Name(), element->Name()));
       checking_error = true;
     } else {
       std::string str = attr->Value();
@@ -71,9 +73,8 @@ void Parser::workOnAttributes(XMLElement* const element, attributeActions* actio
       } else if (std::holds_alternative<const binaryPredOp**>(it->second)) {
         *std::get<const binaryPredOp**>(it->second) = _binaryPredOp(&str);
       } else {
-        // We don’t know what is is...
-        Input::err << "Fatal error while parsing an attribute: I don’t know what you want this attribute’s type to be." << std::endl;
-        exit(1);
+        Report::fatalError(fmt::format("forbidden attribute {} for BXML element {}", attr->Name(), element->Name()),
+                          EXIT_FAILURE);
       }
     }
   }

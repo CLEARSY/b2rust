@@ -33,13 +33,13 @@ void workOnElementsSimplePredGroupSpecific(XMLElement* const element,
 
   actions->insert({
       {"Binary_Pred", a_binarypred},
-      {"Quantified_Pred",nullopt},
+      {"Quantified_Pred",std::nullopt},
       {"Nary_Pred", a_narypred},
       {"Exp_Comparison", a_expcomparison},
       {"Unary_Pred", a_unarypred}
     });
 
-  Parser::workOnElements<Ts...>(element, *actions, "Error: you likely used an instruction which is not translatable by b2rust yet.\n");
+  Parser::workOnElements<Ts...>(element, *actions, Parser::uncompliant);
 }
 
 
@@ -55,11 +55,11 @@ void workOnElementsVectorPredGroupSpecific(XMLElement* const element,
 
   actions->insert({
       {"Binary_Pred", a_binarypred},
-      {"Quantified_Pred",nullopt},
+      {"Quantified_Pred",std::nullopt},
       {"Nary_Pred", a_narypred},
       {"Exp_Comparison", a_expcomparison},
       {"Unary_Pred", a_unarypred},
-      
+
     });
 
   Parser::workOnElements<Ts...>(element, *actions, Parser::uncompliant);

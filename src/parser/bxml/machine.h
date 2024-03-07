@@ -15,12 +15,12 @@
 #ifndef H_MACHINE
 #define H_MACHINE
 
-#include <tinyxml2.h>
 #include <vector>
-#include <map>
-#include <functional>
-#include <algorithm>
-#include <set>
+#include <string>
+
+#include <iostream>
+
+#include <tinyxml2.h>
 
 #include "./operation.h"
 #include "operations.h"
@@ -33,6 +33,7 @@
 #include "./typeinfos.h"
 #include "./promotes.h"
 #include "parametersdeclaration.h"
+
 class Machine_Values : public Parser {
 public:
   // --- ELEMENTS ---
@@ -123,7 +124,7 @@ public:
 private:
   std::string* debugMe() const;
 
-  friend ostream& operator<<(ostream& os, const Machine* const);
+  friend std::ostream& operator<<(std::ostream& os, const Machine* const);
 };
 
 

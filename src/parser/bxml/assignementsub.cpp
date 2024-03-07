@@ -26,7 +26,7 @@ Instruction* _AssignementSub(XMLElement* element) {
   Parser::workOnElements<
     const __ExpVector*
     >(element, {
-      {"Attr", nullopt},	    
+      {"Attr", std::nullopt},	    
       {"Variables", a_variables},
       {"Values", a_values}
     }, Parser::uncompliant);

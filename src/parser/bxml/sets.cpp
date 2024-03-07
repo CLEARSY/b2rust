@@ -24,7 +24,7 @@ const Sets* _Sets(tinyxml2::XMLElement* element) {
   Parser::workOnElements<
     const Set*
     >(element, {
-	{"Attr", nullopt},
+	{"Attr", std::nullopt},
 	{"Set", a_set}
       },
       Parser::uncompliant);

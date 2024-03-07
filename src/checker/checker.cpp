@@ -28,13 +28,14 @@
 #include "../parser/bxml/select.h"
 #include "../parser/bxml/varin.h"
 #include "../parser/bxml/while.h"
+#include "../util/report.h"
 
 bool Checker::checking_error = false;
 
 void Select::checkMe(machineType type, std::unordered_map<std::string, const std::string*>*) {
   // If we are in an implementation, this is forbidden!
   if (type == implementation) {
-    Input::err << "The `Select` substitution is forbidden in an implementation!\n";
+    Report::emit(Report::Level::ERROR, "SELECT substitution not supported");
     Checker::checking_error = true;
   }
 }
@@ -97,8 +98,9 @@ void Parser::checkMe() {
               enumeratorsSet->insert({*enumerator->value, set->id->value});
             }
           } else {
+            Report::emit(Report::Level::ERROR, fmt::format("multiple definition of {} in the type namespace",
+							   *set->id->value));
             Checker::checking_error = true;
-            Input::err << *set->id->value << " must be defined only once in the type namespace of this module \n";
           }
         }
       }
@@ -210,8 +212,7 @@ void Skip::checkMe(machineType, std::unordered_map<std::string, const std::strin
 void NarySub::checkMe(machineType type, std::unordered_map<std::string, const std::string*>* set) {
 
   if (type == implementation && *op != ";") {
-    Input::err << "Error: a `Nary_Sub` element whose `op` is `" << *op
-               << "` has been found. b2rust only translates B0 instructions, so `op` should be `;`.\n";
+    Report::emit(Report::Level::ERROR, fmt::format("Forbidden substitution {}", *op));
     checking_error = true;
   }
   // Checking the sub instructions.
@@ -229,16 +230,14 @@ void VarIn::checkMe(machineType type, std::unordered_map<std::string, const std:
 
   // The error message
   auto message = []() {
-    Input::err << " The very first instructions of a `VAR_IN` instruction must use the syntax `variable :: r_type`, define every local "
-                  "variable type this way exactly once for each, and only use b2rust recognized types. See `b2rust` documentation.\n";
+    Report::emit(Report::Level::ERROR, "VAR_IN instruction body does not start with local variable typing");
     Checker::checking_error = true;
   };
 
   // The user has to give at least two subinstructions, i.e. the instruction needs to be a `NarySub`.
   auto ns = dynamic_cast<const NarySub*>(body->sub);
   if (!ns) {
-    Input::err << "Error: a `VAR_IN` instruction has been found, but it seems it contains less than two subinstructions. Please "
-                  "form one which has at least two.\n";
+    Report::emit(Report::Level::ERROR, "VAR_IN instruction body has fewer than two instructions.");
     Checker::checking_error = true;
     return;
   }
@@ -247,46 +246,38 @@ void VarIn::checkMe(machineType type, std::unordered_map<std::string, const std:
     // There’s still a variable to search.
     if (it == ns->instructions.end()) {
       // Error: at least one undefined variable.
-      Input::err << "Error: end of instructions inside a `VAR_IN` instruction while no type definition has been found for at "
-                    "least one of its local variables.";
+      Report::emit(Report::Level::ERROR, "Missing typing instructions in VAR_IN instruction body.");
       message();
       return;
     }
     // There’s an instruction.
     const BecomesIn* bi = (*it)->ToBecomesIn();
     if (!bi) {
-      Input::err << "Error: non-`BecomesIn` or 'BecomesSuchThat' instruction inside a `VAR_IN` instruction while no type definition has been found "
-                    "for at least one of its local variables.";
       message();
       return;
     }
     // The variable name?
     auto _id = bi->variables->id;
     if (_id.size() != 1) {
-      Input::err << "Error: I was searching for a local variable typing, and I found a `BecomesIn` instruction with several left "
-                    "identifier. This is not yet supported, sorry.";
+      Report::emit(Report::Level::ERROR, "BECOMES_IN instruction with list of variables not supported.");
       message();
       return;
     }
-    std::string value = *(*_id.begin())->value;
+    const std::string value = *(*_id.begin())->value;
     auto f = types.find(value);
     if (f == types.end()) {
       // Unknown variable.
-      Input::err << "Error: I was searching for a local variable typing, and I found a `BecomesIn` instruction which deals with "
-                    "an unknown variable name.";
-      message();
+      Report::emit(Report::Level::ERROR, fmt::format("BECOMES_IN instruction with unknown variable {}.", value));
       return;
     }
     // It must be not already defined, i.e. `nullptr`.
     if (f->second) {
-      Input::err << "Error: the local variable `" << value << "` was typed twice. This is not supported yet, sorry.";
-      message();
+      Report::emit(Report::Level::ERROR, fmt::format("Multiple typing instructions for variable {}.", value));
       return;
     }
     const RustType* type = bi->value->exp->RightExprType(set);
     if (!type) {
-      Input::err << "Error: I was searching for a local variable typing, and I found a type not recognized by `b2rust`.";
-      message();
+      Report::emit(Report::Level::ERROR, fmt::format("Unrecognized type."));
       return;
     }
 
@@ -316,8 +307,7 @@ void BecomesIn::checkMe(machineType type, std::unordered_map<std::string, const 
   // If the checker is called, it means the `BecomesIn` is not nested in a `VAR_IN` (as the `checkMe` of `VAR_IN` would have skip
   // the `checkMe`s of its first elements).
   if (type == implementation) {
-    Input::err << "Error: a `BecomesIn` instruction in implementation (which is not a B0 instruction) is only allowed in `VAR_IN`’s first nested "
-                  "instructions, to allow the recognized types definitions.\n";
+    Report::emit(Report::Level::ERROR, fmt::format("Illegal BECOMES_IN instruction (only allowed at the start of a VAR_IN body)"));
     Checker::checking_error = true;
   };
 }
@@ -326,8 +316,7 @@ void BecomesSuchThat::checkMe(machineType type, std::unordered_map<std::string, 
   // If the checker is called, it means the `BecomesIn` is not nested in a `VAR_IN` (as the `checkMe` of `VAR_IN` would have skip
   // the `checkMe`s of its first elements).
   if (type == implementation) {
-    Input::err << "Error: a `BecomesSuchThat` instruction (which is not a B0 instruction) is only allowed in `VAR_IN`’s first nested "
-                  "instructions, to allow the recognized types definitions\n";
+    Report::emit(Report::Level::ERROR, fmt::format("Illegal BECOMES_SUCH_THAT instruction (only allowed at the start of a VAR_IN body)"));
     Checker::checking_error = true;
   }
 }
@@ -375,8 +364,7 @@ void BinaryExp::checkMe() const {
     // if left is also a cartesian product  (inv0 * inv1) * inv2) * {ee}
     auto expr = dynamic_cast<const BinaryExp*>(left);
     if (!left->isInterval().has_value()  && !expr) {
-      Input::err << "Error: a tabular expression defined by cartesian product must be in a form (0..v)*+ (0..v) * {e}. \n the left member of your cartesian "
-                    "product is not an interval \n";
+      Report::emit(Report::Level::ERROR, "cannot check left argument of cartesian product is an interval");
       Checker::checking_error = true;
       return;
     }
@@ -384,7 +372,7 @@ void BinaryExp::checkMe() const {
     if (expr && *expr->op == "*s")
       expr->checkBothAreInterval();
   }
- 
+
   right->checkMe();
   left->checkMe();
 }
@@ -393,8 +381,7 @@ void BinaryExp::checkBothAreInterval() const {
   auto left = exp.at(0);
   auto right = exp.at(1);
   if (!right->isInterval().has_value() ) {
-    Input::err << "Error: a tabular expression defined by cartesian product must be in a form (0..v)*+ (0..v) * {e}. \n the left member of your cartesian "
-                  "product is not an interval \n";
+    Report::emit(Report::Level::ERROR, "cannto check left argument of cartesian product is an interval");
     Checker::checking_error = true;
     return;
   }
@@ -411,8 +398,7 @@ void BinaryExp::checkBothAreInterval() const {
   if (expr && *expr->op == "*s"){
     expr->checkBothAreInterval();
   } else {
-        Input::err << "Error: a tabular expression defined by cartesian product must be in a form (0..v)*+ (0..v) * {e}. \n the left member of your cartesian "
-                  "product is not an interval \n";
+    Report::emit(Report::Level::ERROR, "cannot check left argument of cartesian product is an interval");
     Checker::checking_error = true;
   }
 }
@@ -420,8 +406,7 @@ void BinaryExp::checkBothAreInterval() const {
 void NaryExp::checkMe() const {
 
   auto err = []() {
-    Input::err << "Error: a `Nary_Exp` is supposed to be a tabular definition, but apparently it is not. b2rust cannot translate "
-                  "this.\n";
+    Report::emit(Report::Level::ERROR, "illegal expression found (nary expression is not a cartesian product)");
     Checker::checking_error = true;
     return;
   };
@@ -460,16 +445,13 @@ void NaryExp::checkMe() const {
     }
   }
 
-  // Note: every case need to have an image, but if the program is proven, it is already the case, so, no need to take care of
+  // Note: every case needs to have an image, but if the program is proven, it is already the case, so, no need to take care of
   // this checking.
 }
 
 // The error message
 auto message = []() {
-  Input::err << " In the abstract machine, if an operation defines `n` output parameters and `m` input parameters, its "
-                "precondition must contain at least `n+m` predicates (if `n+m >= 2`, binded by `&`) under the shape `variable : "
-                "b2rust_type`, where `variable` is an output parameter or an input parameter and `b2rust_type` is a type "
-                "recognized by b2rust. Furthermore, each input/output parameter has to be defined exactly once this way.\n";
+  Report::emit(Report::Level::ERROR, "invalid operation precondition");
   Checker::checking_error = true;
 };
 
@@ -507,10 +489,10 @@ void ExpComparison::typesListAndCheck(std::unordered_map<std::string, const Rust
 
     // If we are here, it means an interesting type has been found. But we need to throw an error if the found variable has already
     // a `RustType` associated!!
-    std::string varName = *left->value;
+    const std::string varName = *left->value;
 
     if (map->find(varName) != map->end()) {
-      Input::err << "Error while finding Rust types: the variable `" << varName << "` seems to have been typed twice. This is an error, sorry.\n";
+      Report::emit(Report::Level::ERROR, fmt::format("multiple typing expressions found for {}.", varName));
       Checker::checking_error = true;
       return;
     }
@@ -537,7 +519,7 @@ void checkTypes(const std::unordered_set<const std::string*>* names, std::unorde
   for (const std::string* var : *names) {
     if (types->find(*var) == types->end()) {
       // We found a variable which is not defined inside!!
-      Input::err << "Warning: the variable `" << *var << "` was left untyped. See `b2rust` documentation.\n";
+      Report::emit(Report::Level::WARNING, fmt::format("cannot find type for {}", *var));
       // Checker::checking_error = true;
     }
   }
@@ -554,7 +536,7 @@ void checkAndGetTypesStrict(const std::unordered_set<const std::string*>* names,
   for (const std::string* var : *names) {
     if (types->find(*var) == types->end()) {
       // We found a variable which is not defined inside!!
-      Input::err << "Error: the variable `" << *var << "` was not typed in abstract machine precondition. See `b2rust` documentation.\n";
+      Report::emit(Report::Level::ERROR, fmt::format("cannot find type for {} in MACHINE precondition", *var));
       Checker::checking_error = true;
     }
   }
@@ -584,8 +566,7 @@ void checkOperations(Operation* am, Operation* impl, std::unordered_map<std::str
   if (am->precondition) {
     checkAndGetTypesStrict(op, am->precondition->predGroup, am->types, sets);
   } else if (!op->empty()) {
-    Input::err << "Error while parsing the operation `" << *am->name
-               << "`: at least one output parameter was specified, but there is no precondition.\n";
+    Report::emit(Report::Level::ERROR, fmt::format("missing precondition for operation {}", *am->name));
     Checker::checking_error = true;
   }
 

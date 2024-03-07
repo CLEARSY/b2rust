@@ -27,7 +27,6 @@
 #include <unordered_set>
 
 #include "recognized_types.h"
-#include "tinyxml2ext.h"
 #include "../input.h"
 #include "../checker/checker.h"
 #include "./bxml/binarypredop.h"

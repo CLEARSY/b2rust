@@ -25,7 +25,7 @@ const Set* _Set(tinyxml2::XMLElement* element) {
     const Id*,
     const EnumeratedValues*
     >(element, {
-	{"Attr", nullopt},
+	{"Attr", std::nullopt},
 	{"Id", a_id},
 	{"Enumerated_Values", a_enumeratedValues}
       },

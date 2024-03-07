@@ -15,18 +15,12 @@
 #ifndef H_EXPRESSION_LEAF
 #define H_EXPRESSION_LEAF
 
-#include "tinyxml2ext.h"
 #include "parser.h"
-
-using namespace tinyxml2;
 
 typedef enum type {
   Integer_Literal,
   Boolean_Literal,
   Id_
 } exp_type;
-
-
-
 
 #endif

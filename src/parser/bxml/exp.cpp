@@ -27,6 +27,6 @@ const __ExpVector* ___ExpVector(XMLElement* element) {
 // Default implementation.
 std::optional<const Exp*> Exp::isInterval() const {
   // No, it is not.
-  return nullopt;
+  return std::nullopt;
 }
 

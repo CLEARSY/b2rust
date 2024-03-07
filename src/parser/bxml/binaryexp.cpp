@@ -38,7 +38,7 @@ std::optional<const Exp*> BinaryExp::isInterval() const {
   //   <Integer_Literal value='5' typref='1'/>
   // </Binary_Exp>
   if (*op != ".." || exp.size() != 2) {
-    return nullopt;
+    return std::nullopt;
   }
 
   auto e1 = dynamic_cast<const IntegerLiteral*>(exp.at(0));
@@ -46,11 +46,11 @@ std::optional<const Exp*> BinaryExp::isInterval() const {
 
   if (!(e1)) {
     // At least one is not an `IntegerLiteral`.
-    return nullopt;
+    return std::nullopt;
   }
 
   if (*e1->value != 0) {
-    return nullopt;
+    return std::nullopt;
   }
 
 
@@ -70,10 +70,10 @@ void BinaryExp::collectLeaf(const Exp* expression, std::vector<const Exp*>* resu
   } else if (dynamic_cast<const NaryExp*>(expression)){
     //do nothing
   } else {
-    Input::err << "A non interval objet is found inside cartesian product, check the definition of interval in the usermanual" << std::endl;
-    Checker::checking_error = true;  
+    Report::emitError("Forbidden construction: non interval inside cartesian product");
+    Checker::checking_error = true;
   }
-  
+
 }
 
 std::vector<const Exp*>* BinaryExp::getLeafs() const {

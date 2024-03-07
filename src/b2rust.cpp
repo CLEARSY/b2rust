@@ -19,7 +19,7 @@
 #include "b2rust.h"
 #include "debug.h"
 #include "./parser/bxml/machine.h"
-
+#include "util/report.h"
 
 Module* b2rust::main_module;
 std::unordered_map<std::string, Module> b2rust::imports;
@@ -42,8 +42,8 @@ int main(const int argc, const char* const* const argv) { // This one is fine.
 
   // The parsing might already raise errors.
   if (Checker::checking_error) {
-    cerr << "b2rust parsing failed! Please only input files which match the b2rust specification." << endl;
-    return ERR_BXML_PARSING;
+    Report::fatalError(std::string("Files not compatible with b2rust translation"),
+		       ERR_BXML_PARSING);
   }
 
   // The checking. This will recursively check other components.
@@ -51,8 +51,8 @@ int main(const int argc, const char* const* const argv) { // This one is fine.
 
   // If the checking failed...
   if (Checker::checking_error) {
-    cerr << "b2rust checking failed! Please only input files which match the b2rust specification." << endl;
-    return ERR_BXML_CHECKING;
+    Report::fatalError(std::string("Files not compatible with b2rust translation"),
+		       ERR_BXML_PARSING);
   }
 
   // We convert the main module. It will recursively import the other modules.
@@ -65,5 +65,5 @@ int main(const int argc, const char* const* const argv) { // This one is fine.
     PrintAll(key, value);
   }
 
-  return OK;
+  Report::endExecution(EXIT_SUCCESS);
 }

@@ -40,6 +40,23 @@
 using namespace std;
 
 
+ostream& operator<<(ostream& os, XMLElement* const element) {
+  os << "It is a XMLElement whose name is " << element->Name() << ".\n";
+  os << "Its attributes are:\n";
+  for (const XMLAttribute* attr = element->FirstAttribute(); attr != NULL; attr = attr->Next()) os << "— The attribute " << attr->Name() << " which is " << attr->Value() << ".\n";
+
+  os << "Its nodes are:\n";
+  for (const XMLNode* attr = element->FirstChild(); attr != NULL; attr = attr->NextSibling()) {
+    if (attr->ToElement()) {
+      const XMLElement* const element = attr->ToElement();
+      os << "— An element whose name is " << element->Name() << ".\n";
+      os << "Its output: " << element;
+    } else {
+      os << "— A node which is not an element, a comment or a text...\n";
+    }
+  }
+  return os;
+}
 
 // std::string* printIt(const std::map<std::string, const RustType*>*) {
 //   return new std::string("vache");
@@ -53,20 +70,9 @@ void PredGroup::DebugMe(std::ostream& os) const {
   os << "Old debug function for a `PredGroup`!\n";
 }
 
-// For TinyXML2. TODO: it doesn’t work of course (no header). The header cannot be included in other files...
-// ostream& operator<<(ostream& os, XMLElement* const element) {
-  // os << "It is a XMLElement whose name is " << element->Name() << ".\n";
-  // os << "Its attributes are:\n";
-  // for (const XMLAttribute* attr = element->FirstAttribute(); attr != NULL; attr = attr->Next()) os << "The attribute " << attr->Name() << " which is " << attr->Value() << std::endl;
-//   return os;
-// }
-
-
-
 void OperationCall::DebugMe(std::ostream& os) const {
   os << debugMe();
 }
-
 
 void EmptySet::DebugMe(std::ostream&) const {
 }

@@ -25,7 +25,7 @@ const Machine_Values* _Machine_Values(XMLElement* element) {
   Parser::workOnElements<
     const Valuation*
     >(element, {
-	{"Attr", nullopt},
+	{"Attr", std::nullopt},
 	{"Valuation", a_valuation}
       },
       Parser::uncompliant);
@@ -85,7 +85,7 @@ Machine::Machine(XMLElement* implementation) {
     >(implementation, {
       {"Abstraction", a_abstraction},
       {"Parameters", a_parameters},
-      {"Constraints", nullopt},
+      {"Constraints", std::nullopt},
       {"Includes", a_includes},
       {"Sets", a_sets},
       {"Abstract_Constants", a_abstract_constants},
@@ -98,7 +98,7 @@ Machine::Machine(XMLElement* implementation) {
       {"Promotes", a_promotes},
       {"Invariant", a_invariant},
       {"Initialisation", a_initialisation},
-      {"Assertions", nullopt},
+      {"Assertions", std::nullopt},
       {"Local_Operations",a_local_operations},
       {"Operations", a_operations},
       {"Properties", a_properties},

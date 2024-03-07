@@ -61,6 +61,9 @@ public:
   // file that should be ignored
   static std::unordered_set<std::string> exceptions;
 
+  // output messages are either raw text or are structured in XML elements
+  static bool xmlOutput;
+
   // METHODS
 private:
   friend std::ostream& operator<<(std::ostream& os, const Input*);

@@ -19,7 +19,7 @@
 #include "../../parser/bxml/expcomparison.h"
 #include "../../parser/bxml/predicatetype.h"
 #include "../../parser/bxml/binarypred.h"
-
+#include "../../util/report.h"
 
 RustBinaryPredicate::RustBinaryPredicate(const comparisonSymbol symbol_arg, const RustExpression* left_expr_arg, const RustExpression* right_expr_arg) :
   symbol(symbol_arg),
@@ -30,8 +30,8 @@ RustBinaryPredicate::RustBinaryPredicate(const comparisonSymbol symbol_arg, cons
 
 const RustPredicate* BinaryPred::ConvertMe(const Context*) const {
   // By default, it is a non-implem thing and it should not be translated.
-  Input::err << "Fatal error: I was asked to translate a non-implementation predicate (`BinaryPred`). It you see this message, the checker didn’t work as expected and this is a b2rust bug." << std::endl;
-  exit(1);
+  Report::emit(Report::Level::FATAL, "Unexpected binary predicate found.");
+  return nullptr;
 }
 
 const RustBinaryPredicate* ExpComparison::ConvertMe(const Context* context) const {

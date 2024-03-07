@@ -15,10 +15,20 @@
 #include "input.h"
 #include "b2rust.h"
 #include "parser/parser.h"
+#include "util/report.h"
 #include "util/tools.h"
 #include "error_codes.h"
 
+#include <string>
+
+#include <map>
 #include <unordered_map>
+#include <vector>
+
+#include <iostream>
+
+#include <fmt/format.h>
+
 #include <tinyxml2.h>
 
 using namespace tinyxml2;
@@ -28,19 +38,20 @@ std::ostream &Input::err = std::cerr;
 fs::path Input::config_path;
 fs::path Input::project_path;
 std::unordered_set<fs::path> Input::libraries_path;
-string Input::main_module_name;
+std::string Input::main_module_name;
 fs::path Input::output_dir;
 std::unordered_set<std::string> Input::exceptions;
+bool Input::xmlOutput{false};
 
 //======================================END============================================//
 
 Input::Input(const int argc, const char* const* const argv) {
 
-  static const string usage = R"(
+  static const std::string usage = R"(
 Usage:
   b2rust [-h | --help]
   b2rust [-v | --version]
-  b2rust -i src [ -c cfgpath ] ( -l lib )* [ -o dst ] component
+  b2rust [-x] -i src [ -c cfgpath ] ( -l lib )* [ -o dst ] component
 Options:
   -c, --configuration path  Sets the path to the configuration directory
   -I, -i, --include path    Sets the path to a directory containing BXML files of the main project
@@ -48,6 +59,7 @@ Options:
   -o, --output path         Sets the path to a directory where the generated Rust files are stored
   -h, --help                Display this help message and exits
   -v, --version             Displays the program version and exits
+  -x, --xml                 Output messages are embedded in XML elements (does not apply to -h and -v)
 
 Generates Rust code from the given component, using the settings in the given configuration directory,
 and the BXML files of the module and its dependencies. If the component has an implementation, the
@@ -55,15 +67,15 @@ generated code is that of this implementation. Otherwise, the component is consi
 module.
 )";
 
-  static const string version = "1.0";
+  static const std::string version = "1.1";
 
-  string configuration;
-  string project;
-  std::unordered_set<string> libraries;
-  string output;
-  string component {};
+  std::string configuration;
+  std::string project;
+  std::unordered_set<std::string> libraries;
+  std::string output;
+  std::string component {};
 
-  // Parse the command line
+  // Parse the command line for -x, -v -h
   for (int i = 1; i < argc; ++i) {
     std::string arg = argv[i];
 
@@ -73,68 +85,84 @@ module.
     } else if (arg == "-v" || arg == "--version") {
       std::cout << version << std::endl;
       exit(EXIT_SUCCESS);
+    } else if (arg == "-x" || arg == "--xml") {
+      xmlOutput = true;
+    }
+  }
+
+  // Parse the command line
+  std::vector<std::string> errors;
+  errors.clear();
+  for (int i = 1; i < argc; ++i) {
+    std::string arg = argv[i];
+
+    if (arg == "-h" || arg == "--help") {
+      continue;
+    } else if (arg == "-v" || arg == "--version") {
+      continue;
+    } else if (arg == "-x" || arg == "--xml") {
+      continue;
     } else if (arg == "-c" || arg == "--configuration") {
       if (i+1 == argc) {
-        Input::err << "Error: missing argument for option -c/--configuration." << std::endl;
-        exit(EXIT_FAILURE);
+        errors.push_back("missing argument for option -c/--configuration.");
+        break;
       }
       ++i;
       configuration = argv[i];
     } else if (arg == "-I" || arg == "-i" || arg == "--include") {
       if (i+1 == argc) {
-        Input::err << "Error: missing argument for option -I/--include." << std::endl;
-        exit(EXIT_FAILURE);
+        errors.push_back("missing argument for option -I/--include.");
+        break;
       }
       ++i;
       project = argv[i];
     } else if (arg == "-l" || arg == "--library") {
       if (i+1 == argc) {
-        Input::err << "Error: missing argument for option -l/--library." << std::endl;
-        exit(EXIT_FAILURE);
+        errors.push_back("missing argument for option -l/--library.");
+        break;
       }
       ++i;
-      const string library = argv[i];
+      const std::string library = argv[i];
       libraries.insert(library);
     } else if (arg == "-o" || arg == "--output") {
       if (i+1 == argc) {
-        Input::err << "Error: missing argument for option -O/--output." << std::endl;
-        exit(EXIT_FAILURE);
+        errors.push_back("missing argument for option -O/--output.");
+        break;
       }
       ++i;
       output = argv[i];
     } else if (arg.at(0) == '-') {
-        Input::err << "Error: unknown option " << arg << "." << std::endl
-                   << usage;
-        exit(EXIT_FAILURE);
+      errors.push_back(fmt::format("unknown option {}.", arg));
+      break;
     } else {
       if (!component.empty()) {
-        Input::err << "Error: component argument already set to " << component << "." << std::endl;
-        exit(EXIT_FAILURE);
+        errors.push_back(fmt::format("component argument already set to {}.", component));
+        break;
       }
       component = arg;
     }
   }
+
   // Check mandatory arguments have been passed
-  if (component.empty()) {
-    Input::err << "Error: missing argument identifying the component to translate." << std::endl;
-    exit(EXIT_FAILURE);
+  if (errors.empty() && component.empty()) {
+    errors.push_back("missing argument identifying the component to translate.");
   }
-  if (project.empty()) {
-    Input::err << "Error: missing path to the directory containing BXML files of the main project." << std::endl;
-    exit(EXIT_FAILURE);
+  if (errors.empty() && project.empty()) {
+    errors.push_back("missing path to the directory containing BXML files of the main project.");
   }
   // Set value for optional arguments
   // - configuration: if not passed, set from environment (mandatory)
   // - output: if not passed, current directory
-  if (configuration.empty()) {
+  if (errors.empty() && configuration.empty()) {
     const char *envc = std::getenv("B2RUST_CONF_HOME");
     if (nullptr == envc) {
-      Input::err << "Error: no path to the configuration directory and B2RUST_CONF_HOME is not set in the environment." << std::endl;
-      exit(EXIT_FAILURE);
+      errors.push_back("no path to the configuration directory and B2RUST_CONF_HOME is not set in the environment.");
     }
-    configuration = envc;
+    else {
+      configuration = envc;
+    }
   }
-  if (output.empty()) {
+  if (errors.empty() && output.empty()) {
     output = ".";
   }
   // Sanity checks on argument values:
@@ -142,14 +170,15 @@ module.
   // - include must exist and be a directory
   // - output must exist and be a directory
   // - every given library must exist and be a directory
-  static auto check_is_dir = [](const fs::path& p) {
-    if (!fs::exists(p)) {
-      Input::err << "Error: " << p.string() << " does not exist." << std::endl;
-      exit(EXIT_FAILURE);
+  static auto check_is_dir = [&errors](const fs::path& p) {
+    if (!errors.empty()) {
+      return;
     }
-    if (!fs::is_directory(p)) {
-      Input::err << "Error: " << p.string() << " is not a directory." << std::endl;
-      exit(EXIT_FAILURE);
+    if (!fs::exists(p)) {
+      errors.push_back(fmt::format("{} does not exist.", p.string()));
+    }
+    else if (!fs::is_directory(p)) {
+      errors.push_back(fmt::format("{} is not a directory.", p.string()));
     }
   };
   config_path = configuration;
@@ -168,27 +197,36 @@ module.
 
   // Load exceptions
 
-  if (!loadTypesFromConfig(config_path)) {
-    Input::err << "Error the types file configuration can not be opened ." << std::endl;
-    exit(EXIT_FAILURE);
+  if (errors.empty() && !loadTypesFromConfig(config_path)) {
+    errors.push_back("the types configuration file cannot be opened.");
   }
 
-  if (!loadOperationAssociationFromConfig(config_path)) {
-    Input::err << "Error the operations file configuration can not be opened ." << std::endl;
-    exit(EXIT_FAILURE);
+  if (errors.empty() && !loadOperationAssociationFromConfig(config_path)) {
+    errors.push_back("the operations configuration file cannot be opened.");
   }
 
-  const std::filesystem::path exceptions_path = config_path / "b2rust_exceptions.cfg";
-  std::ifstream file(exceptions_path);
-  if (!file.is_open()) {
-    Input::err << "Error the exceptions file configuration can not be opened ." << std::endl;
-      exit(EXIT_FAILURE);
+  if (errors.empty()) {
+    const std::filesystem::path exceptions_path = config_path / "b2rust_exceptions.cfg";
+    std::ifstream file(exceptions_path);
+    if (!file.is_open()) {
+      errors.push_back("the exceptions configuration file cannot be opened.");
+    }
+    else {
+      std::string line;
+      while (std::getline(file, line)) {
+        Input::exceptions.insert(line);
+      }
+      file.close();
+    }
   }
-  std::string line;
-  while (std::getline(file, line)) {
-    Input::exceptions.insert(line);
+  Report::startExecution(component);
+
+  if (!errors.empty()) {
+    for (const auto &err: errors) {
+      Report::emitError(err);
+    }
+    Report::endExecution(EXIT_FAILURE);
   }
-  file.close();
 
   //========================Load every concerning file============================//
 
@@ -206,17 +244,15 @@ module.
     XMLDocument* const doc = new XMLDocument;
     XMLError XML_error = doc->LoadFile(file.c_str());
     if (XML_error != XML_SUCCESS) {
-      Input::err << "[b2rust] Error: b2rust was asked to load the file `" << file.string() << "` as a XML file, but it failed." << std::endl
-                 << doc->ErrorStr() << std::endl
-                 << "Check if the input file exists and is readable." << std::endl;
-      exit(ERR_BXML_LOADING);
+      Report::fatalError(fmt::format("cannot load BXML file {}: {}.", file.string(), doc->ErrorStr()),
+			 ERR_BXML_LOADING);
     }
 
     // Get the abstract machine.
     XMLElement* element = doc->XMLDocument::FirstChildElement("Machine");
     if (!element) {
-      Input::err << "Fatal checking_error: there’s no \"Machine\" field in the BXML file." << std::endl;
-      exit(ERR_BXML_CHECKING);
+      Report::fatalError(fmt::format("missing Machine element in XML file {}.", file.string()),
+			 ERR_BXML_CHECKING);
     }
     std::string fileName = element->Attribute("name");
     XmlOfComponent.insert({fileName, element});
@@ -237,16 +273,15 @@ module.
   }
 
   if (XmlOfComponent.empty()) {
-    Input::err << "[b2rust] Error: b2rust did not find any bxml file, did you generate the bxml file in the right directory ? " << std::endl;
-    exit(ERR_BXML_LOADING);
+    Report::fatalError(std::string("no BXML file found."), ERR_BXML_LOADING);
   }
 
   for (const auto& entry : XmlOfComponent) {
-    string comp = entry.first;
+    std::string comp = entry.first;
     XMLElement *xml = entry.second;
     const XMLElement* abstraction = xml->FirstChildElement("Abstraction");
     if (nullptr != abstraction) {
-      string absName{abstraction->GetText()};               // so actually the entry refines something
+      std::string absName{abstraction->GetText()};               // so actually the entry refines something
       refinedBy.insert({absName, comp});// refinedBy.at(B) = A means the file name B is refined by file A
       refines.insert({comp, absName});
       const std::string type = xml->Attribute("type");
@@ -264,7 +299,7 @@ module.
     }
   };
 
-  auto load_refinement = [&XmlOfComponent, &refinedBy, &implementationFiles](const std::string &abstractName) -> vector<XMLElement*>* {
+  auto load_refinement = [&XmlOfComponent, &refinedBy, &implementationFiles](const std::string &abstractName) -> std::vector<XMLElement*>* {
     bool finish = false;
     auto res = new std::vector<XMLElement*>;
 
@@ -300,7 +335,7 @@ module.
     return NULL;
   };
 
-  string module_name; // name of the module to be translated
+  std::string module_name; // name of the module to be translated
   {
     module_name = component;
     auto it = refines.find(module_name);

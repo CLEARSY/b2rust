@@ -37,11 +37,11 @@ const Invariant* a_Invariant(XMLElement* element) {
   
   Parser::workOnElements<const PredGroup*>(element, {
       // {"Attr", a_attr},
-      {"Binary_Pred", nullopt},
+      {"Binary_Pred", std::nullopt},
       {"Exp_Comparison", a_expcomparison},
       {"Nary_Pred", a_narypred},
-      {"Quantified_Pred", nullopt},
-      {"Unary_Pred", nullopt}
+      {"Quantified_Pred", std::nullopt},
+      {"Unary_Pred", std::nullopt}
     },
     "Error: it seems your files are not BXML 1.0 compliant.\n");
 

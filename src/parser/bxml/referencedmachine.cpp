@@ -25,7 +25,7 @@ const ReferencedMachine* _ReferencedMachine(tinyxml2::XMLElement* element) {
   simpleAction<const Parameters*> a_parameters = {&referencedMachine->parameters, &_Parameters};
 
   Parser::workOnElements<const std::string*, const Parameters*>(element, {
-      {"Attr", nullopt},
+      {"Attr", std::nullopt},
       {"Name", a_name},
       {"Instance", a_instance},
       {"Parameters", a_parameters}

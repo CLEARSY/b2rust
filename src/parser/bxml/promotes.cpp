@@ -24,7 +24,7 @@ const Promotes* _Promotes(tinyxml2::XMLElement* element){
   vectorAction<const PromotedOperationType*> a_promotedOperationType = {&promotes->promotedOperationType, &_PromotedOperationType};
 
   Parser::workOnElements<const PromotedOperationType*>(element, {
-      {"Attr", nullopt},
+      {"Attr", std::nullopt},
       {"Promoted_Operation", a_promotedOperationType}
     },
     Parser::uncompliant);

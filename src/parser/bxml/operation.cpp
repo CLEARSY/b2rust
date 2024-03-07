@@ -41,7 +41,7 @@ Operation* _Operation(XMLElement* element) {
     const VariablesType*
     >(element, {
 	// {"Attr", a_attr},
-	{"Refines", nullopt},
+	{"Refines", std::nullopt},
 	{"Output_Parameters", a_outputparameters},
 	{"Input_Parameters", a_inputparameters},
 	// There are no precondition in the invariant. This parsing is relevant for machine only, however, we do not do any optimisation for now.

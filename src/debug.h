@@ -15,6 +15,17 @@
 #ifndef H_DEBUG
 #define H_DEBUG
 
+#include <optional>
+
+#include <map>
+#include <set>
+#include <string>
+
+#include <unordered_map>
+#include <unordered_set>
+
+#include <iostream>
+
 #include "parser/bxml/machine.h"
 #include "./parser/bxml/machine.h"
 #include "./parser/bxml/abstraction.h"
@@ -31,32 +42,32 @@
 #include "./converter/match.h"
 
 // ostream& operator<<(ostream&, XMLElement*);
-  
-ostream& operator<<(ostream&, exp_type);
-ostream& operator<<(ostream&, const Exp*);
-ostream& operator<<(ostream&, std::map<string, const Exp*>::iterator);
-ostream& operator<<(ostream&, std::map<std::string, RecognizedType>);
-ostream& operator<<(ostream&, std::map<const std::string, const RustType*>*);
-ostream& operator<<(ostream&, const comparisonSymbol);
-ostream& operator<<(ostream&, const std::vector<const RustInstruction*>*);
-ostream& operator<<(ostream&, const std::vector<Instruction*>*);
-ostream& operator<<(ostream&, const RecognizedType);
-ostream& operator<<(ostream&, std::set<std::string>);
-ostream& operator<<(ostream& os, binaryExpression);
-ostream& operator<<(ostream&, const std::set<std::string>*);
-ostream& operator<<(ostream&, std::vector<const Id*>*);
-ostream& operator<<(ostream&, const Id*);
-ostream& operator<<(ostream& os, const int* i);
-ostream& operator<<(ostream& os, const unsigned* i);
+
+std::ostream& operator<<(std::ostream&, exp_type);
 std::ostream& operator<<(std::ostream&, const Exp*);
-ostream& operator<<(ostream&, const VariablesType*);
-ostream& operator<<(ostream&, const Operations*);
-ostream& operator<<(ostream&, const Invariant*);
-ostream& operator<<(ostream&, const RustType*);
-ostream& operator<<(ostream&, const bool*);
-ostream& operator<<(ostream&, std::optional<std::string>);
-ostream& operator<<(ostream&, const Module* const);
-ostream& operator<<(ostream&, std::unordered_map<std::string, Module>*);
+std::ostream& operator<<(std::ostream&, std::map<std::string, const Exp*>::iterator);
+std::ostream& operator<<(std::ostream&, std::map<std::string, RecognizedType>);
+std::ostream& operator<<(std::ostream&, std::map<const std::string, const RustType*>*);
+std::ostream& operator<<(std::ostream&, const comparisonSymbol);
+std::ostream& operator<<(std::ostream&, const std::vector<const RustInstruction*>*);
+std::ostream& operator<<(std::ostream&, const std::vector<Instruction*>*);
+std::ostream& operator<<(std::ostream&, const RecognizedType);
+std::ostream& operator<<(std::ostream&, std::set<std::string>);
+std::ostream& operator<<(std::ostream& os, binaryExpression);
+std::ostream& operator<<(std::ostream&, const std::set<std::string>*);
+std::ostream& operator<<(std::ostream&, std::vector<const Id*>*);
+std::ostream& operator<<(std::ostream&, const Id*);
+std::ostream& operator<<(std::ostream& os, const int* i);
+std::ostream& operator<<(std::ostream& os, const unsigned* i);
+std::ostream& operator<<(std::ostream&, const Exp*);
+std::ostream& operator<<(std::ostream&, const VariablesType*);
+std::ostream& operator<<(std::ostream&, const Operations*);
+std::ostream& operator<<(std::ostream&, const Invariant*);
+std::ostream& operator<<(std::ostream&, const RustType*);
+std::ostream& operator<<(std::ostream&, const bool*);
+std::ostream& operator<<(std::ostream&, std::optional<std::string>);
+std::ostream& operator<<(std::ostream&, const Module* const);
+std::ostream& operator<<(std::ostream&, std::unordered_map<std::string, Module>*);
 std::ostream& operator<<(std::ostream&, const ReferencedMachine*);
 
 // --------------------------------- TOOLS

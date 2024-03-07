@@ -15,7 +15,9 @@
 #ifndef H_INSTRUCTION
 #define H_INSTRUCTION
 
-#include "../tinyxml2ext.h"
+#include "tinyxml2.h"
+using namespace tinyxml2;
+
 #include "../parser.h"
 #include "../../converter/r_assignement.h"
 #include "../../converter/r_instruction.h"

@@ -12,6 +12,12 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
+
+#include "../util/report.h"
+
+#include <fmt/format.h>
+
+
 // Machine file for template functions.
 
 template <typename T> void Parser::NodeActionForEachPresent(XMLElement* const root_element, const std::vector<std::tuple<std::string,
@@ -64,14 +70,14 @@ template <typename T, typename U> void Parser::NodeTwoActions(XMLElement* const 
 template <typename... Ts>
 void Parser::workOnElements(XMLElement* const element,
 			    std::map<std::string, elementAction<Ts...>> actions,
-			    const std::string error) {
+			    const std::string ) {
   for (XMLNode* node = element->FirstChild(); node != NULL; node = node->NextSibling()) {
     XMLElement* const subelement = node->ToElement();
     std::string name = subelement->Name();
     auto it = actions.find(name);
     if (it == actions.end()) {
       // The element isn’t on the list of recognized elements of b2rust.
-      Input::err << error << "\x1B[37mError while reading subelements of element `" << element->Name() << "`: the subelement `" << name << "` was found, but is unexpected.\033[0m\n";
+      Report::emitError(fmt::format("{};forbidden child {} for BXML element {}", name, element->Name()));
       Checker::checking_error = true;
     } else {
       elementAction<Ts...> action = it->second;
