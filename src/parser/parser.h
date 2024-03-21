@@ -17,7 +17,6 @@
 
 #include <tinyxml2.h>
 #include <iostream>
-#include <boost/multiprecision/cpp_int.hpp>
 #include <map>
 #include <string>
 #include <functional>
@@ -30,15 +29,11 @@
 #include "../input.h"
 #include "../checker/checker.h"
 #include "./bxml/binarypredop.h"
-
+#include "../converter/types.h"
 
 using namespace tinyxml2;
 
 #include <any>
-
-
-using cpp_int = boost::multiprecision::cpp_int;
-
 
 template <typename T>
 using simpleAction = std::pair<T*, T (*) (XMLElement*)>;
@@ -52,7 +47,6 @@ using attributeActions = const std::map<
   std::string,
   std::variant<
     const std::string**,
-    const cpp_int**,
     const unsigned**,
     const bool**,
     const binaryPredOp**

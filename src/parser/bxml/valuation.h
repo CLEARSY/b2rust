@@ -33,7 +33,7 @@ public:
 
   // --- ATTRIBUTES ---
   const std::string* ident;
-  const cpp_int* typref = nullptr;
+  const mathint_t* typref = nullptr;
 };
 
 const Valuation* _Valuation(XMLElement*);

@@ -71,10 +71,6 @@ They are available at the following URLs:
 * <https://github.com/fmtlib/fmt>
 * <https://github.com/leethomason/tinyxml2>
 
-`b2rust` has also a dependency on `boost`. 
-
-    sudo apt-get install libboost-dev
-
 ## Future work
 
 * Have a `b2rustc` binary that checks if a B implementation is 

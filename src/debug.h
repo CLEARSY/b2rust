@@ -84,7 +84,7 @@ template <typename T> std::string* printIt(T* object) {
 // Overrides for specific types.
 // Exception for `std::string`s.
 std::string* printIt(const std::string*);
-std::string* printIt(std::string);
+std::string* printIt(const std::string &);
 std::string* printIt(const int*);
 std::string* printIt(const unsigned int*);
 // std::string* printIt(std::map<std::string, const RustType*>*);

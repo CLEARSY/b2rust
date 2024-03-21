@@ -49,14 +49,16 @@ std::optional<const Exp*> BinaryExp::isInterval() const {
     return std::nullopt;
   }
 
-  if (*e1->value != 0) {
+  try {
+    if (std::stoi(*e1->value) != 0) {
+      return std::nullopt;
+    }
+    return exp.at(1);
+  } catch (const std::invalid_argument& e) {
+    return std::nullopt;
+  } catch (const std::out_of_range& e) {
     return std::nullopt;
   }
-
-
-  return exp.at(1);
-
-
 }
 
 void BinaryExp::collectLeaf(const Exp* expression, std::vector<const Exp*>* result) const {

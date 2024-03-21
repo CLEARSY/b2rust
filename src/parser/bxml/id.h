@@ -34,7 +34,7 @@ public:
   const std::string* instance = nullptr;
   const std::string* component = nullptr;
   const unsigned* suffix = nullptr;
-  const cpp_int* typref = nullptr;
+  const mathint_t* typref = nullptr;
 
   
 

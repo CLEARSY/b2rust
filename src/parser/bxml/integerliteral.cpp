@@ -33,12 +33,12 @@ const Exp* _IntegerLiteral(XMLElement* element) {
   // Parser::workOnElements<const Attr*>(element, {
   //     {"Attr", a_attr}
   //   },
-  //   "Error: it seems your files are not BXML 1.0 compliant.\n");
+  //   "Error: it seems your files are not BXML 1.0 compliant.\n");
 
   return il;
 }
 
-IntegerLiteral::IntegerLiteral(cpp_int* _value) :
+IntegerLiteral::IntegerLiteral(mathint_t* _value) :
 value(_value){}
 
 IntegerLiteral::IntegerLiteral(){

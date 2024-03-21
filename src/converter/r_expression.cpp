@@ -180,7 +180,7 @@ const RustExpression* NaryExp::ConvertMe(const Context* context) const {
   auto ra = new RustArray;
 
   // Ordered map for values.
-  std::map<cpp_int, const RustExpression*> values;
+  std::map<mathint_t, const RustExpression*> values;
 
   for (const Exp* e : exp) {
     // According to the checking, it is necessarily a `BinaryExp` whose left members are `IntegerLiteral`s.
@@ -202,14 +202,14 @@ const RustExpression* NaryExp::ConvertMe(const Context* context) const {
 
 
 Int::Int(const std::string& value_s) :
-  value(stoi(value_s, NULL, 10)) {
-}
-
-
-Int::Int(cpp_int value_s) :
   value(value_s) {
 }
 
+Int::Int(size_t n) 
+: value(std::to_string(n))
+{
+
+}
 
 Bool::Bool(const std::string& value_s) :
   value(value_s == "TRUE" ? true : false) {

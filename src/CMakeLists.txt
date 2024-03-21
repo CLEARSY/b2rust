@@ -190,8 +190,6 @@ include_directories(
   ${FMT_CXX_SOURCE_DIR}/include/
   )
 
-find_package(Boost REQUIRED)
-
 target_link_libraries(b2rust
   PRIVATE fmt::fmt-header-only
   -Bdynamic tinyxml2::tinyxml2 ${Boost_LIBRARIES})

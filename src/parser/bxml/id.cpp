@@ -58,33 +58,29 @@ std::optional<const Exp*> Id::isInterval() const {
      auto it = RustType::types.find(*value);
      
     if (it != RustType::types.end()) {
-      cpp_int* val = new cpp_int();
-      *val = 0;
+      mathint_t* val = new mathint_t();
+      *val = std::string();
       auto detectedType = RustType::types.at(*value);
     // It is a recognized type!
       if (dynamic_cast<const  i16_t*>(detectedType) || dynamic_cast<const i8_t*>(detectedType) || dynamic_cast<const  i32_t*>(detectedType)){
-        *val = -1;
+        *val = std::string("-1");
       } 
 
       if (dynamic_cast<const  u8_t*>(detectedType)){
-        *val = 255;
+        *val = std::string("255");
       } else if (dynamic_cast<const  u16_t*>(detectedType)){
-        *val = 65535;
+        *val = std::string("65535");
       } else if (dynamic_cast<const u32_t*>(detectedType)){
-        *val = 4294967295;
+        *val = std::string("4294967295");
       } else if (dynamic_cast<const u64_t*>(detectedType)){
-        std::string maxU64 = "18446744073709551615";
-        *val = boost::multiprecision::cpp_int(maxU64);
-        
+        *val = std::string("18446744073709551615");
       } else if (dynamic_cast<const u128_t*>(detectedType)){
-        std::string maxU128 = "340282366920938463463374607431768211455";
-        *val = boost::multiprecision::cpp_int(maxU128);
+        *val = std::string("340282366920938463463374607431768211455");
       }
 
-      if (*val != 0)
+      if (*val != std::string())
        return new IntegerLiteral(val);
 
     } 
     return std::nullopt;
-    
-};
+}

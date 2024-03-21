@@ -62,9 +62,6 @@ void Parser::workOnAttributes(XMLElement* const element, attributeActions* actio
       std::string str = attr->Value();
       if (std::holds_alternative<const std::string**>(it->second)) {
         *std::get<const std::string**>(it->second) = new std::string(str);
-      } else if (std::holds_alternative<const cpp_int**>(it->second)) {
-        auto value = boost::multiprecision::cpp_int(str);
-        *std::get<const cpp_int**>(it->second) = new cpp_int(value);
       } else if (std::holds_alternative<const bool**>(it->second)) {
         const bool* cv = str == "TRUE" ? new bool(true) : new bool(false);
         *std::get<const bool**>(it->second) = cv;

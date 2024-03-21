@@ -34,7 +34,7 @@ public:
 
   // --- ATTRIBUTES ---
   const std::string* op;
-  const cpp_int* typref = nullptr;
+  const mathint_t* typref = nullptr;
 
 
   // --- TOOLS ---

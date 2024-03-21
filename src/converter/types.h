@@ -23,11 +23,12 @@
 #include <filesystem>
 
 #include "../parser/recognized_types.h"
-#include <boost/multiprecision/cpp_int.hpp>
 
 #include <map>
+#include <string>
 
-using cpp_int = boost::multiprecision::cpp_int;
+/// @brief a type to represent mathematical integer literals (of arbitrary size)
+typedef std::string mathint_t;
 
 class bool_t;
 class i8_t;
@@ -89,89 +90,89 @@ extern bool loadOperationAssociationFromConfig(const std::filesystem::path &conf
 
 //************Signed integer *************//
 class i8_t : public RustType {
-  std::string PrintMe() const;
-  std::string PrintMeDefault() const;
-  void DebugMe(std::ostream&) const;
+  std::string PrintMe() const override;
+  std::string PrintMeDefault() const override;
+  void DebugMe(std::ostream&) const override;
 };
 
 class i16_t : public RustType {
-  std::string PrintMe() const;
-  std::string PrintMeDefault() const;
-  void DebugMe(std::ostream&) const;
+  std::string PrintMe() const override;
+  std::string PrintMeDefault() const override;
+  void DebugMe(std::ostream&) const override;
 };
 
 class i32_t : public RustType {
-  std::string PrintMe() const;
-  std::string PrintMeDefault() const;
-  void DebugMe(std::ostream&) const;
+  std::string PrintMe() const override;
+  std::string PrintMeDefault() const override;
+  void DebugMe(std::ostream&) const override;
 };
 
 class i64_t : public RustType {
-  std::string PrintMe() const;
-  std::string PrintMeDefault() const;
-  void DebugMe(std::ostream&) const;
+  std::string PrintMe() const override;
+  std::string PrintMeDefault() const override;
+  void DebugMe(std::ostream&) const override;
 };
 
 class i128_t : public RustType {
-  std::string PrintMe() const;
-  std::string PrintMeDefault() const;
-  void DebugMe(std::ostream&) const;
+  std::string PrintMe() const override;
+  std::string PrintMeDefault() const override;
+  void DebugMe(std::ostream&) const override;
 };
 
 //************Unsigned integer *************//
 class u8_t : public RustType {
-  std::string PrintMe() const;
-  std::string PrintMeDefault() const;
-  void DebugMe(std::ostream&) const;
+  std::string PrintMe() const override;
+  std::string PrintMeDefault() const override;
+  void DebugMe(std::ostream&) const override;
 };
 
 class u16_t : public RustType {
-  std::string PrintMe() const;
-  std::string PrintMeDefault() const;
-  void DebugMe(std::ostream&) const;
+  std::string PrintMe() const override;
+  std::string PrintMeDefault() const override;
+  void DebugMe(std::ostream&) const override;
 };
 
 class u32_t : public RustType {
-  std::string PrintMe() const;
-  std::string PrintMeDefault() const;
-  void DebugMe(std::ostream&) const;
+  std::string PrintMe() const override;
+  std::string PrintMeDefault() const override;
+  void DebugMe(std::ostream&) const override;
 };
 
 class u64_t : public RustType {
-  std::string PrintMe() const;
-  std::string PrintMeDefault() const;
-  void DebugMe(std::ostream&) const;
+  std::string PrintMe() const override;
+  std::string PrintMeDefault() const override;
+  void DebugMe(std::ostream&) const override;
 };
 
 class u128_t : public RustType {
-  std::string PrintMe() const;
-  std::string PrintMeDefault() const;
-  void DebugMe(std::ostream&) const;
+  std::string PrintMe() const override;
+  std::string PrintMeDefault() const override;
+  void DebugMe(std::ostream&) const override;
 };
 
 //*********others*************//
 class bool_t : public RustType {
-  std::string PrintMe() const;
-  std::string PrintMeDefault() const;
-  void DebugMe(std::ostream&) const;
+  std::string PrintMe() const override;
+  std::string PrintMeDefault() const override;
+  void DebugMe(std::ostream&) const override;
 };
 
 class string_t : public RustType {
-  std::string PrintMe() const;
-  std::string PrintMeDefault() const;
-  void DebugMe(std::ostream&) const;
+  std::string PrintMe() const override;
+  std::string PrintMeDefault() const override;
+  void DebugMe(std::ostream&) const override;
 };
 
 class IntegerType : public RustType {
-  std::string PrintMe() const;
-  std::string PrintMeDefault() const;
-  void DebugMe(std::ostream&) const;
+  std::string PrintMe() const override;
+  std::string PrintMeDefault() const override;
+  void DebugMe(std::ostream&) const override;
 };
 
 class ErrorType : public RustType {
-  std::string PrintMe() const;
-  std::string PrintMeDefault() const;
-  void DebugMe(std::ostream&) const;
+  std::string PrintMe() const override;
+  std::string PrintMeDefault() const override;
+  void DebugMe(std::ostream&) const override;
 };
 
 // Why "partial" tabular ?
@@ -188,11 +189,11 @@ public:
   // The type there’s in.
   const RustType* elementsType;
 
-  std::string PrintMe() const;
-  std::string PrintMeDefault() const;
+  std::string PrintMe() const override;
+  std::string PrintMeDefault() const override;
 
   const RustType* convertIfPartial(const Context*) const;
-  void DebugMe(std::ostream&) const {};
+  void DebugMe(std::ostream&) const  override {}
 };
 
 class RustTabular : public RustType {
@@ -207,9 +208,9 @@ public:
 
   // The constructor.
 
-  std::string PrintMe() const;
-  std::string PrintMeDefault() const;
-  void DebugMe(std::ostream&) const {};
+  std::string PrintMe() const override;
+  std::string PrintMeDefault() const override;
+  void DebugMe(std::ostream&) const override {}
 };
 
 // Translated B set, it has just the title of the enum, the content of the enum can be found in the context
@@ -220,9 +221,9 @@ public:
   // The name of the enum.
   const std::string* const name;
 
-  std::string PrintMe() const;
-  std::string PrintMeDefault() const;
-  void DebugMe(std::ostream&) const {};
+  std::string PrintMe() const override;
+  std::string PrintMeDefault() const override;
+  void DebugMe(std::ostream&) const override {}
 };
 
 #endif

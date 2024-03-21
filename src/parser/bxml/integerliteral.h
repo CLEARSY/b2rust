@@ -29,11 +29,11 @@ public:
 
 
   // --- ATTRIBUTES ---
-  const cpp_int* value;
-  const cpp_int* typref = nullptr;
+  const mathint_t* value;
+  const mathint_t* typref = nullptr;
 
   IntegerLiteral();
-  IntegerLiteral(cpp_int*);
+  IntegerLiteral(mathint_t*);
   // --- TOOLS ---
   const RustExpression* ConvertMe(const Context*) const;
   void DebugMe(std::ostream&) const;

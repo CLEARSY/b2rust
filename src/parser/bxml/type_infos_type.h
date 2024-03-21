@@ -27,7 +27,7 @@ public:
 
   // --- ATTRIBUTES ---
   // required
-  const cpp_int* id;
+  const mathint_t* id;
   
   // --- TOOLS ---
 private:

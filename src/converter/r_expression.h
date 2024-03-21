@@ -56,17 +56,22 @@ private:
 };
 
 // The different expressions.
+
+/// @brief Represents an integer literal
 class Int : public RustExpression {
 public:
-  const cpp_int value;
+  const mathint_t value;
 
   const RustType* getType() const;
 
+  operator std::string() const {
+    return value;
+  }
   std::string PrintMe() const;
   void DebugMe(std::ostream&) const;
 
   Int(const std::string&);
-  Int(cpp_int);
+  Int(size_t);
 };
 
 class Bool : public RustExpression {

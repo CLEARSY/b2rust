@@ -35,7 +35,7 @@ exitme() {
     exit $1
 }
 
-command="$b2rust -I $dir $module -O $dir"
+command="$b2rust -i $dir -o $dir $module"
 
 echo -en "[comparison test] Proceeding test \`$test_name\`... Info: you can run yourself the code generation part of the test with the command \033[1m$command\033[0m. " 
 

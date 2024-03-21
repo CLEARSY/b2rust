@@ -27,7 +27,7 @@ public:
 
   
   // --- ATTRIBUTES ---
-  const cpp_int* typref = nullptr;
+  const mathint_t* typref = nullptr;
 
   
   // --- TOOLS ---

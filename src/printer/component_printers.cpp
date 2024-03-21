@@ -422,8 +422,15 @@ std::string RustAssignement::PrintMe() const {
     return leftExpression->PrintMe()+" = "+rightExpression->PrintMe() + ";\n";
   } else if (dynamic_cast<const Int*>(rightExpression)){
     auto val = dynamic_cast<const Int*>(rightExpression);
-    if (val->value > 2147483647 || val->value < -2147483648){
-      return leftExpression->PrintMe()+" = "+leftExpression->castToType(rightExpression) +";\n";
+
+    try {
+        long long v = std::stoi(val->value);
+        if (v > 2147483647 || v < -2147483648){
+          return leftExpression->PrintMe()+" = "+leftExpression->castToType(rightExpression) +";\n";
+        }
+    } 
+    catch(...) {
+        // falls through on purpose
     }
   }
   //return leftExpression->PrintMe()+" = ("+rightExpression->PrintMe()+ ") "+leftExpression->castToType() +";\n";
@@ -569,7 +576,7 @@ std::string RustTabular::PrintMeDefault() const{
 }
 
 string Int::PrintMe() const {
-  return value.str();
+  return value;
 }
 
 string RustString::PrintMe() const {

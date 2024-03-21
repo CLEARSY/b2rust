@@ -16,11 +16,8 @@
 #define H_PRINTER
 
 #include <filesystem>
-#include <fstream>
 #include <iostream>
 #include <string>
-#include <sys/wait.h>
-#include <unistd.h>
 
 #include "../b2rust.h"
 #include "../input.h"

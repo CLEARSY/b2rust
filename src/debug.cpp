@@ -43,16 +43,16 @@ using namespace std;
 ostream& operator<<(ostream& os, XMLElement* const element) {
   os << "It is a XMLElement whose name is " << element->Name() << ".\n";
   os << "Its attributes are:\n";
-  for (const XMLAttribute* attr = element->FirstAttribute(); attr != NULL; attr = attr->Next()) os << "— The attribute " << attr->Name() << " which is " << attr->Value() << ".\n";
+  for (const XMLAttribute* attr = element->FirstAttribute(); attr != NULL; attr = attr->Next()) os << "— The attribute " << attr->Name() << " which is " << attr->Value() << ".\n";
 
   os << "Its nodes are:\n";
   for (const XMLNode* attr = element->FirstChild(); attr != NULL; attr = attr->NextSibling()) {
     if (attr->ToElement()) {
       const XMLElement* const element = attr->ToElement();
-      os << "— An element whose name is " << element->Name() << ".\n";
+      os << "— An element whose name is " << element->Name() << ".\n";
       os << "Its output: " << element;
     } else {
-      os << "— A node which is not an element, a comment or a text...\n";
+      os << "— A node which is not an element, a comment or a text...\n";
     }
   }
   return os;
@@ -127,7 +127,7 @@ ostream& operator<<(ostream& os, const bool* bl) {
 
 
 ostream& operator<<(ostream& os, const Printer* const printer) {
-  os << "This is a `Printer`; it contains: \n — A path, `" << printer->path << "`;\n – A code stream.\n";
+  os << "This is a `Printer`; it contains: \n — A path, `" << printer->path << "`;\n – A code stream.\n";
   return os;
 }
 
@@ -283,16 +283,16 @@ ostream& operator<<(ostream& os, const Operation* const) {
 ostream& operator<<(ostream& os, const RustModule* const md) {
   os << "\033[1mA `RustModule`, whose name is `" << md->name << "`, which contains the following elements:\033[0m\n";
   if (!md->mods.empty()) {
-    os << "  – A `mod`s set; it contains:\n";
+    os << "  – A `mod`s set; it contains:\n";
     for (auto s : md->mods) {
-      os << "    – " << s;
+      os << "    – " << s;
     }
   }
 
   if (!md->uses.empty()) {
-    os << "  – A `use`s set; it contains:\n";
+    os << "  – A `use`s set; it contains:\n";
     for (auto s : md->uses) {
-      os << "    – " << s;
+      os << "    – " << s;
     }
   }
 
@@ -399,7 +399,7 @@ void NaryPred::DebugMe(std::ostream&) const {
   // else {
   //   os << " and which includes the following predicates:\n";
   //   for (const PredGroup* predicate : _pred_group) {
-  //     os << "  – ";
+  //     os << "  – ";
   //     predicate->DebugMe(os);
   //   }
   // }
@@ -448,13 +448,9 @@ ostream& operator<<(ostream& os, std::set<std::string> set) {
   return os;
 }
 
-
 void Int::DebugMe(ostream& os) const {
   os << "An integer of value " << value << ".\n";
 }
-
-
-
 
 void Bool::DebugMe(ostream& os) const {
   os << "A boolean of value " << value << ".\n";
@@ -561,7 +557,7 @@ void NaryExp::DebugMe(std::ostream&) const {
 ostream& operator<<(ostream& os, std::map<const std::string, const RustType*>* types) {
   os << "A set of variables names associated to types; there is:\n";
   for (auto def : *types) {
-    os << "— A definition for the variable `" << def.first << "`; its type is `";
+    os << "— A definition for the variable `" << def.first << "`; its type is `";
     def.second->DebugMe(os);
     os << "`;\n";
   }
@@ -622,7 +618,7 @@ void string_t::DebugMe(std::ostream& os) const {
 ostream& operator<<(ostream& os, const std::set<std::string>* set) {
   os << "A set of strings; there is:\n";
   for (auto name : *set) {
-    os << "— `" << name << "`;\n";
+    os << "— `" << name << "`;\n";
   }
   return os;
 }
@@ -638,8 +634,8 @@ void Declaration::DebugMe(std::ostream& os) const {
 ostream& operator<<(ostream& os, const VariablesType*) {
   // if (vtypes) {
   //   os << "A `VariablesType`; it contains:\n";
-  //   os << "— An attribute `_attr`: " << vtypes->_attr;
-  //   os << "— An attribute `_id`: ";
+  //   os << "— An attribute `_attr`: " << vtypes->_attr;
+  //   os << "— An attribute `_id`: ";
   //   os << (std::vector<const Id*>*) &vtypes->_id;
   // } else {
   //   os << "(undefined)\n";
@@ -660,10 +656,10 @@ ostream& operator<<(ostream& os, const Attr* attr) {
 
 void Id::DebugMe(std::ostream& os) const {
   os << "An `Id`; it contains:\n";
-  os << "— An attribute `_attr`: " << "(non parsed)\n";
-  os << "— An attribute `value`: " << value;
-  os << "— An attribute `suffix`: " << suffix;
-  os << "— An attribute `typref`: " << typref << "\n";
+  os << "— An attribute `_attr`: " << "(non parsed)\n";
+  os << "— An attribute `value`: " << value;
+  os << "— An attribute `suffix`: " << suffix;
+  os << "— An attribute `typref`: " << typref << "\n";
 }
 
 
@@ -736,7 +732,7 @@ ostream& operator<<(ostream& os, const Operations* operations) {
     os << "[Operations 1/2: `attr`:] " << operations->attr;
     os << "[Operations 2/2: vector `operations`:]\n";
     for (const Operation* operation : operations->operations) {
-      os << "  – " << operation;
+      os << "  – " << operation;
     }
     os << "(End of `Operations`.)\n";
   } else {
@@ -769,7 +765,7 @@ ostream& operator<<(ostream& os, const Id* id) {
 std::ostream& operator<<(std::ostream& os, const InstanceListType* ilt) {
   if (!ilt) return os << "(undefined)\n";
   os << "An `InstanceListType`; it contains:\n";
-  os << "  – A vector of `ReferencedMachine`; it contains:\n";
+  os << "  – A vector of `ReferencedMachine`; it contains:\n";
   for (auto r : ilt->referencedMachine) {
     os << r;
   }
@@ -779,8 +775,8 @@ std::ostream& operator<<(std::ostream& os, const InstanceListType* ilt) {
 
 std::ostream& operator<<(std::ostream& os, const ReferencedMachine* rm) {
   os << "A `ReferencedMachine`; it contains:\n";
-  os << "  — As `name`: " << rm->name;
-  os << "  — As `instance`: " << rm->instance;
+  os << "  — As `name`: " << rm->name;
+  os << "  — As `instance`: " << rm->instance;
   return os;
 }
 
@@ -814,19 +810,7 @@ std::string* printIt(const std::string* object) {
 }
 
 
-std::string* printIt(const cpp_int object) {
-  if (!object) return new std::string("(Undefined.)\n");
-  return indentMe(new std::string("( cpp_int) " + object.str()+"\n"));
-}
-
-
-std::string* printIt(const cpp_int* object) {
-  if (!object) return new std::string("(Undefined.)\n");
-  return indentMe(printIt(*object));
-}
-
-
-std::string* printIt(const std::string object) {
+std::string* printIt(const std::string &object) {
   return indentMe(new std::string("(std::string) "+object + "\n"));
 }
 
@@ -863,10 +847,10 @@ std::string* BinaryPred::debugMe() const {
 std::string* Context::debugMe() const {
   std::string* output = new std::string;
   *output += "A `Context`; it contains:\n";
-  *output += "  – As `parameters`:\n    " + *printIt(&parameters);
-  *output += "  – As `global`:\n    " + *printIt(&globalVariables);
-  *output += "  – As `instancesNameAssoc`:\n    " + *printIt(&instancesNameAssoc);
-  *output += "  – As `operationNameAssoc`:\n    " + *printIt(&operationNameAssoc);
+  *output += "  – As `parameters`:\n    " + *printIt(&parameters);
+  *output += "  – As `global`:\n    " + *printIt(&globalVariables);
+  *output += "  – As `instancesNameAssoc`:\n    " + *printIt(&instancesNameAssoc);
+  *output += "  – As `operationNameAssoc`:\n    " + *printIt(&operationNameAssoc);
   return output;
 }
 
@@ -874,7 +858,7 @@ std::string* Context::debugMe() const {
 std::string* EnumeratedValues::debugMe() const {
   std::string* output = new std::string;
   *output += "An `EnumeratedValues`; it contains:\n";
-  // *output += "  – As `operationNameAssoc`:\n    " + *printIt(&operationNameAssoc);
+  // *output += "  – As `operationNameAssoc`:\n    " + *printIt(&operationNameAssoc);
   return output;
 }
 
@@ -882,7 +866,7 @@ std::string* EnumeratedValues::debugMe() const {
 std::string* ExpComparison::debugMe() const {
   std::string* output = new std::string;
   *output += "An `ExpComparison`; it contains:\n";
-  // *output += "  – As `operationNameAssoc`:\n    " + *printIt(&operationNameAssoc);
+  // *output += "  – As `operationNameAssoc`:\n    " + *printIt(&operationNameAssoc);
   return output;
 }
 
@@ -890,20 +874,20 @@ std::string* ExpComparison::debugMe() const {
 std::string* FunctionCall::debugMe() const {
   std::string* output = new std::string;
   *output += "A `FunctionCall`; it contains:\n";
-  *output += "  – As `moduleName`: \n    " + *printIt(&moduleName);
- // *output += "  – As `functionName`: \n    " + *printIt(&function);
-  *output += "  – As `inputParameters`: \n    " + *printIt(&inputParameters);
-  *output += "  – As `outputParameters`: \n    " + *printIt(&outputParameters);
+  *output += "  – As `moduleName`: \n    " + *printIt(&moduleName);
+ // *output += "  – As `functionName`: \n    " + *printIt(&function);
+  *output += "  – As `inputParameters`: \n    " + *printIt(&inputParameters);
+  *output += "  – As `outputParameters`: \n    " + *printIt(&outputParameters);
   return output;
 }
 
 std::string* DelegateCall::debugMe() const {
   std::string* output = new std::string;
   *output += "A `FunctionCall`; it contains:\n";
-  *output += "  – As `moduleName`: \n    " + *printIt(&moduleName);
-  *output += "  – As `functionName`: \n    " + *printIt(&functionName);
-  *output += "  – As `inputParameters`: \n    " + *printIt(&inputParameters);
-  *output += "  – As `outputParameters`: \n    " + *printIt(&outputParameters);
+  *output += "  – As `moduleName`: \n    " + *printIt(&moduleName);
+  *output += "  – As `functionName`: \n    " + *printIt(&functionName);
+  *output += "  – As `inputParameters`: \n    " + *printIt(&inputParameters);
+  *output += "  – As `outputParameters`: \n    " + *printIt(&outputParameters);
   return output;
 }
 
@@ -911,9 +895,9 @@ std::string* DelegateCall::debugMe() const {
 std::string* Id::debugMe() const {
   std::string* output = new std::string;
   *output += "An `Id`; it contains:\n";
-  *output += "  – As `value`: \n    " + *printIt(value);
-  *output += "  – As `suffix`: \n    " + *printIt(suffix);
-  *output += "  – As `typref`: \n    " + *printIt(typref);
+  *output += "  – As `value`: \n    " + *printIt(value);
+  *output += "  – As `suffix`: \n    " + *printIt(suffix);
+  *output += "  – As `typref`: \n    " + *printIt(typref);
   return output;
 }
 
@@ -921,7 +905,7 @@ std::string* Id::debugMe() const {
 std::string* InstanceListType::debugMe() const {
   std::string* output = new std::string;
   *output += "An `InstanceListType`; it contains:\n";
-  *output += "  – As `referencedMachine`: \n    " + *printIt(&referencedMachine);
+  *output += "  – As `referencedMachine`: \n    " + *printIt(&referencedMachine);
   return output;
 }
 
@@ -929,7 +913,7 @@ std::string* InstanceListType::debugMe() const {
 std::string* Invariant::debugMe() const {
   std::string* output = new std::string;
   *output += "An `Invariant`; to implement!:\n";
-  // *output += "  – As `operationNameAssoc`:\n    " + *printIt(&operationNameAssoc);
+  // *output += "  – As `operationNameAssoc`:\n    " + *printIt(&operationNameAssoc);
   return output;
 }
 
@@ -937,18 +921,18 @@ std::string* Invariant::debugMe() const {
 std::string* Machine::debugMe() const {
   std::string* output = new std::string;
   *output += "A `Machine`; it contains:\n";
-  *output += "  – As `abstraction`: \n    " + *printIt(abstraction);
-  *output += "  – As `imports`: \n    " + *printIt(imports);
-  *output += "  – As `values`: \n    " + *printIt(values);
-  *output += "  – As `sets`: \n    " + *printIt(sets);
-  *output += "  – As `abstractConstants`: \n    " + *printIt(abstractConstants);
-  *output += "  – As `concreteConstants`: \n    " + *printIt(concreteConstants);
-  *output += "  – As `abstractVariables`: \n    " + *printIt(abstractVariables);
-  *output += "  – As `concreteVariables`: \n    " + *printIt(concreteVariables);
-  *output += "  – As `properties`: \n    " + *printIt(properties);
-  *output += "  – As `invariant`: \n    " + *printIt(invariant);
-  *output += "  – As `initialisation`: \n    " + *printIt(initialisation);
-  *output += "  – As `operations`: \n    " + *printIt(operations);
+  *output += "  – As `abstraction`: \n    " + *printIt(abstraction);
+  *output += "  – As `imports`: \n    " + *printIt(imports);
+  *output += "  – As `values`: \n    " + *printIt(values);
+  *output += "  – As `sets`: \n    " + *printIt(sets);
+  *output += "  – As `abstractConstants`: \n    " + *printIt(abstractConstants);
+  *output += "  – As `concreteConstants`: \n    " + *printIt(concreteConstants);
+  *output += "  – As `abstractVariables`: \n    " + *printIt(abstractVariables);
+  *output += "  – As `concreteVariables`: \n    " + *printIt(concreteVariables);
+  *output += "  – As `properties`: \n    " + *printIt(properties);
+  *output += "  – As `invariant`: \n    " + *printIt(invariant);
+  *output += "  – As `initialisation`: \n    " + *printIt(initialisation);
+  *output += "  – As `operations`: \n    " + *printIt(operations);
   return output;
 }
 
@@ -956,7 +940,7 @@ std::string* Machine::debugMe() const {
 std::string* NaryPred::debugMe() const {
   std::string* output = new std::string;
   *output += "A `NaryPred`; to implement!:\n";
-  // *output += "  – As `abstraction`: \n    " + *printIt(abstraction);
+  // *output += "  – As `abstraction`: \n    " + *printIt(abstraction);
   return output;
 }
 
@@ -964,9 +948,9 @@ std::string* NaryPred::debugMe() const {
 std::string* OperationCall::debugMe() const {
   std::string* output = new std::string;
   *output += "An `OperationCall`; it contains:\n";
-  *output += "  – As `name`:\n    "+*printIt(name);
-  *output += "  – As `inputParameters`:\n    "+*printIt(inputParameters);
-  *output += "  – As `outputParameters`:\n    "+*printIt(outputParameters);
+  *output += "  – As `name`:\n    "+*printIt(name);
+  *output += "  – As `inputParameters`:\n    "+*printIt(inputParameters);
+  *output += "  – As `outputParameters`:\n    "+*printIt(outputParameters);
   return output;
 }
 
@@ -974,7 +958,7 @@ std::string* OperationCall::debugMe() const {
 std::string* OperationCall_Name::debugMe() const {
   std::string* output = new std::string;
   *output += "An `OperationCall_Name`; it contains:\n";
-  *output += "  – As `id`: " + *printIt(id);
+  *output += "  – As `id`: " + *printIt(id);
   return output;
 }
 
@@ -982,9 +966,9 @@ std::string* OperationCall_Name::debugMe() const {
 std::string* OperationCall_Name_Id::debugMe() const {
   std::string* output = new std::string;
   *output += "An `OperationCall_Name_Id`; it contains:\n";
-  *output += "  – As `value`: " + *printIt(value);
-  *output += "  – As `instance`: " + *printIt(instance);
-  *output += "  – As `component`: " + *printIt(component);
+  *output += "  – As `value`: " + *printIt(value);
+  *output += "  – As `instance`: " + *printIt(instance);
+  *output += "  – As `component`: " + *printIt(component);
   return output;
 }
 
@@ -1007,7 +991,7 @@ std::string* Parser::debugMe() const {
 std::string* PredicateType::debugMe() const {
   std::string* output = new std::string;
   *output += "A `PredicateType`; it contains:\n";
-  *output += "  — As `pred_group`: " + *printIt(pred_group);
+  *output += "  — As `pred_group`: " + *printIt(pred_group);
   return output;
 }
 
@@ -1029,12 +1013,12 @@ std::string* RustExpression::debugMe() const {
 std::string* RustModule::debugMe() const {
   std::string* output = new std::string;
   *output += "A `RustModule`; it contains:\n";
-  // *output += "  — As `parser`: " + *printIt(parser);
-  // *output += "  — As `am`: " + *printIt(am);
-  // *output += "  — As `impl`: " + *printIt(impl);
-  *output += "  — As `name`: " + *printIt(name);
-  *output += "  — As `children`: " + *printIt(&children);
-  *output += "  — To implement!\n";
+  // *output += "  — As `parser`: " + *printIt(parser);
+  // *output += "  — As `am`: " + *printIt(am);
+  // *output += "  — As `impl`: " + *printIt(impl);
+  *output += "  — As `name`: " + *printIt(name);
+  *output += "  — As `children`: " + *printIt(&children);
+  *output += "  — To implement!\n";
   return output;
 }
 
@@ -1049,7 +1033,7 @@ std::string* RustType::debugMe() const {
 std::string* Set::debugMe() const {
   std::string* output = new std::string;
   *output += "A `Set`; to implement!:\n";
-  // *output += "  – As `abstraction`: \n    " + *printIt(abstraction);
+  // *output += "  – As `abstraction`: \n    " + *printIt(abstraction);
   return output;
 }
 
@@ -1057,7 +1041,7 @@ std::string* Set::debugMe() const {
 std::string* Sets::debugMe() const {
   std::string* output = new std::string;
   *output += "A `Sets`; to implement!:\n";
-  // *output += "  – As `abstraction`: \n    " + *printIt(abstraction);
+  // *output += "  – As `abstraction`: \n    " + *printIt(abstraction);
   return output;
 }
 
@@ -1121,7 +1105,7 @@ std::string* Type_UnaryExp::debugMe() const {
 std::string* UnaryPred::debugMe() const {
   std::string* output = new std::string;
   *output += "An `UnaryPred`; to implement!:\n";
-  // *output += "  – As `abstraction`: \n    " + *printIt(abstraction);
+  // *output += "  – As `abstraction`: \n    " + *printIt(abstraction);
   return output;
 }
 
@@ -1129,7 +1113,7 @@ std::string* UnaryPred::debugMe() const {
 std::string* VariablesType::debugMe() const {
   std::string* output = new std::string;
   *output += "An `VariablesType`; it contains:\n    ";
-  *output += "— A vector of `Id`; " + *indentMe(printIt(&id));
+  *output += "— A vector of `Id`; " + *indentMe(printIt(&id));
   return output;
 }
 
@@ -1144,7 +1128,7 @@ std::string* While::debugMe() const {
 std::string* __ExpVector::debugMe() const {
   std::string* output = new std::string;
   *output += "A `__ExpVector`; it contains:\n";
-  *output += "  – As `exp`: a vector of `Exp` which contain the following elements:\n";
+  *output += "  – As `exp`: a vector of `Exp` which contain the following elements:\n";
   std::stringstream ss;
   for (auto i_exp : exp) {
     i_exp->DebugMe(ss);
@@ -1162,7 +1146,7 @@ std::string* __ExpVector::debugMe() const {
 std::string* __IdVector::debugMe() const {
   std::string* output = new std::string;
   *output += "A `__IdVector`; it contains:\n";
-  *output += "  – As `id`: a vector of `Id` which contain the following elements:\n";
+  *output += "  – As `id`: a vector of `Id` which contain the following elements:\n";
   std::stringstream ss;
   for (auto i_id : id) {
     i_id->DebugMe(ss);
