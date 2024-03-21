@@ -71,7 +71,7 @@ int main(const int argc, const char* const* const argv) { // This one is fine.
   }
 
   instances_printer.addModule(b2rust::r_main_module->context);
-  instances_printer.print(Input::output_dir);
+  instances_printer.print(Input::output_dir.string());
   
   return OK;
 }

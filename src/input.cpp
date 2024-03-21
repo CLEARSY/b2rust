@@ -242,7 +242,7 @@ module.
   // Gives an XMLElement* of the machine from the name of the component. `file` is a path.
   auto load_file = [&XmlOfComponent](const fs::path &file) {
     XMLDocument* const doc = new XMLDocument;
-    XMLError XML_error = doc->LoadFile(file.c_str());
+    XMLError XML_error = doc->LoadFile(file.string().c_str());
     if (XML_error != XML_SUCCESS) {
       Report::fatalError(fmt::format("cannot load BXML file {}: {}.", file.string(), doc->ErrorStr()),
 			 ERR_BXML_LOADING);

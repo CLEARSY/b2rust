@@ -83,10 +83,7 @@ set(SOURCES
   converter/r_while.cpp
   converter/types.cpp
 
-
-
   converter/r_predicate/r_predicate.cpp
-
 
   printer/printer.cpp
   printer/component_printers.cpp

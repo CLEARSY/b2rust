@@ -3,7 +3,6 @@ project(PROJECT_B2RUST)
 message(STATUS "Processing ${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt")
 
 set(CMAKE_CXX_STANDARD 17)  # Spécifie la version C++17
-
 # The project name. The binary will be `${BIN}/${NAME}`.
 set(NAME b2rust)
 
@@ -14,7 +13,7 @@ else()
 endif()
    	
 if (PROJECT_IS_TOP_LEVEL)
-	
+
 # The directory containing the binaries.
 set(BIN ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 # The test directory.
@@ -42,6 +41,7 @@ set(CALL_CODE_DIR ${TESTS}/call_code/)
 # -------------------------------------------
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BIN})
+
 add_subdirectory(extern)
 
 # The tests.
