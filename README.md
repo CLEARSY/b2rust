@@ -58,8 +58,7 @@ They are available at the following URLs:
 
 ## Compilation
 
-You will need to have installed the dependencies before building
-b2rust. You also need a C++ compiler and CMake.
+You need a C++ compiler, the CMake build system. The first build should be done while online so that the dependencies may be downloaded and compiled.
 
 Create a directory for the compilation artifacts, and move
 to that library:
