@@ -82,6 +82,12 @@ cmake --build .
   as possible by providing clear messages with line and column
   numbers of problems detected in the source file.
 
+## Contributors
+
+* Elouan Fabre (CLEARSY)
+* Christophe Chen (CLEARSY)
+* David Deharbe (CLEARSY)
+
 ### Miscellaneous notes in French
 
 Quelques remarques en langue française pour les futurs développeurs:
