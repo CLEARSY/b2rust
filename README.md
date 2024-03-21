@@ -1,79 +1,83 @@
 # b2rust
 
-b2rust is written in C++ and converts a B implementation component
-into a Rust library (a set of Rust code files) which can be compiled
-without errors (but not necessarily without warnings). The functions
-it defines can be used in a separate Rust project.
+## Introduction
 
-Its calling syntax is the following:
+b2rust is written in C++ and produces Rust source code from a B component.
+The produced source code is a Rust library (a.k.a crate).
 
-`b2rust module -I directory [-O output_directory]`
+```text
+Usage:
+  b2rust [-h | --help]
+  b2rust [-v | --version]
+  b2rust [-x] -i src [ -c cfgpath ] ( -l lib )* [ -o dst ] component
+Options:
+  -c, --configuration path  Sets the path to the configuration directory
+  -I, -i, --include path    Sets the path to a directory containing BXML files of the main project
+  -l, --library path        Sets the path to a directory containing BXML files of a library project
+  -o, --output path         Sets the path to a directory where the generated Rust files are stored
+  -h, --help                Display this help message and exits
+  -v, --version             Displays the program version and exits
+  -x, --xml                 Output messages are embedded in XML elements (does not apply to -h and -v)
+```
 
-If an `output_directory` is not provided, the Rust library will be generated in the current directory.
-
-Input requirements:
---- `module` is the base module or entry module: the module which recursively imports every module and which is not imported by any module.
-
---- `directory` must be accessible and contain the base module (so, the files `directory/module.bxml` and `directory/module_i.bxml` must exist and be readable) as well as any imported component (which have to be implemented). All these files have to be BXML 1.0 compliant files.
-
---- b2rust needs to have write access to `output_directory`. It should not already contain files whose name are under the shape `i.rs`, where `i` is the name of a module in `directory`.
-
-`b2rust module -I directory [-O output_directory]`
-
-If these requirements are not respected, an unknown behaviour could
-happen.
+Generates Rust code from the given component, using the settings in the given configuration directory,
+and the BXML files of the module and its dependencies. If the component has an implementation, the
+generated code is that of this implementation. Otherwise, the component is considered that of a base
+module.
 
 If the B module associated with the `module.bxml` and `module_i.bxml`
-as well as recursively imported modules codes match some
-specifications, b2rust shall generate a Rust library (a code file for
+as well as recursively imported modules codes are in the translatable
+subset of the B language, b2rust generates a Rust library (a code file for
 each module whose name is the name of the module) which matches the
-specification of the B entry module. To put in a nutshell, b2rust
+specification of the B entry module.
+
+In a nutshell, b2rust
 translates variables, constants, assignments, `if`/`then`/`else`,
 asserts, local variables definitions, and operation definition with
 any number of input or output parameters, imports, operation calls,
 some expressions using tabulars, integers, booleans, basic maths.
 
-If the B implementation associated with the provided BXML file matches
-some specifications, b2rust shall give the user a Rust library which
-matches the specification of the B module. To put in a nutshell,
-b2rust translates variables, constants, assignments, if/then/else,
-asserts, local variables definitions, and operation definition with
-any number of input or output parameters.
-
-The library can be compiled with the command 
+The library can be compiled with the command
 
 ```sh
 rustc --crate-type=lib a.rs
 ```
+
 (if `a.rs` is the generated file). The library can then be used
 in a Rust project (with a `main`), using the compilation option
 `--extern out=libout.rlib`.
 
-Run `cmake . && make` if you want to compile, `ctest .` if you want to
-run the tests.
-
-If the B module associated with the `module.bxml` and `module_i.bxml`
-as well as recursively imported modules codes match some
-specifications, b2rust shall generate a Rust library (a code file for
-each module whose name is the name of the module) which matches the
-specification of the B entry module. To put in a nutshell, b2rust
-translates variables, constants, assignments, `if`/`then`/`else`,
-asserts, local variables definitions, and operation definition with
-any number of input or output parameters, imports, operation calls,
-some expressions using tabulars, integers, booleans, basic maths.
-
 ## Dependencies
 
-`b2rust` has dependencies on `fmtlib/fmt` (which should be 
-replaced by `smt::format` in the future) and on `tinyxml2`.
+`b2rust` has dependencies on `fmtlib/fmt` (which should be
+replaced by `std::format` in the future) and on `tinyxml2`.
 They are available at the following URLs:
 
 * <https://github.com/fmtlib/fmt>
 * <https://github.com/leethomason/tinyxml2>
 
+## Compilation
+
+You will need to have installed the dependencies before building
+b2rust. You also need a C++ compiler and CMake.
+
+Create a directory for the compilation artifacts, and move
+to that library:
+
+```sh
+mkdir build && cd build
+```
+
+Build
+
+```sh
+cmake <path to b2rust source code>
+cmake --build .
+```
+
 ## Future work
 
-* Have a `b2rustc` binary that checks if a B implementation is 
+* Have a `b2rustc` binary that checks if a B implementation is
   compliant with the subset of B translatable wit `b2rust`.
   The output produced by such tool should be as user-friendly
   as possible by providing clear messages with line and column
